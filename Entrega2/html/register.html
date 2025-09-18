@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Petroka Games</title>
+  <link rel="stylesheet" href=".../css/registro.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <!-- Icono usuario -->
+    <div class="form-header">
+      <span class="user-icon">👤</span>
+    </div>
+
+    <!-- Botones sociales -->
+    <div class="social-login">
+      <button class="btn facebook">📘 ACCEDER CON FACEBOOK</button>
+      <button class="btn google">🌐 ACCEDER CON GOOGLE</button>
+    </div>
+
+    <!-- Formulario -->
+    <form action="#" method="POST" class="register-form">
+      <label>Nombre
+        <input type="text" name="nombre" placeholder="Escribe tu nombre real" required>
+      </label>
+
+      <label>Apellido
+        <input type="text" name="apellido" placeholder="Escribe tu apellido" required>
+      </label>
+
+      <label>Nombre de usuario
+        <input type="text" name="usuario" placeholder="Escribe tu nombre de usuario" required>
+      </label>
+
+      <label>Edad
+        <input type="number" name="edad" placeholder="Escribe tu edad" required>
+      </label>
+
+      <label>Correo Electrónico
+        <input type="email" name="email" placeholder="Escribe tu correo electrónico" required>
+      </label>
+
+      <label>Contraseña
+        <input type="password" name="password" placeholder="Escribe tu contraseña" required>
+      </label>
+
+      <label>Repetir contraseña
+        <input type="password" name="password2" placeholder="Repite tu contraseña" required>
+      </label>
+
+      <div class="captcha">
+        <input type="checkbox" required> No soy un robot
+      </div>
+
+      <button type="submit" class="submit-btn">FINALIZAR REGISTRO</button>
+    </form>
+
+    <p class="login-link">
+      Ya tengo una cuenta, <a href="login.html">deseo acceder.</a>
+    </p>
+  </div>
+
+</body>
+</html>

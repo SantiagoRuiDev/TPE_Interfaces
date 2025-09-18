@@ -1,0 +1,144 @@
+
+
+:root{
+    --primary: rgba(46, 216, 117, 1);
+    --primaryShadow: rgba(55, 164, 100, 1);
+    --primaryDark: rgba(25, 115, 62, 1) ;
+
+    --secondary: rgba(26, 184, 242, 1);
+    --secondaryShadow: rgba(19, 131, 172, 1); 
+    --secondaryDark: rgba(11, 72, 94, 1);
+    
+    --acent: rgba(240, 18, 185, 1);
+    --acent: rgba(189, 16, 146, 1);
+    --acent:  rgba(97, 8, 75, 1);
+
+    --backGround: rgba(16, 16, 16, 1);
+    --backGroundShadow: rgba(74, 74, 74, 1);
+    --backGroundDark: rgba(46, 46, 46, 1);
+
+}
+
+
+
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #111;
+}
+
+.navbar .logo {
+  color: #39a0ff;
+  font-weight: bold;
+}
+
+.navbar .search input {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+.navbar .icons span {
+  margin-left: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* HERO */
+.hero {
+  height: 400px;
+  background: url("../img/lego-batman-bg.jpg") no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.hero-text p {
+  margin: 20px 0;
+}
+
+.cta {
+  padding: 12px 25px;
+  background: #39a0ff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* GAME LIST */
+.games {
+  padding: 30px;
+}
+
+.games h2 {
+  margin-bottom: 20px;
+}
+
+.game-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.game-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  width: 180px;
+}
+
+.game-card img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.game-card button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background: #39a0ff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.footer a {
+  color: #39a0ff;
+  text-decoration: none;
+  margin-right: 15px;
+}

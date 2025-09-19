@@ -1,149 +1,234 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Petroka Games</title>
-  <link rel="shortcut icon" href="../assets/images/Petroka_Icon_128x128.svg" type="image/x-icon">
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css"> <!-- Import la fuente Poppins (TEMPORAL) -->
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petroka Games</title>
+    <link
+      rel="shortcut icon"
+      href="../assets/images/Petroka_Icon_128x128.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
+    <!-- Import la fuente Poppins (TEMPORAL) -->
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="header">
+      <img
+        src="../assets/images/Petroka_Row_Logo.svg"
+        alt="Petroka Navbar Logo"
+      />
+      <label class="search" for="search_field_input">
+        <input
+          type="text"
+          id="search_field_input"
+          placeholder="Buscar experiencias"
+        />
+        <button>
+          <img src="../assets/images/Search_Field_Icon.svg" alt="Search Icon" />
+        </button>
+      </label>
+      <nav>
+        <button>
+          <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon" />
+        </button>
+        <button>
+          <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+        </button>
+        <button>
+          <img
+            src="../assets/images/Hamburguer_Menu_Icon.svg"
+            alt="Hamburguer Menu Icon"
+          />
+        </button>
+      </nav>
+    </header>
 
-  <!-- NAVBAR -->
-  <header class="header">
-    <img src="../assets/images/Petroka_Row_Logo.svg" alt="Petroka Navbar Logo">
-    <label class="search" for="search_field_input">
-      <input type="text" id="search_field_input" placeholder="Buscar experiencias">
-      <button>
-        <img src="../assets/images/Search_Field_Icon.svg" alt="Search Icon">
-      </button>
-    </label>
-    <nav>
-      <button>
-        <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon">
-      </button>
-      <button>
-        <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon">
-      </button>
-      <button>
-        <img src="../assets/images/Hamburguer_Menu_Icon.svg" alt="Hamburguer Menu Icon">
-      </button>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>LEGO BATMAN</h1>
-      <p>Tu última partida te está esperando,<br> ¿listo para continuar la acción?</p>
-      <button class="cta">SEGUIR JUGANDO</button>
-    </div>
-  </section>
-
-  <!-- RECOMENDADOS -->
-  <section class="games">
-    <h2>Podría ser de tu interés</h2>
-    <div class="game-list">
-      <div class="game-card">
-        <img src="img/batman.jpg" alt="Batman">
-        <p>Batman Peg Solitaire</p>
-        <span>En tu biblioteca</span>
-        <button>Jugar</button>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>LEGO BATMAN</h1>
+        <p>
+          Tu última partida te está esperando,<br />
+          ¿listo para continuar la acción?
+        </p>
+        <button class="cta">SEGUIR JUGANDO</button>
       </div>
-      <div class="game-card">
-        <img src="img/fifa25.jpg" alt="FIFA 25">
-        <p>FIFA 25</p>
-        <span>$79.99</span>
-        <button>Comprar</button>
+    </section>
+
+    <!-- RECOMENDADOS -->
+    <section class="games">
+      <h2>Podría ser de tu interés</h2>
+      <div class="game-list">
+        <div class="game-card">
+          <img
+            src="../assets/images/245x312.svg"
+            class="game-card-image"
+            alt="Game Card Image"
+          />
+          <div class="game-card-body">
+            <div class="game-card-information">
+              <p>Aventura</p>
+              <h3>Uncharted</h3>
+            </div>
+            <div class="game-card-discount">
+              <div class="game-card-discount-price">
+                <p class="game-card-discount-original-price">$12.00</p>
+                <p>$6.00</p>
+              </div>
+              <span class="game-card-discount-label">50% OFF</span>
+            </div>
+          </div>
+          <button class="action-button">
+            <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon" />
+            Comprar
+          </button>
+        </div>
+
+        <div class="game-card">
+          <img
+            src="../assets/images/245x312.svg"
+            class="game-card-image"
+            alt="Game Card Image"
+          />
+          <div class="game-card-body">
+            <div class="game-card-information">
+              <p>Aventura</p>
+              <h3>Uncharted</h3>
+            </div>
+            <p>$12.00</p>
+          </div>
+          <button class="action-button">
+            <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon" />
+            Comprar
+          </button>
+        </div>
+        <!-- Más juegos acá -->
+        <div class="game-card">
+          <img
+            src="../assets/images/245x312.svg"
+            class="game-card-image"
+            alt="Game Card Image"
+          />
+          <div class="game-card-body">
+            <div class="game-card-information">
+              <p>Aventura</p>
+              <h3>Uncharted</h3>
+            </div>
+            <p>En tu biblioteca</p>
+          </div>
+          <button class="action-button">
+            <img
+              src="../assets/images/Joystick_Icon.svg"
+              alt="Play Icon"
+            />
+            Jugar
+          </button>
+        </div>
       </div>
-      <!-- Más juegos acá -->
-    </div>
-  </section>
+    </section>
 
-  <!-- EXPERIENCIAS -->
-  <section class="games">
-    <h2>Explora miles de experiencias únicas</h2>
-    <div class="game-list">
-      <!-- Repite estructura game-card -->
-    </div>
-  </section>
+    <!-- EXPERIENCIAS -->
+    <section class="games">
+      <h2>Explora miles de experiencias únicas</h2>
+      <div class="game-list">
+        <!-- Repite estructura game-card -->
+      </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-info">
-      <img src="../assets/images/Petroka_Full_Logo_Small.svg" alt="Petroka Footer Logo Small">
-      <p>Empresa Argentina dedicada al desarrollo y venta de Videojuegos para Adolescentes y Adultas, con fines educativos, somos oriundos de Guaymallen provincia de Mendoza.</p>
-    </div>
-    <div class="footer-links-navigation">
-      <h2>De Interes</h2>
-      <ul>
-        <li>
-          <a href="">Terminos y condiciones</a>
-        </li>
-        <li>
-          <a href="">Compras en la plataforma</a>
-        </li>
-        <li>
-          <a href="">Preguntas frecuentes</a>
-        </li>
-        <li>
-          <a href="">Acerca de nosotros</a>
-        </li>
-      </ul>
-    </div>
-    <div class="footer-links-navigation">
-      <h2>Utiles</h2>
-      <ul>
-        <li>
-          <a href="">Terminos y condiciones</a>
-        </li>
-        <li>
-          <a href="">Compras en la plataforma</a>
-        </li>
-        <li>
-          <a href="">Preguntas frecuentes</a>
-        </li>
-        <li>
-          <a href="">Acerca de nosotros</a>
-        </li>
-      </ul>
-    </div>
-    <div class="footer-links-navigation">
-      <h2>Tendencias</h2>
-      <ul>
-        <li>
-          <a href="">Terminos y condiciones</a>
-        </li>
-        <li>
-          <a href="">Compras en la plataforma</a>
-        </li>
-        <li>
-          <a href="">Preguntas frecuentes</a>
-        </li>
-        <li>
-          <a href="">Acerca de nosotros</a>
-        </li>
-      </ul>
-    </div>
-    <div class="footer-social-media-links">
-      <ul>
-        <li>
-          <img src="../assets/images/Youtube_Icon.svg" alt="Youtube Social Media Icon">
-          <a href="">petrokagames</a>
-        </li>
-        <li>
-          <img src="../assets/images/Instagram_Icon.svg" alt="Instagram Social Media Icon">
-          <a href="">petrokagames</a>
-        </li>
-        <li>
-          <img src="../assets/images/Twitter_Icon.svg" alt="Twitter Social Media Icon">
-          <a href="">petrokagames</a>
-        </li>
-      </ul>
-    </div>
-  </footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-info">
+        <img
+          src="../assets/images/Petroka_Full_Logo_Small.svg"
+          alt="Petroka Footer Logo Small"
+        />
+        <p>
+          Empresa Argentina dedicada al desarrollo y venta de Videojuegos para
+          Adolescentes y Adultas, con fines educativos, somos oriundos de
+          Guaymallen provincia de Mendoza.
+        </p>
+      </div>
+      <div class="footer-links-navigation">
+        <h2>De Interes</h2>
+        <ul>
+          <li>
+            <a href="">Terminos y condiciones</a>
+          </li>
+          <li>
+            <a href="">Compras en la plataforma</a>
+          </li>
+          <li>
+            <a href="">Preguntas frecuentes</a>
+          </li>
+          <li>
+            <a href="">Acerca de nosotros</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links-navigation">
+        <h2>Utiles</h2>
+        <ul>
+          <li>
+            <a href="">Terminos y condiciones</a>
+          </li>
+          <li>
+            <a href="">Compras en la plataforma</a>
+          </li>
+          <li>
+            <a href="">Preguntas frecuentes</a>
+          </li>
+          <li>
+            <a href="">Acerca de nosotros</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links-navigation">
+        <h2>Tendencias</h2>
+        <ul>
+          <li>
+            <a href="">Terminos y condiciones</a>
+          </li>
+          <li>
+            <a href="">Compras en la plataforma</a>
+          </li>
+          <li>
+            <a href="">Preguntas frecuentes</a>
+          </li>
+          <li>
+            <a href="">Acerca de nosotros</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-social-media-links">
+        <ul>
+          <li>
+            <img
+              src="../assets/images/Youtube_Icon.svg"
+              alt="Youtube Social Media Icon"
+            />
+            <a href="">petrokagames</a>
+          </li>
+          <li>
+            <img
+              src="../assets/images/Instagram_Icon.svg"
+              alt="Instagram Social Media Icon"
+            />
+            <a href="">petrokagames</a>
+          </li>
+          <li>
+            <img
+              src="../assets/images/Twitter_Icon.svg"
+              alt="Twitter Social Media Icon"
+            />
+            <a href="">petrokagames</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
 
-  <script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

@@ -47,20 +47,46 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1>LEGO BATMAN</h1>
-        <p>
-          Tu última partida te está esperando,<br />
-          ¿listo para continuar la acción?
-        </p>
-        <button class="cta">SEGUIR JUGANDO</button>
+    <section class="carousel">
+      <div class="carousel-display">
+        <div class="carousel-card">
+          <div class="carousel-card-display">
+            <div class="carousel-card-information">
+              <div class="carousel-card-text">
+                <img src="../assets/images/lego_batman_icon.png" alt="Game Icon">
+                <p>
+                  Adquiere el ultimo lanzamiento de la saga de Lego, una aventura unica de la mano de Batman.
+                </p>
+              </div>
+              <button class="carousel-card-button">Comprar ahora</button>
+            </div>
+          </div>
+          <div class="carousel-card-gradient">
+            <div class="carousel-card-gradient-shadow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-navigation">
+        <button class="carousel-navigation-button"></button>
+        <button class="carousel-navigation-button"></button>
+        <button class="carousel-navigation-button"></button>
+        <button class="carousel-navigation-button"></button>
       </div>
     </section>
 
     <!-- RECOMENDADOS -->
     <section class="games">
-      <h2>Podría ser de tu interés</h2>
+      <div class="games-header">
+        <h2>Aprovecha estas rebajas</h2>
+        <div class="games-navigation">
+          <button class="games-navigation-button">
+            <img src="../assets/images/Left_Arrow_Icon.svg" alt="Right_Arrow_Icon">
+          </button>
+          <button class="games-navigation-button">
+            <img src="../assets/images/Right_Arrow_Icon.svg" alt="Right_Arrow_Icon">
+          </button>
+        </div>
+      </div>
       <div class="game-list">
         <div class="game-card">
           <img
@@ -120,21 +146,28 @@
             <p>En tu biblioteca</p>
           </div>
           <button class="action-button">
-            <img
-              src="../assets/images/Joystick_Icon.svg"
-              alt="Play Icon"
-            />
+            <img src="../assets/images/Joystick_Icon.svg" alt="Play Icon" />
             Jugar
           </button>
         </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCIAS -->
-    <section class="games">
-      <h2>Explora miles de experiencias únicas</h2>
-      <div class="game-list">
-        <!-- Repite estructura game-card -->
+        <div class="game-card">
+          <img
+            src="../assets/images/245x312.svg"
+            class="game-card-image"
+            alt="Game Card Image"
+          />
+          <div class="game-card-body">
+            <div class="game-card-information">
+              <p>Aventura</p>
+              <h3>Uncharted</h3>
+            </div>
+            <p>En tu biblioteca</p>
+          </div>
+          <button class="action-button">
+            <img src="../assets/images/Joystick_Icon.svg" alt="Play Icon" />
+            Jugar
+          </button>
+        </div>
       </div>
     </section>
 
@@ -229,6 +262,6 @@
       </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="../js/carousel.js"></script>
   </body>
 </html>

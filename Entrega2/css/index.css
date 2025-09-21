@@ -1,36 +1,6 @@
-:root {
-  --primary_color: rgba(46, 216, 117, 1);
-  --primary_shadow_color: rgba(55, 164, 100, 1);
-  --primary_dark_color: rgba(25, 115, 62, 1);
-
-  --secondary_color: rgba(26, 184, 242, 1);
-  --secondary_shadow_color: rgba(19, 131, 172, 1);
-  --secondary_dark_color: rgba(11, 72, 94, 1);
-
-  --accent_color: rgba(240, 18, 185, 1);
-  --accent_shadow_color: rgba(189, 16, 146, 1);
-  --accent_dark_color: rgba(97, 8, 75, 1);
-
-  --background_color: rgba(16, 16, 16, 1);
-  --background_light_color: rgba(246, 246, 246, 1);
-  --backgrund_light_gray_color: rgba(202, 202, 202, 1);
-  --background_gray_color: rgba(123, 123, 123, 1);
-  --background_shadow_color: rgba(74, 74, 74, 1);
-  --background_dark_color: rgba(46, 46, 46, 1);
-}
-
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "poppins";
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: var(--background_color);
-  color: #fff;
+.web-content {
+  display: grid;
+  gap: 32px;
 }
 
 /* NAVBAR */
@@ -38,14 +8,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 30px;
+  padding: 8px 0px;
   background: var(--background_color);
   border-bottom: 2px solid green;
+  width: 80%;
+  margin: 0px auto;
 }
 
 .header .search {
   position: relative;
-  padding: 4px 18px 4px 18px;
+  padding: 4px 12px 4px 12px;
   border-radius: 28px;
   background: transparent;
   border: solid 2px;
@@ -173,7 +145,7 @@ body {
 /* GAME LIST */
 .games {
   display: grid;
-  gap: 12px;
+  gap: 18px;
   width: 80%;
   margin: 0px auto;
 

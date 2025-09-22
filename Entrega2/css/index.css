@@ -1,3 +1,6 @@
+@import "footer.css";
+@import "base.css";
+
 .web-content {
   display: grid;
   gap: 32px;
@@ -10,7 +13,6 @@
   align-items: center;
   padding: 8px 0px;
   background: var(--background_color);
-  border-bottom: 2px solid green;
   width: 80%;
   margin: 0px auto;
 }
@@ -111,16 +113,20 @@
     z-index: 10;
     max-width: 50%;
 
-    .carousel-card-button {
-      background: var(--background_light_color);
-      border: none;
-      border-radius: 8px;
-      padding: 8px;
-      text-align: center;
-      font-weight: bold;
-      max-width: 150px;
-      transition: all 0.3s ease-in-out;
-      cursor: pointer;
+    .carousel-card-price-action {
+      display: grid;
+      gap: 6px;
+      .carousel-card-button {
+        background: var(--background_light_color);
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+        max-width: 150px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+      }
     }
 
     .carousel-card-button:hover {
@@ -255,71 +261,5 @@
 
   .action-button:hover {
     background-color: var(--background_shadow_color);
-  }
-}
-
-/* FOOTER */
-.footer {
-  margin-top: 40px;
-  padding: 20px;
-  background: #111;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .footer-info {
-    max-width: 256px;
-    font-size: 12px;
-    color: var(--background_gray_color);
-  }
-
-  .footer-links-navigation {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    h2 {
-      color: var(--secondary_color);
-      font-size: 18px;
-    }
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      gap: 12px;
-      li a {
-        text-decoration: none;
-        color: var(--background_gray_color);
-        text-transform: uppercase;
-        font-size: 14px;
-      }
-    }
-  }
-
-  .footer-social-media-links {
-    ul {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      gap: 24px;
-      li {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-
-        img {
-          width: 24px;
-          height: 24px;
-        }
-      }
-      li a {
-        text-decoration: none;
-        color: var(--secondary_color);
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: bold;
-      }
-    }
   }
 }

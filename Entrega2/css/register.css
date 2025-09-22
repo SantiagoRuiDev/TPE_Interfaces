@@ -1,20 +1,45 @@
+@import "base.css";
+
 body {
-  font-family: Arial, sans-serif;
-  background: #0a0a0a url("../img/bg.jpg") no-repeat center/cover;
-  color: #fff;
+  background: url("../assets/images/godofwar_game.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: grid;
+  position: relative;
+  padding: 12px;
+}
+
+.web-content {
   display: flex;
-  justify-content: center;
+  height: 100%;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  margin: 0px auto;
+  width: 70%;
+}
+
+.background-gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.background-shadow {
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+  transition-duration: 0.1s;
 }
 
 .form-container {
-  background: #111;
+  background: var(--background_color);
   padding: 30px;
   border-radius: 15px;
-  width: 350px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  width: auto;
+  margin: 0px auto;
+  display: grid;
+  justify-items: center;
 }
 
 .form-header {
@@ -27,32 +52,45 @@ body {
 }
 
 .social-login {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 20px;
+  border-bottom: solid 2px var(--secondary_color);
+  padding-bottom: 12px;
 }
 
-.btn {
+.social-login-button {
   padding: 10px;
   border: none;
   border-radius: 8px;
   color: white;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: bold;
 }
 
 .facebook {
-  background: #1877f2;
+  background: var(--secondary_color);
+  transition: all 0.3s ease-in-out;
 }
-
+.facebook:hover {
+  background: var(--secondary_shadow_color);
+}
 .google {
-  background: #db4437;
+  background: var(--accent_shadow_color);
+  transition: all 0.3s ease-in-out;
+}
+.google:hover {
+  background: var(--accent_dark_color);
 }
 
 .register-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
   gap: 15px;
 }
 
@@ -69,37 +107,67 @@ body {
   border-radius: 5px;
   background: #333;
   color: #fff;
+  outline: none;
+}
+
+.register-form input::placeholder {
+  color: var(--backgrund_light_gray_color);
 }
 
 .captcha {
   display: flex;
   align-items: center;
   gap: 10px;
+  background: var(--background_light_color);
+  border: solid 1.5px var(--background_gray_color);
+  border-radius: 8px;
+  color: var(--background_shadow_color);
+  font-size: 12px;
+  padding: 6px;
+  justify-content: space-between;
+  grid-column: span 2; /* Ocupa las dos columnas */
+
+  .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    input {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.login-link {
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--secondary_shadow_color);
+  margin-top: 12px;
 }
 
 .submit-btn {
   margin-top: 15px;
   padding: 12px;
-  background: #00c853;
+  background: var(--primary_color);
+  box-shadow: 0px 4px 0px var(--primary_dark_color);
   border: none;
   border-radius: 8px;
-  color: white;
+  color: var(--background_light_color);
   font-weight: bold;
-  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
   transition: 0.3s;
+  grid-column: span 2; /* Ocupa las dos columnas */
 }
 
 .submit-btn:hover {
-  background: #00e676;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.login-link a {
-  color: #39a0ff;
-  text-decoration: none;
+  background: var(--primary_dark_color);
+  box-shadow: none;
+  transform: translateY(4px);
 }

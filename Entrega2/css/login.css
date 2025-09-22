@@ -6,6 +6,7 @@ body {
   background-size: cover;
   min-height: 100vh;
   display: grid;
+  position: relative;
 }
 
 .web-content {
@@ -31,7 +32,7 @@ body {
 }
 
 .form-container {
-  background: #111;
+  background: var(--background_color);
   padding: 30px;
   border-radius: 15px;
   width: 350px;
@@ -53,22 +54,6 @@ body {
   margin-bottom: 20px;
 }
 
-.btn {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.facebook {
-  background: #1877f2;
-}
-
-.google {
-  background: #db4437;
-}
 
 .login-form {
   display: flex;
@@ -94,7 +79,7 @@ body {
 .login-form input::placeholder {
   color: var(--backgrund_light_gray_color);
 }
-.login-form a {
+.login-form .register-link {
   text-decoration: none;
   font-size: 12px;
   color: var(--secondary_shadow_color);
@@ -103,17 +88,22 @@ body {
 .submit-btn {
   margin-top: 15px;
   padding: 12px;
-  background: #00c853;
+  background: var(--primary_color);
+  box-shadow: 0px 4px 0px var(--primary_dark_color);
   border: none;
   border-radius: 8px;
-  color: white;
+  color: var(--background_light_color);
   font-weight: bold;
-  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
   transition: 0.3s;
 }
 
 .submit-btn:hover {
-  background: #00e676;
+  background: var(--primary_dark_color);
+  box-shadow: none;
+  transform: translateY(4px);
 }
 
 .web-information {

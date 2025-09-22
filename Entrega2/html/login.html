@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iniciar sesión - Petroka Games</title>
-    <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
   </head>
@@ -13,45 +12,48 @@
       <div class="background-shadow"></div>
     </div>
     <main class="web-content">
-      
-    <div class="form-container">
-      <!-- Icono usuario -->
-      <div class="form-header">
-        <img src="../assets/images/User_Icon.svg" alt="User Icon">
+      <div class="form-container">
+        <!-- Icono usuario -->
+        <div class="form-header">
+          <img src="../assets/images/User_Icon.svg" alt="User Icon" />
+        </div>
+
+        <!-- Formulario -->
+        <form action="#" class="login-form">
+          <label
+            >Nombre de usuario
+            <input
+              type="text"
+              name="usuario"
+              placeholder="Escribe tu nombre de usuario"
+              required
+            />
+          </label>
+
+          <label
+            >Contraseña
+            <input
+              type="password"
+              name="password"
+              placeholder="Escribe tu contraseña"
+              required
+            />
+          </label>
+          <a href="register.html" class="register-link">
+            No tengo una cuenta, quiero registrarme.</a
+          >
+
+          <a type="submit" class="submit-btn" href="index.html">ACCEDER</a>
+        </form>
       </div>
 
-      <!-- Formulario -->
-      <form action="#" class="login-form">
-        <label
-          >Nombre de usuario
-          <input
-            type="text"
-            name="usuario"
-            placeholder="Escribe tu nombre de usuario"
-            required
-          />
-        </label>
-
-        <label
-          >Contraseña
-          <input
-            type="password"
-            name="password"
-            placeholder="Escribe tu contraseña"
-            required
-          />
-        </label>
-        <a href="#" class="register-link">
-        No tengo una cuenta, quiero registrarme.</a>
-
-        <button type="submit" class="submit-btn">ACCEDER</button>
-      </form>
-    </div>
-
-    <div class="web-information">
-      <img src="../assets/images/Petroka_Full_Logo.svg" alt="Petroka Games Brand Logo">
-      <h3>Accede a la mayor biblioteca de juegos online</h3>
-    </div>
+      <div class="web-information">
+        <img
+          src="../assets/images/Petroka_Full_Logo.svg"
+          alt="Petroka Games Brand Logo"
+        />
+        <h3>Accede a la mayor biblioteca de juegos online</h3>
+      </div>
     </main>
   </body>
 </html>

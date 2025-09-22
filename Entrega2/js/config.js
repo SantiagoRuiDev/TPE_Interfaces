@@ -1,0 +1,1 @@
+const API = "https://68d15473e6c0cbeb39a47121.mockapi.io/api/v1";

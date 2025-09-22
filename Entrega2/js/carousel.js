@@ -1,5 +1,3 @@
-const API = "https://68d15473e6c0cbeb39a47121.mockapi.io/api/v1/carousel";
-
 const carousel = document.querySelector(".carousel-display");
 const carousel_navigation = document.querySelector(".carousel-navigation");
 const carousel_items = [];
@@ -42,26 +40,54 @@ function renderCarouselNavigationButton() {
 
 function renderCarouselItem(index) {
   const item = carousel_items[index];
-  carousel.innerHTML = `
-    <div class="carousel-card">
-      <div class="carousel-card-display" 
-           style="background-image: url('${item.image}'); background-size: cover; background-position: center;">
-        <div class="carousel-card-information">
-          <div class="carousel-card-text">
-            <img src="${item.gameicon}" alt="Game Icon">
-            <p>${item.description}</p>
+  const card = document.querySelector(".carousel-card");
+  if (card) {
+    card.classList.add("fade-out");
+    setTimeout(() => {
+      carousel.innerHTML = `
+        <div class="carousel-card fade-in">
+          <div class="carousel-card-display" 
+               style="background-image: url('${item.image}'); background-size: cover; background-position: center;">
+            <div class="carousel-card-information">
+              <div class="carousel-card-text">
+                <img src="${item.gameicon}" alt="Game Icon">
+                <p>${item.description}</p>
+              </div>
+              <div class="carousel-card-price-action">
+                <p>$${item.price}</p>
+                <button class="carousel-card-button">Comprar ahora</button>
+              </div>
+            </div>
           </div>
-          <div class="carousel-card-price-action">
-            <p>$${item.price}</p>
-            <button class="carousel-card-button">Comprar ahora</button>
+          <div class="carousel-card-gradient">
+            <div class="carousel-card-gradient-shadow"></div>
           </div>
         </div>
+      `;
+    }, 300); // mismo tiempo que el fade-out
+  } else {
+    // primer render
+    carousel.innerHTML = `
+      <div class="carousel-card fade-in">
+        <div class="carousel-card-display" 
+             style="background-image: url('${item.image}'); background-size: cover; background-position: center;">
+          <div class="carousel-card-information">
+            <div class="carousel-card-text">
+              <img src="${item.gameicon}" alt="Game Icon">
+              <p>${item.description}</p>
+            </div>
+            <div class="carousel-card-price-action">
+              <p>$${item.price}</p>
+              <button class="carousel-card-button">Comprar ahora</button>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-card-gradient">
+          <div class="carousel-card-gradient-shadow"></div>
+        </div>
       </div>
-      <div class="carousel-card-gradient">
-        <div class="carousel-card-gradient-shadow"></div>
-      </div>
-    </div>
-  `;
+    `;
+  }
 }
 
 /**
@@ -72,7 +98,7 @@ function renderCarouselItem(index) {
  */
 const fetchCarouselItems = () => {
   try {
-    fetch(API)
+    fetch(API + "/carousel")
       .then((res) => res.json())
       .then((data) => {
         carousel_items.push(...data);

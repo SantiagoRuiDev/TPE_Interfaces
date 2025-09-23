@@ -37,12 +37,39 @@
         <button>
           <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
         </button>
-        <button>
+        <button id="hamburguer-menu-button">
           <img
             src="../assets/images/Hamburguer_Menu_Icon.svg"
             alt="Hamburguer Menu Icon"
           />
         </button>
+
+        <div class="hamburguer-menu">
+          <div class="menu-header">
+            <div class="menu-user-info">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <div class="">
+                <p>¿Que deseas hacer?</p>
+                <h3>Vladimir Zaroska</h3>
+              </div>
+            </div>
+            <img src="../assets/images/Petroka_Icon_128x128.svg" alt="Petroka Icon">
+          </div>
+          <ul class="menu-links">
+            <li><a href="#">
+            <img src="../assets/images/Games Icon.svg" alt="Search Games Icon">Buscar juegos</a></li>
+            <li><a href="#">
+            <img src="../assets/images/Support Icon.svg" alt="Support Icon">Necesito ayuda</a></li>
+            <li><a href="#">
+            <img src="../assets/images/Policy Icon.svg" alt="Privacy Policy Icon">Politicas de privacidad</a></li>
+            <li><a href="#">
+            <img src="../assets/images/Configuration icon.svg" alt="Account Icon">Mi cuenta</a></li>
+          </ul>
+
+          <button class="menu-leave-button">
+            <img src="../assets/images/Icono Logout (1).svg" alt="Logout Icon">
+            Cerrar Sesión</button>
+        </div>
       </nav>
     </header>
 
@@ -166,6 +193,7 @@
     </footer>
 
     <script src="../js/config.js"></script>
+    <script src="../js/menu.js"></script>
     <script src="../js/carousel.js"></script>
     <script type="module" src="../js/catalog.js"></script>
   </body>

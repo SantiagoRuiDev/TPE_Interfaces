@@ -52,11 +52,109 @@
   display: flex;
   gap: 32px;
   align-items: center;
+  position: relative;
 
   button {
     background: none;
     border: none;
+    cursor: pointer;
   }
+}
+
+.hamburguer-menu {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  top: 50px;
+  right: 0;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--background_dark_color);
+
+  .menu-leave-button {
+    border: none;
+    color: var(--background_light_color);
+    font-size: 14px;
+    cursor: pointer;
+    background: var(--secondary_shadow_color);
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+  }
+  .menu-leave-button:hover {
+    background: var(--secondary_dark_color);
+  }
+
+  .menu-links {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+
+    li a {
+      text-decoration: none;
+      color: var(--background_light_color);
+      font-size: 14px;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--background_shadow_color);
+    }
+    li a:hover {
+      background: var(--background_gray_color);
+    }
+  }
+
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 512px;
+    padding-bottom: 12px;
+    border-bottom: solid 2px var(--background_shadow_color);
+
+    .menu-user-info {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+
+      img {
+        height: 42px;
+        width: 42px;
+      }
+
+      p {
+        font-size: 12px;
+        color: var(--background_gray_color);
+      }
+
+      h3 {
+        font-size: 16px;
+        color: var(--background_light_color);
+        font-weight: 400;
+      }
+    }
+
+    img {
+      height: 64px;
+      width: 64px;
+      cursor: pointer;
+    }
+  }
+}
+
+.hamburguer-menu.active {
+  opacity: 1;
+  z-index: 10;
+  transition: opacity 0.3s ease-in-out;
 }
 /* HERO */
 .carousel {

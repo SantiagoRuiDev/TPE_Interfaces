@@ -1,6 +1,8 @@
 
 /* FOOTER */
 .footer {
+  width: 80%;
+  margin: 0px auto;
   margin-top: 40px;
   padding: 20px;
   background: #111;
@@ -21,7 +23,7 @@
 
     h2 {
       color: var(--secondary_color);
-      font-size: 18px;
+      font-size: 14px;
     }
 
     ul {
@@ -33,7 +35,7 @@
         text-decoration: none;
         color: var(--background_gray_color);
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 10px;
       }
     }
   }

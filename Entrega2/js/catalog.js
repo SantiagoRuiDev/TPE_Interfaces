@@ -2,6 +2,7 @@ import { mapDiscountCard } from "./card/discount_card.js";
 import { mapFreeCard } from "./card/free_card.js";
 import { mapNormalCard } from "./card/normal_card.js";
 import { mapOwnedCard } from "./card/owned_card.js";
+import { mapProductCartCard } from "./card/product_cart_card.js";
 
 const catalog = document.querySelector(".game-list");
 const next_btn = document.querySelector("#next-btn");
@@ -10,18 +11,20 @@ const catalog_items = [];
 const items_per_page = 4;
 let currentPage = 0;
 
-next_btn.addEventListener('click', () => {
-  const nextPage = currentPage + 1 < catalog_items.length ? currentPage + 1 : currentPage;
+next_btn.addEventListener("click", () => {
+  const nextPage =
+    currentPage + 1 < catalog_items.length ? currentPage + 1 : currentPage;
   currentPage = nextPage;
   renderCatalogPage(currentPage);
-})
+});
 
-prev_btn.addEventListener('click', () => {
+prev_btn.addEventListener("click", () => {
   const previousPage = currentPage - 1 >= 0 ? currentPage - 1 : currentPage;
   currentPage = previousPage;
   renderCatalogPage(currentPage);
-})
+});
 
+// En base a la pagina seleccionada elimina los items listados y carga los nuevos.
 const renderCatalogPage = (page) => {
   currentPage = page;
   catalog.innerHTML = ""; // Vaciar el catalogo
@@ -36,6 +39,22 @@ const renderCatalogPage = (page) => {
       catalog.innerHTML += mapNormalCard(game);
     }
   }
+
+  // Esta función se dispara cuando se termina de cargar el catalogo, si se hace antes capturara una lista vacia.
+  enableCartListing();
+};
+
+// Esta función captura el evento click para cada boton de acción de las cards del catalogo.
+// Entonces nos permite saber cuando poner un elemento en el carrito.
+const enableCartListing = () => {
+  const buy_action_button = document.querySelectorAll(".action-button");
+  const cart_overview = document.querySelector('.cart-overview'); 
+  buy_action_button.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      const product = catalog_items[currentPage][index];
+      cart_overview.innerHTML+= mapProductCartCard(product);
+    });
+  });
 };
 
 /**

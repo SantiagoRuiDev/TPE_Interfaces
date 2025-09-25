@@ -31,9 +31,27 @@
         </button>
       </label>
       <nav>
-        <button>
+        <button id="cart-menu-button">
           <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon" />
         </button>
+
+        <div class="cart-menu">
+          <div class="cart-header">
+            <img
+              src="../assets/images/Petroka_Icon_128x128.svg"
+              alt="Petroka Icon"
+            />
+          </div>
+
+          <div class="cart-overview">
+          </div>
+
+          <div class="cart-price-info">
+            <h3>Total a pagar: $49.99</h3>
+            <button class="cart-action-button">Comprar</button>
+          </div>
+        </div>
+
         <button>
           <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
         </button>
@@ -53,52 +71,88 @@
                 <h3>Vladimir Zaroska</h3>
               </div>
             </div>
-            <img src="../assets/images/Petroka_Icon_128x128.svg" alt="Petroka Icon">
+            <img
+              src="../assets/images/Petroka_Icon_128x128.svg"
+              alt="Petroka Icon"
+            />
           </div>
           <ul class="menu-links">
-            <li><a href="#">
-            <img src="../assets/images/Games Icon.svg" alt="Search Games Icon">Buscar juegos</a></li>
-            <li><a href="#">
-            <img src="../assets/images/Support Icon.svg" alt="Support Icon">Necesito ayuda</a></li>
-            <li><a href="#">
-            <img src="../assets/images/Policy Icon.svg" alt="Privacy Policy Icon">Politicas de privacidad</a></li>
-            <li><a href="#">
-            <img src="../assets/images/Configuration icon.svg" alt="Account Icon">Mi cuenta</a></li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Games Icon.svg"
+                  alt="Search Games Icon"
+                />Buscar juegos</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Support Icon.svg"
+                  alt="Support Icon"
+                />Necesito ayuda</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Policy Icon.svg"
+                  alt="Privacy Policy Icon"
+                />Politicas de privacidad</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Configuration icon.svg"
+                  alt="Account Icon"
+                />Mi cuenta</a
+              >
+            </li>
           </ul>
 
           <button class="menu-leave-button">
-            <img src="../assets/images/Icono Logout (1).svg" alt="Logout Icon">
-            Cerrar Sesión</button>
+            <img
+              src="../assets/images/Icono Logout (1).svg"
+              alt="Logout Icon"
+            />
+            Cerrar Sesión
+          </button>
         </div>
       </nav>
     </header>
 
     <main class="web-content">
-    <!-- HERO -->
-    <section class="carousel">
-      <div class="carousel-display">
-        <!-- El contenido del carousel es cargado mediante JavaScript -->
-      </div>
-      <div class="carousel-navigation">
-      </div>
-    </section>
-
-    <!-- RECOMENDADOS -->
-    <section class="games">
-      <div class="games-header">
-        <h2>Podria ser de tu interés</h2>
-        <div class="games-navigation">
-          <button class="games-navigation-button" id="prev-btn">
-            <img src="../assets/images/Left_Arrow_Icon.svg" alt="Right_Arrow_Icon">
-          </button>
-          <button class="games-navigation-button" id="next-btn">
-            <img src="../assets/images/Right_Arrow_Icon.svg" alt="Right_Arrow_Icon">
-          </button>
+      <div class="web-content-blur"></div>
+      <!-- HERO -->
+      <section class="carousel">
+        <div class="carousel-display">
+          <!-- El contenido del carousel es cargado mediante JavaScript -->
         </div>
-      </div>
-      <div class="game-list">
-      </div>
-    </section>
+        <div class="carousel-navigation"></div>
+      </section>
+
+      <!-- RECOMENDADOS -->
+      <section class="games">
+        <div class="games-header">
+          <h2>Podria ser de tu interés</h2>
+          <div class="games-navigation">
+            <button class="games-navigation-button" id="prev-btn">
+              <img
+                src="../assets/images/Left_Arrow_Icon.svg"
+                alt="Right_Arrow_Icon"
+              />
+            </button>
+            <button class="games-navigation-button" id="next-btn">
+              <img
+                src="../assets/images/Right_Arrow_Icon.svg"
+                alt="Right_Arrow_Icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="game-list"></div>
+      </section>
     </main>
 
     <!-- FOOTER -->
@@ -195,6 +249,7 @@
     <script src="../js/config.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/carousel.js"></script>
+    <script src="../js/cart.js"></script>
     <script type="module" src="../js/catalog.js"></script>
   </body>
 </html>

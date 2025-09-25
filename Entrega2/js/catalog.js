@@ -4,6 +4,7 @@ import { mapNormalCard } from "./card/normal_card.js";
 import { mapOwnedCard } from "./card/owned_card.js";
 import { mapProductCartCard } from "./card/product_cart_card.js";
 
+let cart = [];
 const catalog = document.querySelector(".game-list");
 const next_btn = document.querySelector("#next-btn");
 const prev_btn = document.querySelector("#prev-btn");
@@ -48,13 +49,63 @@ const renderCatalogPage = (page) => {
 // Entonces nos permite saber cuando poner un elemento en el carrito.
 const enableCartListing = () => {
   const buy_action_button = document.querySelectorAll(".action-button");
-  const cart_overview = document.querySelector('.cart-overview'); 
   buy_action_button.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       const product = catalog_items[currentPage][index];
-      cart_overview.innerHTML+= mapProductCartCard(product);
+      addProductToCart(product);
     });
   });
+};
+
+// Se agrega el producto al carrito y se renderiza el HTML.
+const addProductToCart = (product) => {
+  if (!cart.find((p) => p.id == product.id)) {
+    cart.push(product);
+    renderCartProducts();
+    listenCartActionButtons();
+  }
+};
+
+// Se renderizan los productos (Primero de limpia el visualizador)
+const renderCartProducts = () => {
+  const cart_overview = document.querySelector(".cart-overview");
+  cart_overview.innerHTML = "";
+  cart.forEach((product) => {
+    cart_overview.innerHTML += mapProductCartCard(product);
+  });
+  renderCartPricing();
+};
+
+const renderCartPricing = () => {
+  const price_text = document.querySelector(".cart-price-text");
+  const checkout_button = document.querySelector(".cart-action-button");
+  if (cart.length > 0) {
+    price_text.innerHTML =
+      "Total a pagar: $" + cart.reduce((sum, p) => sum + p.price, 0);
+    checkout_button.classList.add("active");
+  } else {
+    price_text.innerHTML = "No hay productos en el carrito";
+    checkout_button.classList.remove("active");
+  }
+};
+
+// Escucha eventos en los botones de eliminar del carrito.
+const listenCartActionButtons = () => {
+  const delete_action_buttons = document.querySelectorAll(
+    ".cart-product-delete"
+  );
+  delete_action_buttons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      deleteProductFromCart(cart[index]); // En base al index del boton se elimina el elemento del carrito que coincida en esa pos.
+    });
+  });
+};
+
+// Elimina el producto del carrito. (Y renderiza el carrito nuevamente)
+const deleteProductFromCart = (product) => {
+  cart = cart.filter((p) => p.id !== product.id);
+  renderCartProducts();
+  listenCartActionButtons();
 };
 
 /**

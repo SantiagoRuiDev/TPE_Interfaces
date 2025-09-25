@@ -175,6 +175,7 @@
     gap: 24px;
 
     .cart-action-button {
+      opacity: 0;
       border: none;
       color: var(--background_light_color);
       font-size: 14px;
@@ -194,6 +195,9 @@
       background: var(--primary_dark_color);
       box-shadow: none;
       transform: translateY(4px);
+    }
+    .cart-action-button.active {
+      opacity: 1;
     }
     h3 {
       font-size: 14px;

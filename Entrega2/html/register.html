@@ -13,25 +13,28 @@
     </div>
     <main class="web-content">
       <div class="form-container">
-        <!-- Icono usuario -->
-        <div class="form-header">
-          <img src="../assets/images/User_Icon.svg" alt="User Icon" />
-        </div>
-
         <!-- Botones sociales -->
         <div class="social-login">
           <button class="facebook social-login-button">
-            <img src="../assets/images/Facebook_Icon.svg" alt="Facebook Icon">
-            ACCEDER CON FACEBOOK</button>
+            <img src="../assets/images/Facebook_Icon.svg" alt="Facebook Icon" />
+            ACCEDER CON FACEBOOK
+          </button>
           <button class="google social-login-button">
-            <img src="../assets/images/Google_Icon.svg" alt="Google Icon">
-            ACCEDER CON GOOGLE</button>
+            <img src="../assets/images/Google_Icon.svg" alt="Google Icon" />
+            ACCEDER CON GOOGLE
+          </button>
         </div>
 
         <!-- Formulario -->
         <form action="#" class="register-form">
-          <label
-            >Nombre
+          <label>
+            <div class="required-field">
+              <p>Nombre</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
             <input
               type="text"
               name="nombre"
@@ -40,8 +43,14 @@
             />
           </label>
 
-          <label
-            >Apellido
+          <label>
+            <div class="required-field">
+              <p>Apellido</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
             <input
               type="text"
               name="apellido"
@@ -60,8 +69,14 @@
             />
           </label>
 
-          <label
-            >Edad
+          <label>
+            <div class="required-field">
+              <p>Edad</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
             <input
               type="number"
               name="edad"
@@ -70,8 +85,14 @@
             />
           </label>
 
-          <label
-            >Correo Electrónico
+          <label>
+            <div class="required-field">
+              <p>Correo</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
             <input
               type="email"
               name="email"
@@ -80,8 +101,14 @@
             />
           </label>
 
-          <label
-            >Contraseña
+          <label>
+            <div class="required-field">
+              <p>Contraseña</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
             <input
               type="password"
               name="password"
@@ -90,8 +117,14 @@
             />
           </label>
 
-          <label
-            >Repetir contraseña
+          <label>
+            <div class="required-field">
+              <p>Repetir contraseña</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
             <input
               type="password"
               name="password2"
@@ -100,17 +133,30 @@
             />
           </label>
 
-          <div class="captcha">
-            <div class="checkbox-field">
-              
-            <input type="checkbox" required /> No soy un robot
+          <div class="auxiliary">
+            <a href="login.html" class="login-link"
+              >Ya tengo una cuenta, deseo acceder.</a
+            >
+            <div class="captcha">
+              <div class="checkbox-field">
+                <input type="checkbox" required /> No soy un robot
+              </div>
+              <img src="../assets/images/reCaptcha.svg" alt="Recaptcha Icon" />
             </div>
-            <img src="../assets/images/reCaptcha.svg" alt="Recaptcha Icon">
           </div>
 
           <a href="index.html" class="submit-btn">FINALIZAR REGISTRO</a>
         </form>
-        <a href="login.html" class="login-link">Ya tengo una cuenta, deseo acceder.</a>
+      </div>
+
+      <div class="web-information">
+        <img
+          src="../assets/images/Petroka_Full_Logo.svg"
+          alt="Petroka Games Brand Logo"
+        />
+        <h3>
+          ¿Que esperas para registrarte? Registrate ahora y empeza a jugar.
+        </h3>
       </div>
     </main>
   </body>

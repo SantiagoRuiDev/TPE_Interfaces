@@ -16,7 +16,8 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0px auto;
-  width: 70%;
+  width: 80%;
+  gap: 32px;
 }
 
 .background-gradient {
@@ -34,12 +35,10 @@ body {
 
 .form-container {
   background: var(--background_color);
-  padding: 30px;
+  padding: 18px;
   border-radius: 15px;
-  width: auto;
-  margin: 0px auto;
+  width: 40%;
   display: grid;
-  justify-items: center;
 }
 
 .form-header {
@@ -53,7 +52,6 @@ body {
 
 .social-login {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 20px;
   border-bottom: solid 2px var(--secondary_color);
@@ -61,14 +59,15 @@ body {
 }
 
 .social-login-button {
-  padding: 10px;
+  padding: 6px;
   border: none;
   border-radius: 8px;
+  gap: 24px;
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-weight: bold;
 }
 
@@ -88,21 +87,27 @@ body {
 }
 
 .register-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  gap: 15px;
+  gap: 12px;
+
+  .required-field {
+    display: inline-flex;
+    align-items: bottom;
+    gap: 6px;
+  }
 }
 
 .register-form label {
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
 }
 
 .register-form input {
-  padding: 8px;
+  padding: 5px 8px;
   border: none;
   border-radius: 5px;
   background: #333;
@@ -123,7 +128,7 @@ body {
   border-radius: 8px;
   color: var(--background_shadow_color);
   font-size: 12px;
-  padding: 6px;
+  padding: 0px 6px; 
   justify-content: space-between;
   grid-column: span 2; /* Ocupa las dos columnas */
 
@@ -151,8 +156,8 @@ body {
 }
 
 .submit-btn {
-  margin-top: 15px;
-  padding: 12px;
+  margin-top: 8px;
+  padding: 6px 0px;
   background: var(--primary_color);
   box-shadow: 0px 4px 0px var(--primary_dark_color);
   border: none;
@@ -170,4 +175,27 @@ body {
   background: var(--primary_dark_color);
   box-shadow: none;
   transform: translateY(4px);
+}
+
+
+.web-information {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+  max-width: 50%;
+  text-align: center;
+
+  img {
+    height: 128px;
+    width: 256px;
+    margin: 0px auto;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--backgrund_light_gray_color)
+  }
 }

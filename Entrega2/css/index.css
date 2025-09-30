@@ -224,6 +224,7 @@
   background-color: var(--background_dark_color);
 
   .menu-leave-button {
+    text-decoration: none;
     border: none;
     color: var(--background_light_color);
     font-size: 14px;

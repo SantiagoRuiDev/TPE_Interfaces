@@ -1,3 +1,6 @@
+import { mapCarouselSlide } from "./slide/carousel_slide.js";
+import { mapCarouselSlideDiscount } from "./slide/carousel_slide_discount.js";
+
 const carousel = document.querySelector(".carousel-display");
 const carousel_navigation = document.querySelector(".carousel-navigation");
 const carousel_items = [];
@@ -22,10 +25,11 @@ const setCarouselNavigationButtonActive = (buttons, btn) => {
 const cycleCarouselSlideChanger = (time) => {
   const buttons = document.querySelectorAll(".carousel-navigation-button");
   setInterval(() => {
-      const index = (currentIndex + 1) < carousel_items.length ? currentIndex + 1 : 0 
-      currentIndex = index;
-      setCarouselNavigationButtonActive(buttons, buttons[currentIndex]);
-      renderCarouselItem(currentIndex);
+    const index =
+      currentIndex + 1 < carousel_items.length ? currentIndex + 1 : 0;
+    currentIndex = index;
+    setCarouselNavigationButtonActive(buttons, buttons[currentIndex]);
+    renderCarouselItem(currentIndex);
   }, time);
 };
 
@@ -44,49 +48,12 @@ function renderCarouselItem(index) {
   if (card) {
     card.classList.add("fade-out");
     setTimeout(() => {
-      carousel.innerHTML = `
-        <div class="carousel-card fade-in">
-          <div class="carousel-card-display" 
-               style="background-image: url('${item.image}'); background-size: cover; background-position: center;">
-            <div class="carousel-card-information">
-              <div class="carousel-card-text">
-                <img src="${item.gameicon}" alt="Game Icon">
-                <p>${item.description}</p>
-              </div>
-              <div class="carousel-card-price-action">
-                <p>$${item.price}</p>
-                <button class="carousel-card-button">Comprar ahora</button>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-card-gradient">
-            <div class="carousel-card-gradient-shadow"></div>
-          </div>
-        </div>
-      `;
+      if (item.discount) carousel.innerHTML = mapCarouselSlideDiscount(item);
+      else carousel.innerHTML = mapCarouselSlide(item);
     }, 300); // mismo tiempo que el fade-out
   } else {
-    // primer render
-    carousel.innerHTML = `
-      <div class="carousel-card fade-in">
-        <div class="carousel-card-display" 
-             style="background-image: url('${item.image}'); background-size: cover; background-position: center;">
-          <div class="carousel-card-information">
-            <div class="carousel-card-text">
-              <img src="${item.gameicon}" alt="Game Icon">
-              <p>${item.description}</p>
-            </div>
-            <div class="carousel-card-price-action">
-              <p>$${item.price}</p>
-              <button class="carousel-card-button">Comprar ahora</button>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-card-gradient">
-          <div class="carousel-card-gradient-shadow"></div>
-        </div>
-      </div>
-    `;
+    if (item.discount) carousel.innerHTML = mapCarouselSlideDiscount(item);
+    else carousel.innerHTML = mapCarouselSlide(item);
   }
 }
 
@@ -104,7 +71,7 @@ const fetchCarouselItems = () => {
         carousel_items.push(...data);
         renderCarouselNavigationButton();
         renderCarouselItem(currentIndex);
-        cycleCarouselSlideChanger(4000); // Cada 4 segundos cambia de Card
+        cycleCarouselSlideChanger(4000);
       })
       .catch((err) => console.log(err));
   } catch (error) {}

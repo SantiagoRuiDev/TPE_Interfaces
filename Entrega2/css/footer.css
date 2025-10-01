@@ -1,13 +1,17 @@
-
 /* FOOTER */
 .footer {
-  width: 80%;
-  margin: 0px auto;
+  width: 100%;
   margin-top: 40px;
   padding: 20px 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: var(--background_header_color);
+
+  .footer-overview {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    margin: 0px auto;
+    justify-content: space-between;
+  }
 
   .footer-info {
     max-width: 256px;

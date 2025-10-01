@@ -7,75 +7,89 @@ import { mapProductCartCard } from "./card/product_cart_card.js";
 
 let cart = [];
 let categories = [];
-const personal_catalog = document.querySelector("#personal-interest-games");
 const category_selector = document.querySelector(".category-options");
-const next_btn = document.querySelector("#next-btn");
-const prev_btn = document.querySelector("#prev-btn");
-const personal_catalog_items = [];
 const items_per_page = 4;
 let currentPage = 0;
+                      // "personal-interest-games" - "next-btn-personal" - "prev-btn-personal"
+const createCatalog = (domSelector, nextBtn, prevBtn) => {
+  return {
+    domElement: document.querySelector(domSelector),
+    nextBtn: document.querySelector(nextBtn),
+    prevBtn: document.querySelector(prevBtn),
+    items: [], // Matriz de paginas
+    currentPage: 0,
+  };
+};
 
-next_btn.addEventListener("click", () => {
-  const nextPage =
-    currentPage + 1 < personal_catalog_items.length ? currentPage + 1 : currentPage;
-  currentPage = nextPage;
-  renderpersonal_catalogPage(currentPage);
-});
+// En base a la pagina y catalogo seleccionado mostrara los items en esa pagina.
+const renderCatalogPage = (catalog, page) => {
+  catalog.currentPage = page;
+  catalog.domElement.innerHTML = "";
 
-prev_btn.addEventListener("click", () => {
-  const previousPage = currentPage - 1 >= 0 ? currentPage - 1 : currentPage;
-  currentPage = previousPage;
-  renderpersonal_catalogPage(currentPage);
-});
-
-// En base a la pagina seleccionada elimina los items listados y carga los nuevos.
-const renderpersonal_catalogPage = (page) => {
-  currentPage = page;
-  personal_catalog.innerHTML = ""; // Vaciar el personal_catalogo
-  for (const game of personal_catalog_items[page]) {
+  for (const game of catalog.items[page]) {
     if (game.discount) {
-      personal_catalog.innerHTML += mapDiscountCard(game);
+      catalog.domElement.innerHTML += mapDiscountCard(game);
     } else if (game.is_free) {
-      personal_catalog.innerHTML += mapFreeCard(game);
+      catalog.domElement.innerHTML += mapFreeCard(game);
     } else if (game.is_owned) {
-      personal_catalog.innerHTML += mapOwnedCard(game);
+      catalog.domElement.innerHTML += mapOwnedCard(game);
     } else {
-      personal_catalog.innerHTML += mapNormalCard(game);
+      catalog.domElement.innerHTML += mapNormalCard(game);
     }
   }
 
-  // Esta función se dispara cuando se termina de cargar el personal_catalogo, si se hace antes capturara una lista vacia.
-  enableCartListing();
+  enableCartListing(catalog);
 };
 
-const renderCategorySelector = () => {
-  for(const category of categories){
-    category_selector.innerHTML += mapCategoryButton(category);
-  }
-  listenCategorySelector(); // Escuchar cambios de categoria.
-}
+// Activa la navegación para el catalogo escuchando los eventos en los botones de (Siguiente y anterior)
+const toggleNavigation = (catalog) => {
+  catalog.nextBtn.addEventListener("click", () => {
+    const nextPage =
+      catalog.currentPage + 1 < catalog.items.length
+        ? catalog.currentPage + 1
+        : 0;
+    renderCatalogPage(catalog, nextPage);
+  });
 
-// Esta función captura el evento click para cada boton de acción de las cards del personal_catalogo.
-// Entonces nos permite saber cuando poner un elemento en el carrito.
-const enableCartListing = () => {
-  const buy_action_button = document.querySelectorAll(".action-button");
-  buy_action_button.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      const product = personal_catalog_items[currentPage][index];
-      addProductToCart(product);
-    });
+  catalog.prevBtn.addEventListener("click", () => {
+    const prevPage =
+      catalog.currentPage - 1 >= 0
+        ? catalog.currentPage - 1
+        : catalog.items.length - 1;
+    renderCatalogPage(catalog, prevPage);
   });
 };
 
+// Renderiza los botones de las categorias en base a las categorias unicas entre todos los productos.
+const renderCategorySelector = () => {
+  for (const category of categories) {
+    category_selector.innerHTML += mapCategoryButton(category);
+  }
+  listenCategorySelector(); // Escuchar cambios de categoria.
+};
+
+// Si hay un click en algun boton, primero activa la animación para que quede marcado y luego filtra.
 const listenCategorySelector = () => {
   const category_buttons = document.querySelectorAll(".category-action-button");
   category_buttons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       category_buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.toggle('active');
+      btn.classList.toggle("active");
     });
   });
-}
+};
+
+// Esta función captura el evento click para cada boton de acción de las cards del personal_catalogo.
+// Entonces nos permite saber cuando poner un elemento en el carrito.
+const enableCartListing = (catalog) => {
+  const buy_action_button = document.querySelectorAll(".action-button");
+  buy_action_button.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      const product = catalog.items[currentPage][index];
+      addProductToCart(product);
+    });
+  });
+};
 
 // Se agrega el producto al carrito y se renderiza el HTML.
 const addProductToCart = (product) => {
@@ -93,7 +107,7 @@ const renderCartProducts = () => {
   cart.forEach((product) => {
     cart_overview.innerHTML += mapProductCartCard(product);
   });
-  renderCartPricing();
+  renderCartPricing(); // Cada vez agregado un producto/eliminado se actualiza el precio.
 };
 
 const renderCartPricing = () => {
@@ -134,29 +148,66 @@ const deleteProductFromCart = (product) => {
  * (Los juegos mostrados en el personal_catalogo pueden ser diferentes por sugerencias, generales o adquiridos)
  *
  */
-const fetchCatalogItems = () => {
+const fetchCatalogItems = (catalog, endpoint) => {
   try {
-    fetch(API + "/catalog")
+    fetch(API + endpoint)
       .then((res) => res.json())
       .then((data) => {
         let aux_row = [];
         for (const i of data) {
-          if(categories.length == 0 || !categories.includes(i.category)){
-            categories.push(i.category);
-          }
           if (aux_row.length < items_per_page) {
             aux_row.push(i);
           } else {
-            personal_catalog_items.push(aux_row);
-            aux_row = [];
-            aux_row.push(i);
+            catalog.items.push(aux_row);
+            aux_row = [i];
           }
         }
-        renderCategorySelector();
-        renderpersonal_catalogPage(currentPage);
+        renderCatalogPage(catalog, 0);
       })
       .catch((err) => console.log(err));
   } catch (error) {}
 };
 
-fetchCatalogItems();
+const fetchCatalogItemsAndCategories = (catalog, endpoint) => {
+  try {
+    fetch(API + endpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        let aux_row = [];
+        for (const i of data) {
+          if (categories.length == 0 || !categories.includes(i.category)) {
+            categories.push(i.category);
+          }
+          if (aux_row.length < items_per_page) {
+            aux_row.push(i);
+          } else {
+            catalog.items.push(aux_row);
+            aux_row = [i];
+          }
+        }
+        renderCategorySelector();
+        renderCatalogPage(catalog, 0);
+      })
+      .catch((err) => console.log(err));
+  } catch (error) {}
+};
+
+
+// Ejecución
+
+const personalCatalog = createCatalog(
+  "#personal-interest-games",
+  "#next-btn-personal",
+  "#prev-btn-personal"
+);
+const gamesCatalog = createCatalog(
+  "#platform-available-games",
+  "#next-btn-all",
+  "#prev-btn-all"
+);
+
+toggleNavigation(personalCatalog);
+toggleNavigation(gamesCatalog);
+
+fetchCatalogItemsAndCategories(gamesCatalog, "/catalog");
+fetchCatalogItems(personalCatalog, "/catalog");

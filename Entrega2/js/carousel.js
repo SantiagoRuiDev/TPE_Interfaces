@@ -104,7 +104,7 @@ const fetchCarouselItems = () => {
         carousel_items.push(...data);
         renderCarouselNavigationButton();
         renderCarouselItem(currentIndex);
-        cycleCarouselSlideChanger(4000);
+        cycleCarouselSlideChanger(4000); // Cada 4 segundos cambia de Card
       })
       .catch((err) => console.log(err));
   } catch (error) {}

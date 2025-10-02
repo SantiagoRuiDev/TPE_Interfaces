@@ -32,4 +32,5 @@ body {
   font-family: Arial, sans-serif;
   background: var(--background_color);
   color: #fff;
+  overflow: hidden;
 }

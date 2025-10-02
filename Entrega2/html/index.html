@@ -10,10 +10,23 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/loader.css" />
     <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
     <!-- Import la fuente Poppins (TEMPORAL) -->
   </head>
   <body>
+    <div class="loader">
+      <div class="loader-grid">
+        <div class="loader-box"></div>
+        <div class="loader-box"></div>
+        <div class="loader-box"></div>
+        <div class="loader-box"></div>
+      </div>
+      <div class="loader-line">
+        <div class="line"></div>
+      </div>
+    </div>
+
     <!-- NAVBAR -->
     <header class="header">
       <img
@@ -114,15 +127,15 @@
             <img
               src="../assets/images/Icono Logout (1).svg"
               alt="Logout Icon"
-              />Cerrar Sesión
-            </a>
+            />Cerrar Sesión
+          </a>
         </div>
       </nav>
     </header>
 
     <main class="web-content">
       <div class="web-content-blur"></div>
-      
+
       <!-- Carousel -->
       <section class="carousel">
         <div class="carousel-display">
@@ -132,153 +145,159 @@
       </section>
 
       <!-- RECOMENDADOS -->
-      <section class="games">
-        <div class="games-header">
-          <h2>Podria ser de tu interés</h2>
-          <div class="games-navigation">
-            <button class="games-navigation-button" id="prev-btn-personal">
-              <img
-                src="../assets/images/Left_Arrow_Icon.svg"
-                alt="Right_Arrow_Icon"
-              />
-            </button>
-            <button class="games-navigation-button" id="next-btn-personal">
-              <img
-                src="../assets/images/Right_Arrow_Icon.svg"
-                alt="Right_Arrow_Icon"
-              />
-            </button>
+      <div class="games-carousel">
+        <section class="games">
+          <div class="games-header">
+            <h2>Podria ser de tu interés</h2>
+            <div class="games-navigation">
+              <button class="games-navigation-button" id="prev-btn-personal">
+                <img
+                  src="../assets/images/Left_Arrow_Icon.svg"
+                  alt="Right_Arrow_Icon"
+                />
+              </button>
+              <button class="games-navigation-button" id="next-btn-personal">
+                <img
+                  src="../assets/images/Right_Arrow_Icon.svg"
+                  alt="Right_Arrow_Icon"
+                />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="game-list" id="personal-interest-games">
-        </div>
-      </section>
+          <div class="game-list" id="personal-interest-games"></div>
+        </section>
 
-      <section class="games">
-        <div class="category-list">
-          <ul class="category-options">
-            <li>
-              <button class="reset-category-button active" id="reset-category-button">Todo</button>
-            </li>
-          </ul>
-        </div>
-
-        <div class="games-header">
-          <h2>Explora miles de experiencias</h2>
-          <div class="games-navigation">
-            <button class="games-navigation-button" id="prev-btn-all">
-              <img
-                src="../assets/images/Left_Arrow_Icon.svg"
-                alt="Right_Arrow_Icon"
-              />
-            </button>
-            <button class="games-navigation-button" id="next-btn-all">
-              <img
-                src="../assets/images/Right_Arrow_Icon.svg"
-                alt="Right_Arrow_Icon"
-              />
-            </button>
+        <section class="games">
+          <div class="category-list">
+            <ul class="category-options">
+              <li>
+                <button
+                  class="reset-category-button active"
+                  id="reset-category-button"
+                >
+                  Todo
+                </button>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="game-list" id="platform-available-games"></div>
-      </section>
+
+          <div class="games-header">
+            <h2>Explora miles de experiencias</h2>
+            <div class="games-navigation">
+              <button class="games-navigation-button" id="prev-btn-all">
+                <img
+                  src="../assets/images/Left_Arrow_Icon.svg"
+                  alt="Right_Arrow_Icon"
+                />
+              </button>
+              <button class="games-navigation-button" id="next-btn-all">
+                <img
+                  src="../assets/images/Right_Arrow_Icon.svg"
+                  alt="Right_Arrow_Icon"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="game-list" id="platform-available-games"></div>
+        </section>
+      </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-overview">
-        
-      <div class="footer-info">
-        <img
-          src="../assets/images/Petroka_Full_Logo_Small.svg"
-          alt="Petroka Footer Logo Small"
-        />
-        <p>
-          Empresa Argentina dedicada al desarrollo y venta de Videojuegos para
-          Adolescentes y Adultas, con fines educativos, somos oriundos de
-          Guaymallen provincia de Mendoza.
-        </p>
-      </div>
-      <div class="footer-links-navigation">
-        <h2>De Interes</h2>
-        <ul>
-          <li>
-            <a href="">Terminos y condiciones</a>
-          </li>
-          <li>
-            <a href="">Compras en la plataforma</a>
-          </li>
-          <li>
-            <a href="">Preguntas frecuentes</a>
-          </li>
-          <li>
-            <a href="">Acerca de nosotros</a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-links-navigation">
-        <h2>Utiles</h2>
-        <ul>
-          <li>
-            <a href="">Terminos y condiciones</a>
-          </li>
-          <li>
-            <a href="">Compras en la plataforma</a>
-          </li>
-          <li>
-            <a href="">Preguntas frecuentes</a>
-          </li>
-          <li>
-            <a href="">Acerca de nosotros</a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-links-navigation">
-        <h2>Tendencias</h2>
-        <ul>
-          <li>
-            <a href="">Terminos y condiciones</a>
-          </li>
-          <li>
-            <a href="">Compras en la plataforma</a>
-          </li>
-          <li>
-            <a href="">Preguntas frecuentes</a>
-          </li>
-          <li>
-            <a href="">Acerca de nosotros</a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-social-media-links">
-        <ul>
-          <li>
-            <img
-              src="../assets/images/Youtube_Icon.svg"
-              alt="Youtube Social Media Icon"
-            />
-            <a href="">petrokagames</a>
-          </li>
-          <li>
-            <img
-              src="../assets/images/Instagram_Icon.svg"
-              alt="Instagram Social Media Icon"
-            />
-            <a href="">petrokagames</a>
-          </li>
-          <li>
-            <img
-              src="../assets/images/Twitter_Icon.svg"
-              alt="Twitter Social Media Icon"
-            />
-            <a href="">petrokagames</a>
-          </li>
-        </ul>
-      </div>
+        <div class="footer-info">
+          <img
+            src="../assets/images/Petroka_Full_Logo_Small.svg"
+            alt="Petroka Footer Logo Small"
+          />
+          <p>
+            Empresa Argentina dedicada al desarrollo y venta de Videojuegos para
+            Adolescentes y Adultas, con fines educativos, somos oriundos de
+            Guaymallen provincia de Mendoza.
+          </p>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>De Interes</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>Utiles</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>Tendencias</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-social-media-links">
+          <ul>
+            <li>
+              <img
+                src="../assets/images/Youtube_Icon.svg"
+                alt="Youtube Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+            <li>
+              <img
+                src="../assets/images/Instagram_Icon.svg"
+                alt="Instagram Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+            <li>
+              <img
+                src="../assets/images/Twitter_Icon.svg"
+                alt="Twitter Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </footer>
 
     <script src="../js/config.js"></script>
+    <script src="../js/loader.js"></script>
     <script src="../js/menu.js"></script>
     <script type="module" src="../js/carousel.js"></script>
     <script src="../js/cart.js"></script>

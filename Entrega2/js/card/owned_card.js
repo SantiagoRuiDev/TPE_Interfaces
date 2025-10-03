@@ -13,7 +13,7 @@ export const mapOwnedCard = (game) => {
             </div>
             <p>En tu biblioteca</p>
           </div>
-          <a href="game.html" class="action-button">
+          <a href="game.html?game=${game.gamename}&category=${game.category}" class="action-button">
             <img src="../assets/images/Joystick_Icon.svg" alt="Play Icon" />
             Jugar
           </a>

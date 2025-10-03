@@ -1,43 +1,199 @@
 @import "footer.css";
 @import "base.css";
 
-.breadcrumb-container{
-    background-color: var(--background_gray_color);
-    padding: 5px;
-    color: var(--background_light_color);
-    font-size: 12px;
+body {
+  overflow-y: scroll;
 }
 
-.breadcrumb-container a {
+.web-content {
+  display: grid;
+  gap: 2px;
+}
+
+.breadcrumb-container{
+    background-color: var(--background_shadow_color);
+    padding: 4px 0px;
+    color: var(--background_light_color);
+    font-size: 14px;
+}
+
+.breadcrumb-container .breadcrumb-display a {
     color: var(--background_light_color); 
     text-decoration: none;
     margin: 0 5px;
 }
 
-.breadcrumb-container span{
-    margin: 0 5px;
-}
-
-.breadcrumb-container{
-    margin-top: 2px;
-}
-
-.loader-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
+.breadcrumb-display {
   display: flex;
-  justify-content: center;
+  gap: 24px;
   align-items: center;
-  flex-direction: column;
-  color: var(--background_light_color);
-  font-size: 1.2rem;
-  z-index: 9999;
+  margin: 0px auto;
+  width: 80%;
 }
 
+.game-title-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px auto;
+  padding: 8px 0px;
+
+  h1 {
+    font-size: 26px;
+  }
+}
+
+.tools {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.game-display-container {
+  background-color: var(--background_shadow_color);
+  padding: 12px;
+  border: 12px solid var(--secondary_dark_color);
+  width: 80%;
+  margin: 0px auto;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.peg-solitaire-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.seven {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.peg-solitaire-piece {
+  height: 64px;
+  width: 64px;
+  border-radius: 100%;
+  background-color: var(--background_color);
+  border: 2px solid var(--secondary_color);
+  box-shadow: 0px 1px 4px var(--background_color);
+}
+
+.game-help-container {
+  padding: 24px 0px;
+  display: grid;
+  gap: 24px;
+  width: 80%;
+  margin: 0px auto;
+}
+
+.game-instructions {
+  display: grid;
+  gap: 12px;
+
+  .game-instructions-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  ul li {
+    font-size: 14px;
+  }
+}
+
+.game-rating-container {
+  display: grid;
+  width: 80%;
+  margin: 0px auto;
+  padding: 32px 0px;
+}
+
+.game-rating-form {
+  display: grid;
+  gap: 24px;
+}
+
+.game-rating-form-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-rating-form-group {
+  position: relative;
+  width: 100%;
+}
+
+.game-rating-form-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--secondary_color);
+  padding: 12px 0px;
+  outline: none;
+  font-size: 14px;
+  color: var(--backgrund_light_gray_color);
+  width: 100%;
+}
+
+.game-rating-form-input::placeholder {
+  color: transparent; 
+}
+
+/* Posiciona el label donde iria el placeholder */
+.game-rating-form-group label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-size: 14px;
+  color: var(--backgrund_light_gray_color);
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+/* Cuando hay foco o el input no está vacío */
+.game-rating-form-input:focus + label,
+.game-rating-form-input:not(:placeholder-shown) + label {
+  top: -12px;
+  font-size: 12px;
+  color: var(--secondary_color);
+}
+
+.game-rating-selector {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--backgrund_light_gray_color)
+}
+
+
+.game-rating-form-button {
+  margin-top: 15px;
+  padding: 8px 32px;
+  background: var(--secondary_color);
+  box-shadow: 0px 4px 0px var(--secondary_dark_color);
+  border: none;
+  border-radius: 8px;
+  color: var(--background_light_color);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
+  transition: 0.3s;
+  text-transform: uppercase;
+  margin: 0px auto;
+  cursor: pointer;
+}
+
+.game-rating-form-button:hover {
+  background: var(--secondary_dark_color);
+  box-shadow: none;
+  transform: translateY(4px);
+}
 /* por ahora no funca */
 .spinner {
   border: 8px solid rgba(255, 255, 255, 0.2);

@@ -10,7 +10,6 @@ let categories = [];
 let selectedCategory = "";
 const category_selector = document.querySelector(".category-options");
 const items_per_page = 4;
-let currentPage = 0;
                       // "personal-interest-games" - "next-btn-personal" - "prev-btn-personal"
 const createCatalog = (domSelector, nextBtn, prevBtn) => {
   return {
@@ -122,7 +121,7 @@ const enableCartListing = (catalog) => {
   const buy_action_button = document.querySelectorAll(".action-button");
   buy_action_button.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      const product = catalog.items[currentPage][index];
+      const product = catalog.items[catalog.currentPage][index];
       addProductToCart(product);
     });
   });

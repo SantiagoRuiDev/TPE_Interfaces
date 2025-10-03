@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Petroka Games</title>
-       <link
+    <link
       rel="shortcut icon"
       href="../assets/images/Petroka_Icon_128x128.svg"
       type="image/x-icon"
@@ -14,17 +14,16 @@
     <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
     <!-- Import la fuente Poppins (TEMPORAL) -->
   </head>
-</head>
-<body>
-     <!-- NAVBAR -->
-    <header class="header" >
-       <a href="index.html">
-            <img 
-            src="../assets/images/Petroka_Row_Logo.svg"
-            alt="Petroka Navbar Logo"
-            />
-       </a> 
-       
+  <body>
+    <!-- NAVBAR -->
+    <header class="header">
+      <a href="index.html">
+        <img
+          src="../assets/images/Petroka_Row_Logo.svg"
+          alt="Petroka Navbar Logo"
+        />
+      </a>
+
       <label class="search" for="search_field_input">
         <input
           type="text"
@@ -120,21 +119,167 @@
             <img
               src="../assets/images/Icono Logout (1).svg"
               alt="Logout Icon"
-              />Cerrar Sesión
-            </a>
+            />Cerrar Sesión
+          </a>
         </div>
-        </nav>
-      </header>
-        <div id="loader" class="loader-overlay">
-            <div class="sprinner"></div>
-            <p>Cargando juego de forma provisoria </p>
+      </nav>
+    </header>
 
+    <main class="web-content">
+      <div id="breadcrumb-container" class="breadcrumb-container">
+        <div class="breadcrumb-display">
+          <a href="index.html">Juegos</a>
+          <img src="../assets/images/Breadcrumb_Arrow.svg" alt="Arrow" />
+          <p id="breadcrumb-category-title">Category</p>
+          <img src="../assets/images/Breadcrumb_Arrow.svg" alt="Arrow" />
+          <p id="breadcrumb-game-title">Game</p>
         </div>
+      </div>
+      <div id="game-title-container" class="game-title-container">
+        <h1 id="game-title-text">Game</h1>
+        <div class="tools">
+          <img
+            src="../assets/images/Fullscreen_Icon.svg"
+            alt="Full Screen Button"
+          />
+          <img src="../assets/images/Share_Icon.svg" alt="Share Button" />
+        </div>
+      </div>
 
-        <div id="breadcrumb-container" class="breadcrumb-container">
-            <h3>Jugar</h3>
+      <div class="game-display-container" id="game-display-container">
+        <div class="peg-solitaire-rows triple">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
         </div>
+        <div class="peg-solitaire-rows triple">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows triple">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows seven">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows seven">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows seven">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows triple">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows triple">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+        <div class="peg-solitaire-rows triple">
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+          <div class="peg-solitaire-piece"></div>
+        </div>
+      </div>
+
+      <section class="game-help-container">
+        <div class="game-instructions">
+          <div class="game-instructions-title">
+            <img src="../assets/images/Mouse_Icon.svg" alt="Mouse Icon" />
+            <h2>¿Como jugar con Mouse?</h2>
+          </div>
+          <ul>
+            <li>Seleccione con click izquierdo la ficha que desea mover</li>
+            <li>Luego seleccione un espacio vacio para completar la accion</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="game-help-container">
+        <div class="game-instructions">
+          <div class="game-instructions-title">
+            <img src="../assets/images/Joystick_Icon.svg" alt="Joystick Icon" />
+            <h2>¿Como jugar con Teclado?</h2>
+          </div>
+          <ul>
+            <li>Seleccione con click izquierdo la ficha que desea mover</li>
+            <li>Luego seleccione un espacio vacio para completar la accion</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="game-rating-container" id="game-rating-container">
+        <form class="game-rating-form">
+          <div class="game-rating-form-title">
+            <img src="../assets/images/Rating_Icon.svg" alt="Rating Icon" />
+            <h1>¿Que opinas de este juego?</h1>
+          </div>
+          <div class="game-rating-form-group">
+            <input
+              class="game-rating-form-input"
+              type="text"
+              placeholder=" "
+              id="rating-input"
+              required
+            />
+            <label for="rating-input"
+              >Describe tu sensación acerca del juego</label
+            >
+          </div>
+          <div class="game-rating-selector">
+            <p>Elige una calificación</p>
+            <div class="game-rating-form-stars-selector">
+              <img
+                src="../assets/images/Unfilled_Star_Icon.svg"
+                alt="Unfilled Star"
+              />
+              <img
+                src="../assets/images/Unfilled_Star_Icon.svg"
+                alt="Unfilled Star"
+              />
+              <img
+                src="../assets/images/Unfilled_Star_Icon.svg"
+                alt="Unfilled Star"
+              />
+              <img
+                src="../assets/images/Unfilled_Star_Icon.svg"
+                alt="Unfilled Star"
+              />
+              <img
+                src="../assets/images/Unfilled_Star_Icon.svg"
+                alt="Unfilled Star"
+              />
+            </div>
+          </div>
+          <button class="game-rating-form-button">Enviar reseña</button>
+        </form>
+      </section>
+    </main>
 
     <script type="module" src="../js/game.js"></script>
-</body>
+  </body>
 </html>

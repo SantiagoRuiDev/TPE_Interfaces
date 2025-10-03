@@ -1,37 +1,17 @@
-import { mapOwnedCard } from "./card/owned_card.js";
+// Obtiene la parte de query de la URL actual
+const queryString = window.location.search;
 
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-  const content = document.getElementById("game-content");
+// Crea un objeto URLSearchParams
+const urlParams = new URLSearchParams(queryString);
 
-  setTimeout(() => {
-    loader.style.display = "none";
-    content.style.display = "block";
-  }, 2000); 
-});
+// Accede a los valores
+const game = urlParams.get("game");       // "Fornite"
+const category = urlParams.get("category"); // "Shooter"
 
+const gameTitleElement = document.querySelector("#breadcrumb-game-title");
+const categoryTitleElement = document.querySelector("#breadcrumb-category-title");
+const gameHeaderTitleElement = document.querySelector("#game-title-text");
 
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".play-btn");
-  if (btn) {
-    e.preventDefault(); 
-    const category = btn.dataset.category;
-    const name = btn.dataset.name;
-
-    localStorage.setItem("breadcrumbData", JSON.stringify({ category, name }));
-
-  }
-});
-
-document.addEventListener("DOMContentLoaded",()=>{
-    const breadcrumb = document.getElementById("breadcrumb");
-    const data = JSON.parse(localStorange.getItem("breadcrumbdata"));
-
-    if (data){
-        breadcrumb.innerHTML = `
-      <a href="index.html">Jugar</a> <span>→</span>
-      <a href="#">${data.category}</a> <span>→</span>
-      <span>${data.name}</span>
-    `;
-    }
-});
+gameTitleElement.textContent = game;
+gameHeaderTitleElement.textContent = game;
+categoryTitleElement.textContent = category;

@@ -13,7 +13,7 @@ export const mapFreeCard = (game) => {
             </div>
             <p>Gratuito</p>
           </div>
-          <a href="jugar.html" class="action-button">
+          <a href="game.html?game=${game.gamename}&category=${game.category}" class="action-button">
             <img src="../assets/images/Joystick_Icon.svg" alt="Play Icon" />
             Jugar
           </a>

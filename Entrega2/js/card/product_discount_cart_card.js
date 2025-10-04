@@ -1,4 +1,4 @@
-export const mapProductCartCard = (product) => {
+export const mapProductDiscountCartCard = (product) => {
   return `
       <div class="cart-product-item">
               <div class="cart-product-details">
@@ -11,7 +11,18 @@ export const mapProductCartCard = (product) => {
                     <h4>${product.gamename}</h4>
                     <p>Plataforma Windows</p>
                   </div>
-                  <p>$${product.price}</p>
+                  <div class="cart-product-discount">
+                    <div class="cart-product-discount-price">
+                      <p class="cart-product-discount-original-price">$${product.price}</p>
+                      <p>$${(
+                        product.price -
+                        (product.price * product.discount_percentage) / 100
+                      ).toFixed(2)}</p>
+                    </div>
+                    <span class="cart-product-discount-label">${
+                      product.discount_percentage
+                    }% OFF</span>
+                  </div>
                 </div>
               </div>
 

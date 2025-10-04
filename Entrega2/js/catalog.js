@@ -4,6 +4,7 @@ import { mapFreeCard } from "./card/free_card.js";
 import { mapNormalCard } from "./card/normal_card.js";
 import { mapOwnedCard } from "./card/owned_card.js";
 import { mapProductCartCard } from "./card/product_cart_card.js";
+import { mapProductDiscountCartCard } from "./card/product_discount_cart_card.js";
 
 let cart = [];
 let categories = [];
@@ -141,7 +142,8 @@ const renderCartProducts = () => {
   const cart_overview = document.querySelector(".cart-overview");
   cart_overview.innerHTML = "";
   cart.forEach((product) => {
-    cart_overview.innerHTML += mapProductCartCard(product);
+    if(product.discount) cart_overview.innerHTML += mapProductDiscountCartCard(product);
+    else cart_overview.innerHTML += mapProductCartCard(product);
   });
   renderCartPricing(); // Cada vez agregado un producto/eliminado se actualiza el precio.
 };

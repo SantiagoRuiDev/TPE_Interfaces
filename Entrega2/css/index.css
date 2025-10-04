@@ -125,6 +125,28 @@
           display: grid;
           gap: 4px;
 
+          .cart-product-discount-label {
+            background-color: var(--secondary_color);
+            text-align: center;
+            border-radius: 24px;
+            font-size: 12px;
+            color: var(--background_color);
+            padding: 2px 6px 2px 6px;
+          }
+          .cart-product-discount {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .cart-product-discount .cart-product-discount-price {
+            display: flex;
+            gap: 4px;
+            .cart-product-discount-original-price {
+              text-decoration: line-through;
+              color: var(--background_gray_color);
+            }
+          }
+
           .cart-product-description {
             display: flex;
             flex-direction: column;
@@ -471,7 +493,6 @@
     }
   }
 }
-
 
 .games-carousel {
   display: grid;

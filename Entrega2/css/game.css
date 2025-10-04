@@ -110,7 +110,7 @@ body {
   display: grid;
   width: 80%;
   margin: 0px auto;
-  padding: 32px 0px;
+  margin-top: 64px;
 }
 
 .game-rating-form {
@@ -155,6 +155,15 @@ body {
   transition: 0.3s ease all;
 }
 
+.game-rating-form-stars-selector svg path {
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+.game-rating-form-stars-selector svg path:hover,
+.game-rating-form-stars-selector svg path.active {
+  fill: var(--secondary_color);
+}
+
 /* Cuando hay foco o el input no está vacío */
 .game-rating-form-input:focus + label,
 .game-rating-form-input:not(:placeholder-shown) + label {
@@ -193,6 +202,47 @@ body {
   background: var(--secondary_dark_color);
   box-shadow: none;
   transform: translateY(4px);
+}
+
+.game-rating-forum {
+  display: grid;
+  gap: 24px;
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+  margin-top: 64px;
+}
+
+.game-forum-ratings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.game-rating-card {
+  background-color: var(--background_dark_color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  gap: 46px;
+}
+
+.game-rating-card-profile h4 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.game-rating-card-message {
+  text-align: left;
+  display: grid;
+  gap: 12px;
+
+  .game-rating-card-stars img {
+    width: 18px;
+    height: 18px;
+  }
 }
 /* por ahora no funca */
 .spinner {

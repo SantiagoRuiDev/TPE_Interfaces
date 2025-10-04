@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/game.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
     <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
     <!-- Import la fuente Poppins (TEMPORAL) -->
   </head>
@@ -253,33 +254,301 @@
           <div class="game-rating-selector">
             <p>Elige una calificación</p>
             <div class="game-rating-form-stars-selector">
-              <img
-                src="../assets/images/Unfilled_Star_Icon.svg"
-                alt="Unfilled Star"
-              />
-              <img
-                src="../assets/images/Unfilled_Star_Icon.svg"
-                alt="Unfilled Star"
-              />
-              <img
-                src="../assets/images/Unfilled_Star_Icon.svg"
-                alt="Unfilled Star"
-              />
-              <img
-                src="../assets/images/Unfilled_Star_Icon.svg"
-                alt="Unfilled Star"
-              />
-              <img
-                src="../assets/images/Unfilled_Star_Icon.svg"
-                alt="Unfilled Star"
-              />
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
           </div>
           <button class="game-rating-form-button">Enviar reseña</button>
         </form>
       </section>
+
+      <section class="game-rating-forum" id="game-rating-forum">
+        <h1>Opiniones principales de este juego</h1>
+        <div class="game-forum-ratings">
+          <div class="game-rating-card">
+            <div class="game-rating-card-profile">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <h4>ElGamer0038844</h4>
+            </div>
+            <div class="game-rating-card-message">
+              <p>
+                Creo que este juego, es bueno solo que se hace muy repetitivo lo
+                que me ha llevado a crisis existenciales.
+              </p>
+              <div class="game-rating-card-stars">
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+              </div>
+            </div>
+          </div>
+          <!--CARD-->
+          <div class="game-rating-card">
+            <div class="game-rating-card-profile">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <h4>Juanito</h4>
+            </div>
+            <div class="game-rating-card-message">
+              <p>El juego mas aburrido que jugue.</p>
+              <div class="game-rating-card-stars">
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
+    <footer class="footer">
+      <div class="footer-overview">
+        <div class="footer-info">
+          <img
+            src="../assets/images/Petroka_Full_Logo_Small.svg"
+            alt="Petroka Footer Logo Small"
+          />
+          <p>
+            Empresa Argentina dedicada al desarrollo y venta de Videojuegos para
+            Adolescentes y Adultas, con fines educativos, somos oriundos de
+            Guaymallen provincia de Mendoza.
+          </p>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>De Interes</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>Utiles</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>Tendencias</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-social-media-links">
+          <ul>
+            <li>
+              <img
+                src="../assets/images/Youtube_Icon.svg"
+                alt="Youtube Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+            <li>
+              <img
+                src="../assets/images/Instagram_Icon.svg"
+                alt="Instagram Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+            <li>
+              <img
+                src="../assets/images/Twitter_Icon.svg"
+                alt="Twitter Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
     <script type="module" src="../js/game.js"></script>
   </body>
 </html>

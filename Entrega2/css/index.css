@@ -81,7 +81,7 @@
   position: absolute;
   opacity: 0;
   z-index: -1;
-  top: 50px;
+  top: 48px;
   right: 0;
   display: grid;
   gap: 12px;
@@ -155,7 +155,7 @@
               color: var(--backgrund_light_gray_color);
             }
             h4 {
-              font-size: 18px;
+              font-size: 16px;
               height: 24px;
             }
           }
@@ -238,7 +238,7 @@
   position: absolute;
   opacity: 0;
   z-index: -1;
-  top: 50px;
+  top: 48px;
   right: 0;
   display: grid;
   gap: 12px;
@@ -646,8 +646,8 @@
     grid-template-columns: 1fr;
   }
   .carousel .carousel-navigation .carousel-navigation-button {
-    width: 48px;
-    height: 12px;
+    width: 42px;
+    height: 8px;
   }
   .header .search {
     display: none;
@@ -673,5 +673,27 @@
   }
   .game-card  .game-card-image {
     width: 100%;
+  }
+  .carousel .carousel-display .carousel-card {
+    min-height: 376px;
+    max-width: 90%;
+    border-radius: 32px;
+  }
+
+  .carousel .carousel-display .carousel-card-display .carousel-card-text {
+    font-size: 14px;
+  }
+
+  .header {
+    justify-content: space-between;
+    padding: 8px 20px;
+  }
+
+  .hamburguer-menu .menu-header {
+    min-width: 256px;
+  }
+  
+  .cart-menu .cart-overview .cart-product-item .cart-product-details .cart-product-info .cart-product-description h4 {
+    font-size: 14px;
   }
 }

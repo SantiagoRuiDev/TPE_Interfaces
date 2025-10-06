@@ -640,3 +640,38 @@
     color: var(--background_gray_color);
   }
 }
+
+@media screen and (max-width: 512px){
+  .game-list {
+    grid-template-columns: 1fr;
+  }
+  .carousel .carousel-navigation .carousel-navigation-button {
+    width: 48px;
+    height: 12px;
+  }
+  .header .search {
+    display: none;
+  }
+  .games {
+    width: 90%;
+  }
+  .games .games-header h2 {
+    font-size: 14px;
+  }
+  .games-carousel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .category-list ul {
+    align-items: center;
+    overflow-x:scroll;
+  }
+
+  .game-card {
+    max-width: 100%;
+  }
+  .game-card  .game-card-image {
+    width: 100%;
+  }
+}

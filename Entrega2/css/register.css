@@ -8,6 +8,7 @@ body {
   display: grid;
   position: relative;
   padding: 12px;
+  overflow-y: scroll;
 }
 
 .web-content {

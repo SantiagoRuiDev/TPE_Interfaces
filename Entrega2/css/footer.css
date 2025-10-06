@@ -73,3 +73,12 @@
     }
   }
 }
+
+
+@media screen and (max-width: 512px){
+  .footer .footer-overview {
+    width: 90%;
+    display: grid;
+    gap: 24px;
+  }
+}

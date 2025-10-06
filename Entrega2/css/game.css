@@ -10,17 +10,17 @@ body {
   gap: 2px;
 }
 
-.breadcrumb-container{
-    background-color: var(--background_shadow_color);
-    padding: 4px 0px;
-    color: var(--background_light_color);
-    font-size: 14px;
+.breadcrumb-container {
+  background-color: var(--background_shadow_color);
+  padding: 4px 0px;
+  color: var(--background_light_color);
+  font-size: 14px;
 }
 
 .breadcrumb-container .breadcrumb-display a {
-    color: var(--background_light_color); 
-    text-decoration: none;
-    margin: 0 5px;
+  color: var(--background_light_color);
+  text-decoration: none;
+  margin: 0 5px;
 }
 
 .breadcrumb-display {
@@ -83,12 +83,133 @@ body {
   box-shadow: 0px 1px 4px var(--background_color);
 }
 
+.game-developer-container {
+  padding: 96px 0px;
+  display: grid;
+  gap: 24px;
+  width: 80%;
+  margin: 0px auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.game-developer-info {
+  display: grid;
+  gap: 12px;
+
+  .game-developer-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .game-developer-experiences {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    .game-experience {
+      background: url("../assets/images/SuperMario.webp");
+      min-height: 256px;
+      width: 100%;
+      border-radius: 12px;
+      background-size: cover;
+    }
+  }
+}
+
 .game-help-container {
   padding: 24px 0px;
   display: grid;
   gap: 24px;
   width: 80%;
   margin: 0px auto;
+}
+
+.game-keyboard-help-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .game-controllers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .game-controller {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: center;
+      font-size: 14px;
+      justify-content: center;
+
+      .game-controller-button {
+        background-color: var(--secondary_color);
+        padding: 12px;
+        display: grid;
+        margin: 0px auto;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0px 2px 0px var(--secondary_shadow_color);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .game-controller-button:hover {
+        background-color: var(--secondary_shadow_color);
+        box-shadow: none;
+        transform: translateY(2px);
+      }
+    }
+
+    .up-controller {
+      margin-right: 10px;
+    }
+
+    .left-controller {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: start;
+
+      p {
+        transform: rotate(-90deg);
+        margin-top: 12px;
+      }
+
+      .game-controller-arrow {
+        transform: rotate(-90deg);
+      }
+    }
+    .right-controller {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: start;
+
+      p {
+        transform: rotate(90deg);
+        margin-top: 12px;
+      }
+      
+      .game-controller-arrow {
+        transform: rotate(90deg);
+      }
+    }
+    .down-controller {
+      .game-controller-arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    .controllers-grid {
+      display: flex;
+      gap: 12px;
+      margin: 0px auto;
+    }
+  }
 }
 
 .game-instructions {
@@ -141,7 +262,7 @@ body {
 }
 
 .game-rating-form-input::placeholder {
-  color: transparent; 
+  color: transparent;
 }
 
 /* Posiciona el label donde iria el placeholder */
@@ -176,9 +297,8 @@ body {
   display: grid;
   gap: 4px;
   font-size: 14px;
-  color: var(--backgrund_light_gray_color)
+  color: var(--backgrund_light_gray_color);
 }
-
 
 .game-rating-form-button {
   margin-top: 15px;
@@ -256,5 +376,7 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }

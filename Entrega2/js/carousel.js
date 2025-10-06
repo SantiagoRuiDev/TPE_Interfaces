@@ -24,13 +24,15 @@ const setCarouselNavigationButtonActive = (buttons, btn) => {
 
 const cycleCarouselSlideChanger = (time) => {
   const buttons = document.querySelectorAll(".carousel-navigation-button");
-  setInterval(() => {
-    const index =
-      currentIndex + 1 < carousel_items.length ? currentIndex + 1 : 0;
-    currentIndex = index;
-    setCarouselNavigationButtonActive(buttons, buttons[currentIndex]);
-    renderCarouselItem(currentIndex);
-  }, time);
+  setTimeout(() => {
+    setInterval(() => {
+      const index =
+        currentIndex + 1 < carousel_items.length ? currentIndex + 1 : 0;
+      currentIndex = index;
+      setCarouselNavigationButtonActive(buttons, buttons[currentIndex]);
+      renderCarouselItem(currentIndex);
+    }, time);
+  }, 5000); // Se ejecuta luego de 5 segundos debido a la animación al cargar la pagina.
 };
 
 function renderCarouselNavigationButton() {

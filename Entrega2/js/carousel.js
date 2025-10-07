@@ -67,7 +67,7 @@ function renderCarouselItem(index) {
  */
 const fetchCarouselItems = () => {
   try {
-    fetch(API + "/carousel")
+    fetch(API_1 + "/carousel")
       .then((res) => res.json())
       .then((data) => {
         carousel_items.push(...data);

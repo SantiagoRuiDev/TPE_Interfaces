@@ -96,34 +96,44 @@
     img {
       height: 64px;
       width: 64px;
+      object-fit: cover; /* <-- Clave para que no se deforme */
+      object-position: center; /* Centra la parte importante */
       cursor: pointer;
     }
   }
 
   .cart-overview {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
     width: 100%;
+    max-height: 256px;
+    overflow-y: scroll;
 
     .cart-product-item {
       background: var(--background_shadow_color);
       border-radius: 12px;
       display: flex;
-      flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding-right: 12px;
+      overflow: hidden; /* evita desbordes sin afectar el contenido interno */
+      min-height: 96px; /* altura fija igual al tamaño de la imagen */
 
       .cart-product-details {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
         gap: 12px;
+        flex: 1; /* ocupa todo el espacio disponible */
+        min-width: 0; /* evita que el texto fuerce scroll horizontal */
+        height: 100%; /* asegura alineación completa */
 
         .cart-product-info {
           display: grid;
           gap: 4px;
+          flex: 1;
+          min-width: 0; /* NECESARIO para que text-overflow funcione en flexbox */
 
           .cart-product-discount-label {
             background-color: var(--secondary_color);
@@ -153,10 +163,17 @@
             p {
               font-size: 12px;
               color: var(--backgrund_light_gray_color);
+              white-space: nowrap; /* Evita que el texto salte de línea */
+              overflow: hidden; /* Oculta el texto que no entra */
             }
             h4 {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: block;
               font-size: 16px;
               height: 24px;
+              width: 100%;
             }
           }
 
@@ -169,6 +186,7 @@
           width: 96px;
           height: 96px;
           border-radius: 10px;
+          object-fit: cover; /* evita deformaciones */
         }
       }
 
@@ -552,6 +570,8 @@
     border-radius: 16px;
     width: 245px;
     height: 300px;
+    object-fit: cover; /* <-- Clave para que no se deforme */
+    object-position: center; /* Centra la parte importante */
     overflow: hidden;
   }
 
@@ -566,6 +586,11 @@
       font-size: 14px;
     }
     .game-card-information h3 {
+      white-space: nowrap; /* Evita que el texto salte de línea */
+      overflow: hidden; /* Oculta el texto que no entra */
+      text-overflow: ellipsis; /* Agrega "..." al final */
+      display: block; /* Asegura que funcione bien */
+      max-width: 100%; /* Se ajusta al ancho del contenedor */
       font-size: 18px;
     }
     .game-card-discount-label {
@@ -641,9 +666,9 @@
   }
 }
 
-@media screen and (max-width: 512px){
+@media screen and (max-width: 512px) {
   .game-list {
-    grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   .carousel .carousel-navigation .carousel-navigation-button {
     width: 42px;
@@ -665,15 +690,24 @@
 
   .category-list ul {
     align-items: center;
-    overflow-x:scroll;
+    overflow-x: scroll;
   }
+  
 
   .game-card {
     max-width: 100%;
-  }
-  .game-card  .game-card-image {
     width: 100%;
   }
+
+  .game-card .game-card-image {
+    width: 100%;
+    height: 256px;
+  }
+
+  .game-card button {
+    width: 100%;
+  }
+  
   .carousel .carousel-display .carousel-card {
     min-height: 376px;
     max-width: 90%;
@@ -689,11 +723,37 @@
     padding: 8px 20px;
   }
 
+  .cart-menu {
+    min-width: 328px;
+  }
+  .cart-menu .cart-overview .cart-product-item {
+    min-height: 64px;
+  }
+  .cart-menu .cart-overview .cart-product-item .cart-product-details img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .cart-menu
+    .cart-overview
+    .cart-product-item
+    .cart-product-details
+    .cart-product-info
+    p {
+    font-size: 14px;
+  }
+
   .hamburguer-menu .menu-header {
     min-width: 256px;
   }
-  
-  .cart-menu .cart-overview .cart-product-item .cart-product-details .cart-product-info .cart-product-description h4 {
+
+  .cart-menu
+    .cart-overview
+    .cart-product-item
+    .cart-product-details
+    .cart-product-info
+    .cart-product-description
+    h4 {
     font-size: 14px;
   }
 }

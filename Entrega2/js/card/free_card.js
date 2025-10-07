@@ -1,4 +1,4 @@
-export const mapFreeCard = (game) => {
+export const mapFreeCard = (game, catalogName) => {
     return `
       <div class="game-card">
           <img
@@ -13,7 +13,7 @@ export const mapFreeCard = (game) => {
             </div>
             <p>Gratuito</p>
           </div>
-          <a href="game.html?game=${game.gamename}&category=${game.category}" class="action-button">
+          <a href="game.html?game=${game.gamename}&category=${game.category}" class="${catalogName}-action-button action-button">
             <img src="../assets/images/Joystick_Icon.svg" alt="Play Icon" />
             Jugar
           </a>

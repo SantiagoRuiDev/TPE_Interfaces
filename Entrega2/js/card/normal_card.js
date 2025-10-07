@@ -1,4 +1,4 @@
-export const mapNormalCard = (game) => {
+export const mapNormalCard = (game, catalogName) => {
   return `
         <div class="game-card">
           <img
@@ -13,7 +13,7 @@ export const mapNormalCard = (game) => {
             </div>
             <p>$${game.price}</p>
           </div>
-          <button class="action-button">
+          <button class="${catalogName}-action-button action-button">
             <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon" />
             Comprar
           </button>

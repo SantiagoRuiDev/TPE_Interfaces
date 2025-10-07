@@ -12,8 +12,9 @@ let selectedCategory = "";
 const category_selector = document.querySelector(".category-options");
 const items_per_page = 4;
                       // "personal-interest-games" - "next-btn-personal" - "prev-btn-personal"
-const createCatalog = (domSelector, nextBtn, prevBtn) => {
+const createCatalog = (name, domSelector, nextBtn, prevBtn) => {
   return {
+    name: name,
     domElement: document.querySelector(domSelector),
     nextBtn: document.querySelector(nextBtn),
     prevBtn: document.querySelector(prevBtn),
@@ -33,13 +34,13 @@ const renderCatalogPage = (catalog, page) => {
 
   for (const game of list) {
     if (game.discount) {
-      catalog.domElement.innerHTML += mapDiscountCard(game);
+      catalog.domElement.innerHTML += mapDiscountCard(game, catalog.name);
     } else if (game.is_free) {
-      catalog.domElement.innerHTML += mapFreeCard(game);
+      catalog.domElement.innerHTML += mapFreeCard(game, catalog.name);
     } else if (game.is_owned) {
-      catalog.domElement.innerHTML += mapOwnedCard(game);
+      catalog.domElement.innerHTML += mapOwnedCard(game, catalog.name);
     } else {
-      catalog.domElement.innerHTML += mapNormalCard(game);
+      catalog.domElement.innerHTML += mapNormalCard(game, catalog.name);
     }
   }
 
@@ -49,18 +50,24 @@ const renderCatalogPage = (catalog, page) => {
 // Activa la navegación para el catalogo escuchando los eventos en los botones de (Siguiente y anterior)
 const toggleNavigation = (catalog) => {
   catalog.nextBtn.addEventListener("click", () => {
-    const nextPage =
+    let nextPage = 0;
+    if(selectedCategory == ""){
+      nextPage =
       catalog.currentPage + 1 < catalog.items.length
         ? catalog.currentPage + 1
         : 0;
+    } else nextPage = catalog.currentPage + 1 < catalog.filtered.length ? catalog.currentPage + 1 : 0;
     renderCatalogPage(catalog, nextPage);
   });
 
   catalog.prevBtn.addEventListener("click", () => {
-    const prevPage =
+    let prevPage = 0
+    if(selectedCategory == ""){
+      prevPage =
       catalog.currentPage - 1 >= 0
         ? catalog.currentPage - 1
         : catalog.items.length - 1;
+    } else prevPage = catalog.currentPage - 1 >= 0 ? catalog.currentPage - 1 : catalog.filtered.length - 1;
     renderCatalogPage(catalog, prevPage);
   });
 };
@@ -119,7 +126,7 @@ const filterCatalogByCategory = (catalog) => {
 // Esta función captura el evento click para cada boton de acción de las cards del personal_catalogo.
 // Entonces nos permite saber cuando poner un elemento en el carrito.
 const enableCartListing = (catalog) => {
-  const buy_action_button = document.querySelectorAll(".action-button");
+  const buy_action_button = document.querySelectorAll("." + catalog.name + "-action-button"); // Es importante que los botones sean diferentes para cada catalogo para evitar que al escuchar los clicks escuche los de otros catalogos.
   buy_action_button.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       const product = catalog.items[catalog.currentPage][index];
@@ -193,7 +200,7 @@ const deleteProductFromCart = (product) => {
  */
 const fetchCatalogItems = (catalog, endpoint) => {
   try {
-    fetch(API + endpoint)
+    fetch(API_2 + endpoint)
       .then((res) => res.json())
       .then((data) => {
         let aux_row = [];
@@ -205,6 +212,10 @@ const fetchCatalogItems = (catalog, endpoint) => {
             aux_row = [i];
           }
         }
+        if(aux_row.length < items_per_page){
+          catalog.items.push(aux_row);
+          aux_row = [];
+        }
         renderCatalogPage(catalog, 0);
       })
       .catch((err) => console.log(err));
@@ -213,7 +224,7 @@ const fetchCatalogItems = (catalog, endpoint) => {
 
 const fetchCatalogItemsAndCategories = (catalog, endpoint) => {
   try {
-    fetch(API + endpoint)
+    fetch(API_1 + endpoint)
       .then((res) => res.json())
       .then((data) => {
         let aux_row = [];
@@ -228,6 +239,10 @@ const fetchCatalogItemsAndCategories = (catalog, endpoint) => {
             aux_row = [i];
           }
         }
+        if(aux_row.length < items_per_page){
+          catalog.items.push(aux_row);
+          aux_row = [];
+        }
         renderCategorySelector(catalog);
         renderCatalogPage(catalog, 0);
       })
@@ -239,11 +254,13 @@ const fetchCatalogItemsAndCategories = (catalog, endpoint) => {
 // Ejecución
 
 const personalCatalog = createCatalog(
+  "personal-catalog",
   "#personal-interest-games",
   "#next-btn-personal",
   "#prev-btn-personal"
 );
 const gamesCatalog = createCatalog(
+  "global-catalog",
   "#platform-available-games",
   "#next-btn-all",
   "#prev-btn-all"
@@ -253,4 +270,4 @@ toggleNavigation(personalCatalog);
 toggleNavigation(gamesCatalog);
 
 fetchCatalogItemsAndCategories(gamesCatalog, "/catalog");
-fetchCatalogItems(personalCatalog, "/catalog");
+fetchCatalogItems(personalCatalog, "/personal-suggestions");

@@ -129,7 +129,10 @@ const enableCartListing = (catalog) => {
   const buy_action_button = document.querySelectorAll("." + catalog.name + "-action-button"); // Es importante que los botones sean diferentes para cada catalogo para evitar que al escuchar los clicks escuche los de otros catalogos.
   buy_action_button.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      const product = catalog.items[catalog.currentPage][index];
+      let product = null;
+      if(selectedCategory == ""){
+        product = catalog.items[catalog.currentPage][index];
+      } else product = catalog.filtered[catalog.currentPage][index];
       addProductToCart(product);
     });
   });

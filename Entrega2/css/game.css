@@ -342,7 +342,8 @@ body {
 .game-rating-card {
   background-color: var(--background_dark_color);
   border-radius: 4px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   align-items: center;
   justify-content: center;
   padding: 64px 24px;
@@ -358,6 +359,7 @@ body {
   text-align: left;
   display: grid;
   gap: 12px;
+  width: 80%;
 
   .game-rating-card-stars img {
     width: 18px;

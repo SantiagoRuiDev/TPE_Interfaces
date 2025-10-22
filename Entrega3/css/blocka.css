@@ -135,7 +135,7 @@
   .game-title {
     font-size: 64px;
     text-shadow: 4px 2px 2px var(--background_header_color);
-    animation: titleAnimation 1.2s infinite;
+    animation: titleAnimation 0.8s infinite ease-in-out;
   }
 
   .game-info-buttons {
@@ -181,13 +181,13 @@
 
 @keyframes titleAnimation {
   0% {
-    transform: translateY(5px);
+    transform: translateY(2px);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
   }
   100% {
-    transform: translateY(5px);
+    transform: translateY(2px);
   }
 }
 

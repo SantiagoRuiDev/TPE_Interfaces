@@ -70,6 +70,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .facebook {
@@ -115,6 +116,16 @@ body {
   color: #fff;
   outline: none;
 }
+
+.register-form input.error {
+  border: solid red 2px;
+}
+
+.error-msg {
+  color: red;
+  font-size: small;
+}
+
 
 .register-form input::placeholder {
   color: var(--backgrund_light_gray_color);

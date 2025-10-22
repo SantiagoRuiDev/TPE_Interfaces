@@ -352,7 +352,7 @@
 .carousel {
   display: grid;
   gap: 24px;
-  padding: 24px 0px;
+  padding: 24px 0px 128px 0px;
 }
 
 .carousel .carousel-navigation {

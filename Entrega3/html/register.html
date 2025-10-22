@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - Petroka Games</title>
+    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
+  </head>
+  <body>
+    <div class="background-gradient">
+      <div class="background-shadow"></div>
+    </div>
+    <main class="web-content">
+      <div class="form-container">
+        <!-- Botones sociales -->
+        <div class="social-login">
+          <button class="facebook social-login-button">
+            <img src="../assets/images/Facebook_Icon.svg" alt="Facebook Icon" />
+            ACCEDER CON FACEBOOK
+          </button>
+          <button class="google social-login-button">
+            <img src="../assets/images/Google_Icon.svg" alt="Google Icon" />
+            ACCEDER CON GOOGLE
+          </button>
+        </div>
+
+        <!-- Formulario -->
+        <form action="#" class="register-form">
+          <label>
+            <div class="required-field">
+              <p>Nombre</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Escribe tu nombre real"
+              required
+            />
+          </label>
+
+          <label>
+            <div class="required-field">
+              <p>Apellido</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
+            <input
+              type="text"
+              name="apellido"
+              placeholder="Escribe tu apellido"
+              required
+            />
+          </label>
+
+          <label
+            >Nombre de usuario
+            <input
+              type="text"
+              name="usuario"
+              placeholder="Escribe tu nombre de usuario"
+              required
+            />
+          </label>
+
+          <label>
+            <div class="required-field">
+              <p>Edad</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
+            <input
+              type="number"
+              name="edad"
+              placeholder="Escribe tu edad"
+              required
+            />
+          </label>
+
+          <label>
+            <div class="required-field">
+              <p>Correo</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Escribe tu correo electrónico"
+              required
+            />
+          </label>
+
+          <label>
+            <div class="required-field">
+              <p>Contraseña</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Escribe tu contraseña"
+              required
+            />
+          </label>
+
+          <label>
+            <div class="required-field">
+              <p>Repetir contraseña</p>
+              <img
+                src="../assets/images/Required_Icon.svg"
+                alt="Required Field"
+              />
+            </div>
+            <input
+              type="password"
+              name="password2"
+              placeholder="Repite tu contraseña"
+              required
+            />
+          </label>
+
+          <div class="auxiliary">
+            <a href="login.html" class="login-link"
+              >Ya tengo una cuenta, deseo acceder.</a
+            >
+            <div class="captcha">
+              <div class="checkbox-field">
+                <input type="checkbox" required /> No soy un robot
+              </div>
+              <img src="../assets/images/reCaptcha.svg" alt="Recaptcha Icon" />
+            </div>
+          </div>
+
+          <a href="index.html" class="submit-btn">FINALIZAR REGISTRO</a>
+        </form>
+      </div>
+
+      <div class="web-information">
+        <img
+          src="../assets/images/Petroka_Full_Logo.svg"
+          alt="Petroka Games Brand Logo"
+        />
+        <h3>
+          ¿Que esperas para registrarte? Registrate ahora y empeza a jugar.
+        </h3>
+      </div>
+    </main>
+  </body>
+</html>

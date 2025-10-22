@@ -1,0 +1,130 @@
+@import "base.css";
+
+body {
+  background: url("../assets/images/thelastofus_game.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: grid;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.web-content {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px auto;
+  width: 70%;
+}
+
+.background-gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.background-shadow {
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+  transition-duration: 0.1s;
+}
+
+.form-container {
+  background: var(--background_color);
+  padding: 30px;
+  border-radius: 15px;
+  width: 350px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-icon {
+  font-size: 40px;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form label {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.login-form input {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: #fff;
+  outline: none;
+}
+.login-form input::placeholder {
+  color: var(--backgrund_light_gray_color);
+}
+.login-form .register-link {
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--secondary_shadow_color);
+}
+
+.submit-btn {
+  margin-top: 15px;
+  padding: 12px;
+  background: var(--primary_color);
+  box-shadow: 0px 4px 0px var(--primary_dark_color);
+  border: none;
+  border-radius: 8px;
+  color: var(--background_light_color);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: var(--primary_dark_color);
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.web-information {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 6px;
+  max-width: 50%;
+  text-align: center;
+
+  img {
+    height: 128px;
+    width: 256px;
+    margin: 0px auto;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--backgrund_light_gray_color)
+  }
+}

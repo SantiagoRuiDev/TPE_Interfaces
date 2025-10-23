@@ -632,22 +632,24 @@
   }
 
   .action-button {
+    color: var(--secondary_color);
     background-color: var(--background_dark_color);
     text-decoration: none;
     border: none;
     border-radius: 8px;
     height: 46px;
-    text-align: center;
-    color: var(--secondary_color);
     display: flex;
-    align-items: center;
-    gap: 6px;
     justify-content: center;
-    font-weight: bold;
-    transition: all 300ms;
     cursor: pointer;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid #111;
     font-size: 14px;
-
+    font-weight: bold;
+    overflow: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     img {
       height: 24px;
       width: 24px;
@@ -655,6 +657,27 @@
   }
 
   .action-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .action-button::before,
+  .action-button::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+  }
+
+  .action-button:after {
+    left: -100%;
+    clip-path: polygon(10% 0, 70% 0, 90% 100%, 30% 100%);
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 400ms ease;
+  }
+
+  .action-button:hover::after {
+    left: 100%;
     background-color: var(--background_shadow_color);
   }
 }
@@ -683,7 +706,7 @@
 
 @media screen and (max-width: 512px) {
   .game-list {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   .carousel .carousel-navigation .carousel-navigation-button {
     width: 42px;
@@ -707,7 +730,6 @@
     align-items: center;
     overflow-x: scroll;
   }
-  
 
   .game-card {
     max-width: 100%;
@@ -722,7 +744,7 @@
   .game-card button {
     width: 100%;
   }
-  
+
   .carousel .carousel-display .carousel-card {
     min-height: 376px;
     max-width: 90%;

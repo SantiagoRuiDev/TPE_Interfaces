@@ -1,4 +1,4 @@
-import {mapLevelCard} from './card/level_card.js'
+import { mapLevelCard } from "./card/level_card.js";
 
 let levels = [
   {
@@ -54,6 +54,7 @@ let levels = [
 const ratingStarSelector = document.querySelectorAll(".rating-star");
 const startButton = document.querySelector(".game-play-button");
 const nextButton = document.querySelector(".next-level-button");
+const playAgainButton = document.querySelectorAll(".play-again-button");
 const preBlockaDisplay = document.querySelector(
   ".blocka-pre-display-container"
 );
@@ -69,12 +70,16 @@ const postBlockaDisplay = document.querySelector(
 const lostLevelBlockaDisplay = document.querySelector(
   ".blocka-lost-message-container"
 );
+const winnerLevelBlockaDisplay = document.querySelector(
+  ".blocka-winner-message-container"
+);
 const blockaDisplay = document.querySelector(".blocka-display-container");
 const timerDisplay = document.querySelector("#timer-display");
 const gameLevels = document.querySelector(".game-levels");
 
 let seconds = 0;
 let timerInterval = null;
+let originalTimeLimit = 65;
 let timeLimit = 65;
 
 // En este Listener se realiza la funcionalidad del inicio del juego.
@@ -89,8 +94,9 @@ startButton.addEventListener("click", () => {
   choosedLevelDisplay.classList.add("active");
   choosedLevelTitle.textContent = levels[level].name;
 
-  for(const level of levels){
-    gameLevels.innerHTML+= mapLevelCard(level);
+  gameLevels.innerHTML = "";
+  for (const level of levels) {
+    gameLevels.innerHTML += mapLevelCard(level);
   }
 
   setTimeout(() => {
@@ -99,6 +105,35 @@ startButton.addEventListener("click", () => {
     blockaDisplay.classList.add("active");
     startTimer();
   }, 2000);
+});
+
+playAgainButton.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    level=0; // reinicio el nivel
+    resetTimer(); // reinicio el temporizador
+    lostLevelBlockaDisplay.classList.remove("active");
+    winnerLevelBlockaDisplay.classList.remove("active");
+
+    levels = shuffleArray(levels); // Mezclo los niveles aleatoriamente
+
+    // Cambio la imagen del fondo y titulo de juego para mostrarle el nivel seleccionado
+    choosedLevelDisplay.style.backgroundImage =
+      "url(" + levels[level].image + ")";
+    choosedLevelDisplay.classList.add("active");
+    choosedLevelTitle.textContent = levels[level].name;
+
+    gameLevels.innerHTML = "";
+    for (const level of levels) {
+      gameLevels.innerHTML += mapLevelCard(level);
+    }
+
+    setTimeout(() => {
+      choosedLevelDisplay.classList.remove("active");
+      setImage(); // Renderizo el recuadro de subimagenes
+      blockaDisplay.classList.add("active");
+      startTimer();
+    }, 2000);
+  });
 });
 
 nextButton.addEventListener("click", () => {
@@ -280,7 +315,7 @@ function drawAll() {
 
 // Detecta clic para rotar una pieza
 canvas.addEventListener("mousedown", (e) => {
-  if(seconds == timeLimit){
+  if (seconds == timeLimit) {
     return;
   }
   rotateImage(e);
@@ -295,12 +330,19 @@ canvas.addEventListener("mousedown", (e) => {
         levels[level].time = seconds;
         level++;
 
+        if (level == levels.length) {
+          blockaDisplay.classList.remove("active");
+          winnerLevelBlockaDisplay.classList.add("active");
+          timeLimit = originalTimeLimit;
+          return;
+        }
+
         blockaDisplay.classList.remove("active");
         // Mostramos la pantalla intermedia entre niveles
         postBlockaDisplay.style.backgroundImage =
           "url(" + levels[level - 1].image + ")";
         postBlockaDisplay.classList.add("active");
-        timeLimit-=10;
+        timeLimit -= 10;
         return;
       }
       rotateImagesRandom();
@@ -358,13 +400,13 @@ function shuffleArray(array) {
 // Funciones relacionadas a temporizador
 
 function updateTimer() {
-  if(seconds >= timeLimit-10){
+  if (seconds >= timeLimit - 10) {
     timerDisplay.classList.add("warning");
-    if(seconds == timeLimit){
+    if (seconds == timeLimit) {
       pauseTimer();
       setTimeout(() => {
-        blockaDisplay.classList.remove('active');
-        lostLevelBlockaDisplay.classList.add('active');
+        blockaDisplay.classList.remove("active");
+        lostLevelBlockaDisplay.classList.add("active");
       }, 500);
     }
   }

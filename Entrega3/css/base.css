@@ -1,6 +1,6 @@
 :root {
-  --primary_color: rgba(46, 216, 117, 1);
-  --primary_shadow_color: rgba(55, 164, 100, 1);
+  --primary_color: rgb(46, 216, 117);
+  --primary_shadow_color: rgb(55, 164, 100);
   --primary_dark_color: rgba(25, 115, 62, 1);
 
   --secondary_color: rgba(26, 184, 242, 1);

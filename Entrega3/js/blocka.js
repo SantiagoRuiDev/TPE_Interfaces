@@ -1,52 +1,89 @@
-const ratingStarSelector = document.querySelectorAll(".rating-star");
-const startButton = document.querySelector(".game-play-button");
-const nextButton = document.querySelector(".next-level-button");
-const preBlockaDisplay = document.querySelector(".blocka-pre-display-container");
-const postBlockaDisplay = document.querySelector(".blocka-next-level-container");
-const blockaDisplay = document.querySelector(".blocka-display-container");
-
-startButton.addEventListener('click', () => {
-  preBlockaDisplay.classList.remove('active');
-  blockaDisplay.classList.add('active');
-})
-
-nextButton.addEventListener('click', () => {
-  postBlockaDisplay.classList.remove('active');
-  blockaDisplay.classList.add('active');
-}) 
-
-const levels = [
+let levels = [
   {
     id: 0,
     image: "../public/blocka/torre_eiffel.png",
     name: "Torre Eiffel",
+    description:
+      "Es una torre de hierro de 330 metros de altura, construida por Gustave Eiffel para la Exposición Universal de 1889. Es el símbolo más emblemático de París.",
   },
   {
     id: 1,
     image: "../public/blocka/palacio_carrouges.png",
     name: "Palacio Carrouges",
+    description:
+      "Una imponente fortaleza de piedra roja del siglo XIV, rodeada por fosos y jardines. Su mezcla de arquitectura medieval y renacentista refleja siglos de historia noble y conflictos. Un lugar que parece detenido en el tiempo.",
   },
   {
     id: 2,
     image: "../public/blocka/arco_triunfo.png",
     name: "Arco del Triunfo",
+    description:
+      "Uno de los monumentos más icónicos de París. Erigido en honor a los ejércitos napoleónicos, se alza en el centro de la Plaza Charles de Gaulle, rodeado por avenidas radiales. Desde su cima, se observa la majestuosidad de la capital francesa.",
   },
   {
     id: 3,
     image: "../public/blocka/tandil_quijote.png",
     name: "Tandil Quijote",
+    description:
+      "Una imponente escultura metálica del caballero de la triste figura, ubicada entre las sierras tandilenses. Representa la lucha idealista y la fuerza del espíritu, con un paisaje natural que evoca la nobleza y la aventura.",
   },
   {
     id: 4,
     image: "../public/blocka/puerto_madero.png",
     name: "Puerto Madero",
+    description:
+      "Una elegante estructura peatonal que se extiende sobre los diques de Buenos Aires. Diseñado por Santiago Calatrava, su forma simboliza a una pareja bailando tango. Modernidad, arte y movimiento se funden en un solo gesto arquitectónico.",
   },
   {
     id: 5,
     image: "../public/blocka/castillo_dracula.png",
     name: "Castillo de Dracula",
+    description:
+      "Ubicado en lo alto de una colina en Transilvania, este castillo inspira misterio y leyenda. Sus torres puntiagudas y pasillos oscuros esconden historias de condes inmortales y secretos ancestrales. Un símbolo eterno del terror gótico.",
   },
 ];
+
+const ratingStarSelector = document.querySelectorAll(".rating-star");
+const startButton = document.querySelector(".game-play-button");
+const nextButton = document.querySelector(".next-level-button");
+const preBlockaDisplay = document.querySelector(
+  ".blocka-pre-display-container"
+);
+const levelDescription = document.querySelector("#level-description");
+const levelStage = document.querySelector("#level-stage");
+const choosedLevelDisplay = document.querySelector(
+  ".blocka-choosed-level-container"
+);
+const choosedLevelTitle = document.querySelector(".level-title");
+const postBlockaDisplay = document.querySelector(
+  ".blocka-next-level-container"
+);
+const blockaDisplay = document.querySelector(".blocka-display-container");
+
+// En este Listener se realiza la funcionalidad del inicio del juego.
+startButton.addEventListener("click", () => {
+  preBlockaDisplay.classList.remove("active");
+
+  levels = shuffleArray(levels); // Mezclo los niveles aleatoriamente
+
+  // Cambio la imagen del fondo y titulo de juego para mostrarle el nivel seleccionado
+  choosedLevelDisplay.style.backgroundImage =
+    "url(" + levels[level].image + ")";
+  choosedLevelDisplay.classList.add("active");
+  choosedLevelTitle.textContent = levels[level].name;
+
+  setTimeout(() => {
+    choosedLevelDisplay.classList.remove("active");
+    setImage(); // Renderizo el recuadro de subimagenes
+    blockaDisplay.classList.add("active");
+  }, 2000);
+});
+
+nextButton.addEventListener("click", () => {
+  postBlockaDisplay.classList.remove("active");
+  blockaDisplay.classList.add("active");
+  setImage();
+});
 
 const filters = [
   {
@@ -63,9 +100,10 @@ const filters = [
     id: 2,
     func: applyNegativeFilter,
     name: "Colores negativo",
-  }
+  },
 ];
 
+const img = new Image();
 let filter = 0;
 let level = 0;
 
@@ -87,54 +125,46 @@ ratingStarSelector.forEach((btn, index) => {
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-// Imagen original
-const img = new Image();
-
 const pieces = []; // Guarda info de cada subimagen
 
-img.onload = () => {
-  const w = 512;
-  const h = 512;
-  canvas.width = w;
-  canvas.height = h;
+function renderImage(img) {
+  img.onload = () => {
+    const w = 512;
+    const h = 512;
+    canvas.width = w;
+    canvas.height = h;
 
-  const pw = w / 2;
-  const ph = h / 2;
+    // 🔹 Limpiar piezas del nivel anterior
+    pieces.length = 0;
 
-  // Crear 4 subimágenes
-  for (let row = 0; row < 2; row++) {
-    for (let col = 0; col < 2; col++) {
-      pieces.push({
-        // Coordenadas de recorte (sourceX) desde la imagen original
-        sx: col * pw, // X de origen en la imagen original
-        // Coordenadas de recorte (sourceY) desde la imagen original
-        sy: row * ph, // Y de origen en la imagen original
-        // Ancho y alto del fragmento a recortar (slice width & height)
-        sw: pw, // Ancho del fragmento (mitad de la imagen)
-        sh: ph, // Alto del fragmento (mitad de la imagen)
-        // Coordenadas de dibujo en el canvas (destinationX / destinationY)
-        dx: col * pw, // Posición X donde se dibujará el fragmento en el canvas
-        dy: row * ph, // Posición Y donde se dibujará el fragmento en el canvas
-        // Coordenadas originales para saber si la pieza está en su lugar correcto
-        originalDx: col * pw, // Posición X original (para comparar más tarde)
-        originalDy: row * ph, // Posición Y original (para comparar más tarde)
-        // Ángulo original al cargar (usado para validar si el puzzle está armado)
-        originalAngle: 0, // Ángulo con el que empezó la pieza (0°, 90°, 180°, o 270°)
-        // Ángulo actual de rotación de la pieza
-        angle: 0, // Ángulo actual de la pieza (cambia con clic izquierdo o derecho)
-      });
+    const pw = w / 2;
+    const ph = h / 2;
+
+    // Crear 4 subimágenes nuevas
+    for (let row = 0; row < 2; row++) {
+      for (let col = 0; col < 2; col++) {
+        pieces.push({
+          sx: col * pw,
+          sy: row * ph,
+          sw: pw,
+          sh: ph,
+          dx: col * pw,
+          dy: row * ph,
+          originalDx: col * pw,
+          originalDy: row * ph,
+          originalAngle: 0,
+          angle: 0,
+        });
+      }
     }
-  }
 
-  //Cada vez que se cargue el juego aplique uno de los 3 diferentes niveles (Filtro de grises, filtro de blur, brillo, negativo)
-  rotateImagesRandom();
-  
-  drawAll();
+    rotateImagesRandom();
+    drawAll();
+    applyFilter();
+  };
+}
 
-  applyFilter();
-};
-
-function rotateImagesRandom () {
+function rotateImagesRandom() {
   for (const p of pieces) {
     const randomTurns = Math.floor(Math.random() * 4); // 0, 1, 2, o 3
     p.angle = randomTurns * 90;
@@ -150,8 +180,8 @@ function isPuzzleSolved() {
   );
 }
 
-function applyFilter () {
-  filters.find((f) => f.id==filter).func();
+function applyFilter() {
+  filters.find((f) => f.id == filter).func();
 }
 
 function applyGrayscaleFilter() {
@@ -179,7 +209,7 @@ function applyBrightnessFilter(percent = 30) {
 
   for (let i = 0; i < data.length; i += 4) {
     // Multiplicamos cada canal por el factor (por ejemplo 0.3)
-    data[i]     = data[i] * factor;     // Red
+    data[i] = data[i] * factor; // Red
     data[i + 1] = data[i + 1] * factor; // Green
     data[i + 2] = data[i + 2] * factor; // Blue
     // Alpha (data[i + 3]) no se modifica
@@ -192,7 +222,7 @@ function applyNegativeFilter() {
   const data = imageData.data;
 
   for (let i = 0; i < data.length; i += 4) {
-    data[i]     = 255 - data[i];     // Red
+    data[i] = 255 - data[i]; // Red
     data[i + 1] = 255 - data[i + 1]; // Green
     data[i + 2] = 255 - data[i + 2]; // Blue
     // Alpha (data[i + 3]) no se modifica
@@ -200,7 +230,6 @@ function applyNegativeFilter() {
 
   ctx.putImageData(imageData, 0, 0);
 }
-
 
 // Dibuja todas las piezas
 function drawAll() {
@@ -229,22 +258,35 @@ function drawAll() {
 canvas.addEventListener("mousedown", (e) => {
   rotateImage(e);
   if (isPuzzleSolved()) {
-    if(filter < filters.length-1){
-      filter++;
-    } else {
-      filter = 0;
-      const levelImages = document.querySelectorAll('.game-level-image');
-      levelImages[level].classList.toggle('active');
-      level++;
-    }
-    rotateImagesRandom();
-    drawAll();
-    applyFilter();
+    setTimeout(() => {
+      if (filter < filters.length - 1) {
+        filter++;
+      } else {
+        filter = 0;
+        const levelImages = document.querySelectorAll(".game-level-image");
+        levelImages[level].classList.toggle("active");
+        level++;
+
+        blockaDisplay.classList.remove("active");
+        // Mostramos la pantalla intermedia entre niveles
+        postBlockaDisplay.style.backgroundImage =
+          "url(" + levels[level - 1].image + ")";
+        postBlockaDisplay.classList.add("active");
+        return;
+      }
+      rotateImagesRandom();
+      drawAll();
+      applyFilter();
+    }, 200);
   }
 });
 
-function setImage () {
-  img.src = levels.find((l) => l.id == level).image;
+function setImage() {
+  img.src = levels[level].image;
+  levelDescription.textContent = levels[level].description;
+  levelStage.textContent =
+    levels[level].name + " (Nivel " + Number(level + 1) + ")";
+  renderImage(img);
 }
 
 const rotateImage = (e) => {
@@ -273,7 +315,16 @@ const rotateImage = (e) => {
   }
 };
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Elegir un índice aleatorio entre 0 e i
+    const j = Math.floor(Math.random() * (i + 1));
+
+    // Intercambiar los elementos array[i] y array[j]
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 // Prevenir menú contextual por clic derecho
 canvas.addEventListener("contextmenu", (e) => e.preventDefault());
-
-setImage();

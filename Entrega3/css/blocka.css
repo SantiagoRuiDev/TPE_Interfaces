@@ -105,6 +105,33 @@
   }
 }
 
+.blocka-choosed-level-container.active {
+  display: grid;
+}
+
+.blocka-choosed-level-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../public/blocka/torre_eiffel.png");
+  filter: grayscale(40%);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+
+  .level-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+  }
+}
+
 .blocka-next-level-container.active {
   display: grid;
 }
@@ -130,6 +157,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 
   .game-title {
@@ -200,14 +228,14 @@
   gap: 12px;
 
   img {
-    height: 70px;
-    height: 70px;
+    height: 68px;
+    height: 68px;
     filter: grayscale(100%);
   }
 
   .game-image {
-    height: 72px;
-    height: 72px;
+    height: 70px;
+    height: 70px;
     border: 2px solid var(--secondary_color);
   }
 

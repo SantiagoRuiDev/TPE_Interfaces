@@ -48,6 +48,12 @@ body {
   display: inline-flex;
   gap: 12px;
   align-items: center;
+
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
 }
 
 .game-display-container {
@@ -193,7 +199,7 @@ body {
         transform: rotate(90deg);
         margin-top: 12px;
       }
-      
+
       .game-controller-arrow {
         transform: rotate(90deg);
       }

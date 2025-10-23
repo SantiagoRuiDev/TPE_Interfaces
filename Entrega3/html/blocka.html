@@ -57,10 +57,6 @@
             <button class="cart-action-button">Comprar</button>
           </div>
         </div>
-
-        <button>
-          <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
-        </button>
         <button id="hamburguer-menu-button">
           <img
             src="../assets/images/Hamburguer_Menu_Icon.svg"
@@ -140,11 +136,15 @@
       <div id="game-title-container" class="game-title-container">
         <h1 id="game-title-text">Blocka</h1>
         <div class="tools">
-          <img
-            src="../assets/images/Fullscreen_Icon.svg"
-            alt="Full Screen Button"
-          />
-          <img src="../assets/images/Share_Icon.svg" alt="Share Button" />
+          <button>
+            <img
+              src="../assets/images/Fullscreen_Icon.svg"
+              alt="Full Screen Button"
+            />
+          </button>
+          <button>
+            <img src="../assets/images/Share_Icon.svg" alt="Share Button" />
+          </button>
         </div>
       </div>
 
@@ -195,7 +195,7 @@
           </div>
         </div>
         <div class="game-stats">
-          <h1>Nivel 1</h1>
+          <h1 id="level-stage">Nivel 1</h1>
 
           <div class="game-stats-boxes">
             <div class="game-stats-box">
@@ -218,7 +218,7 @@
 
           <div class="">
             <h3>Descripción</h3>
-            <p>
+            <p id="level-description">
               Es una torre de hierro de 330 metros de altura, construida por
               Gustave Eiffel para la Exposición Universal de 1889. Es el símbolo
               más emblemático de París.
@@ -283,13 +283,21 @@
         id="blocka-next-level-container"
       >
         <div class="game-info">
-          <h1 class="game-title">Ganaste</h1>
+          <h1 class="game-title">Completado</h1>
           <div class="game-info-buttons">
             
           <a href="index.html" class="game-play-button secondary">Volver al inicio</a>
           <button class="game-play-button next-level-button purple">Siguiente nivel</button>
           </div>
         </div>
+      </div>
+
+      
+      <div
+        class="blocka-choosed-level-container"
+        id="blocka-choosed-level-container"
+      >
+          <h1 class="level-title">{Nombre nivel}</h1>
       </div>
 
       <section class="game-mouse-help-container game-help-container">
@@ -299,8 +307,8 @@
             <h2>¿Como jugar con Mouse?</h2>
           </div>
           <ul>
-            <li>Seleccione con click izquierdo la ficha que desea mover</li>
-            <li>Luego seleccione un espacio vacio para completar la accion</li>
+            <li>Haga click izquierdo sobre la imagen que desee rotar a la izquierda</li>
+            <li>Haga click derecho sobre la imagen que desee rotar a la derecha</li>
           </ul>
         </div>
       </section>
@@ -309,62 +317,17 @@
         <div class="game-instructions">
           <div class="game-instructions-title">
             <img src="../assets/images/Joystick_Icon.svg" alt="Joystick Icon" />
-            <h2>¿Como jugar con Teclado?</h2>
+            <h2>¿Que es la Blocka?</h2>
           </div>
           <ul>
-            <li>Muevasé con las flechas hasta llegar a la ficha deseada.</li>
+            <li>Es un juego de destreza mental, consiste en armar imagenes en tiempo record.</li>
             <li>
-              Precione “Enter” o “Entrar” y mueva la ficha al espacio deseado.
+              Cada vez que logres armar una imagen, avanzaras al siguiente nivel y se aplicara un filtro diferente.
             </li>
             <li>
-              Luego precione “Enter” o “Entrar” nuevamente para completar la
-              acción
+              El objetivo es incrementar la dificultad de las imagenes y el tiempo de reacción para armar los recuadros originales.
             </li>
           </ul>
-        </div>
-        <div class="game-controllers">
-          <div class="game-controller up-controller">
-            <p>Up</p>
-            <button class="game-controller-button">
-              <img
-                class="game-controller-arrow"
-                src="../assets/images/Controller_Arrow.svg"
-                alt="Arrow"
-              />
-            </button>
-          </div>
-          <div class="controllers-grid">
-            <div class="game-controller left-controller">
-              <p>Left</p>
-              <button class="game-controller-button">
-                <img
-                  class="game-controller-arrow"
-                  src="../assets/images/Controller_Arrow.svg"
-                  alt="Arrow"
-                />
-              </button>
-            </div>
-            <div class="game-controller down-controller">
-              <button class="game-controller-button">
-                <img
-                  class="game-controller-arrow"
-                  src="../assets/images/Controller_Arrow.svg"
-                  alt="Arrow"
-                />
-              </button>
-              <p>Down</p>
-            </div>
-            <div class="game-controller right-controller">
-              <button class="game-controller-button">
-                <img
-                  class="game-controller-arrow"
-                  src="../assets/images/Controller_Arrow.svg"
-                  alt="Arrow"
-                />
-              </button>
-              <p>Right</p>
-            </div>
-          </div>
         </div>
       </section>
 

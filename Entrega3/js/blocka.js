@@ -1,3 +1,5 @@
+import {mapLevelCard} from './card/level_card.js'
+
 let levels = [
   {
     id: 0,
@@ -5,6 +7,7 @@ let levels = [
     name: "Torre Eiffel",
     description:
       "Es una torre de hierro de 330 metros de altura, construida por Gustave Eiffel para la Exposición Universal de 1889. Es el símbolo más emblemático de París.",
+    time: 0,
   },
   {
     id: 1,
@@ -12,6 +15,7 @@ let levels = [
     name: "Palacio Carrouges",
     description:
       "Una imponente fortaleza de piedra roja del siglo XIV, rodeada por fosos y jardines. Su mezcla de arquitectura medieval y renacentista refleja siglos de historia noble y conflictos. Un lugar que parece detenido en el tiempo.",
+    time: 0,
   },
   {
     id: 2,
@@ -19,6 +23,7 @@ let levels = [
     name: "Arco del Triunfo",
     description:
       "Uno de los monumentos más icónicos de París. Erigido en honor a los ejércitos napoleónicos, se alza en el centro de la Plaza Charles de Gaulle, rodeado por avenidas radiales. Desde su cima, se observa la majestuosidad de la capital francesa.",
+    time: 0,
   },
   {
     id: 3,
@@ -26,6 +31,7 @@ let levels = [
     name: "Tandil Quijote",
     description:
       "Una imponente escultura metálica del caballero de la triste figura, ubicada entre las sierras tandilenses. Representa la lucha idealista y la fuerza del espíritu, con un paisaje natural que evoca la nobleza y la aventura.",
+    time: 0,
   },
   {
     id: 4,
@@ -33,6 +39,7 @@ let levels = [
     name: "Puerto Madero",
     description:
       "Una elegante estructura peatonal que se extiende sobre los diques de Buenos Aires. Diseñado por Santiago Calatrava, su forma simboliza a una pareja bailando tango. Modernidad, arte y movimiento se funden en un solo gesto arquitectónico.",
+    time: 0,
   },
   {
     id: 5,
@@ -40,6 +47,7 @@ let levels = [
     name: "Castillo de Dracula",
     description:
       "Ubicado en lo alto de una colina en Transilvania, este castillo inspira misterio y leyenda. Sus torres puntiagudas y pasillos oscuros esconden historias de condes inmortales y secretos ancestrales. Un símbolo eterno del terror gótico.",
+    time: 0,
   },
 ];
 
@@ -58,7 +66,16 @@ const choosedLevelTitle = document.querySelector(".level-title");
 const postBlockaDisplay = document.querySelector(
   ".blocka-next-level-container"
 );
+const lostLevelBlockaDisplay = document.querySelector(
+  ".blocka-lost-message-container"
+);
 const blockaDisplay = document.querySelector(".blocka-display-container");
+const timerDisplay = document.querySelector("#timer-display");
+const gameLevels = document.querySelector(".game-levels");
+
+let seconds = 0;
+let timerInterval = null;
+let timeLimit = 65;
 
 // En este Listener se realiza la funcionalidad del inicio del juego.
 startButton.addEventListener("click", () => {
@@ -72,10 +89,15 @@ startButton.addEventListener("click", () => {
   choosedLevelDisplay.classList.add("active");
   choosedLevelTitle.textContent = levels[level].name;
 
+  for(const level of levels){
+    gameLevels.innerHTML+= mapLevelCard(level);
+  }
+
   setTimeout(() => {
     choosedLevelDisplay.classList.remove("active");
     setImage(); // Renderizo el recuadro de subimagenes
     blockaDisplay.classList.add("active");
+    startTimer();
   }, 2000);
 });
 
@@ -83,6 +105,8 @@ nextButton.addEventListener("click", () => {
   postBlockaDisplay.classList.remove("active");
   blockaDisplay.classList.add("active");
   setImage();
+  resetTimer();
+  startTimer();
 });
 
 const filters = [
@@ -256,6 +280,9 @@ function drawAll() {
 
 // Detecta clic para rotar una pieza
 canvas.addEventListener("mousedown", (e) => {
+  if(seconds == timeLimit){
+    return;
+  }
   rotateImage(e);
   if (isPuzzleSolved()) {
     setTimeout(() => {
@@ -265,6 +292,7 @@ canvas.addEventListener("mousedown", (e) => {
         filter = 0;
         const levelImages = document.querySelectorAll(".game-level-image");
         levelImages[level].classList.toggle("active");
+        levels[level].time = seconds;
         level++;
 
         blockaDisplay.classList.remove("active");
@@ -272,6 +300,7 @@ canvas.addEventListener("mousedown", (e) => {
         postBlockaDisplay.style.backgroundImage =
           "url(" + levels[level - 1].image + ")";
         postBlockaDisplay.classList.add("active");
+        timeLimit-=10;
         return;
       }
       rotateImagesRandom();
@@ -324,6 +353,50 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+// Funciones relacionadas a temporizador
+
+function updateTimer() {
+  if(seconds >= timeLimit-10){
+    timerDisplay.classList.add("warning");
+    if(seconds == timeLimit){
+      pauseTimer();
+      setTimeout(() => {
+        blockaDisplay.classList.remove('active');
+        lostLevelBlockaDisplay.classList.add('active');
+      }, 500);
+    }
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const formattedMinutes = String(minutes).padStart(2, "0");
+  const formattedSeconds = String(remainingSeconds).padStart(2, "0");
+
+  timerDisplay.textContent = `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function startTimer() {
+  if (timerInterval) return; // evita múltiples intervalos
+
+  timerInterval = setInterval(() => {
+    seconds++;
+    updateTimer();
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function resetTimer() {
+  timerDisplay.classList.remove("warning");
+  pauseTimer();
+  seconds = 0;
+  updateTimer();
 }
 
 // Prevenir menú contextual por clic derecho

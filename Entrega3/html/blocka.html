@@ -124,6 +124,8 @@
     </header>
 
     <main class="web-content">
+      <div class="web-content-blur"></div>
+      
       <div id="breadcrumb-container" class="breadcrumb-container">
         <div class="breadcrumb-display">
           <a href="index.html">Juegos</a>
@@ -151,48 +153,6 @@
       <div class="blocka-display-container" id="blocka-display-container">
         <canvas id="canvas" width="800" height="800"></canvas>
         <div class="game-levels">
-          <div class="game-image">
-            <img
-              src="../public/blocka/torre_eiffel.png"
-              alt="Torre Eiffel Nivel"
-              class="game-level-image"
-            />
-          </div>
-          <div class="game-image">
-            <img
-              src="../public/blocka/palacio_carrouges.png"
-              alt="Carrouges Nivel"
-              class="game-level-image"
-            />
-          </div>
-          <div class="game-image">
-            <img
-              src="../public/blocka/arco_triunfo.png"
-              alt="Arco Triunfo Nivel"
-              class="game-level-image"
-            />
-          </div>
-          <div class="game-image">
-            <img
-              src="../public/blocka/tandil_quijote.png"
-              alt="Tandil Quijote Nivel"
-              class="game-level-image"
-            />
-          </div>
-          <div class="game-image">
-            <img
-              src="../public/blocka/puerto_madero.png"
-              alt="Puerto Madero Nivel"
-              class="game-level-image"
-            />
-          </div>
-          <div class="game-image">
-            <img
-              src="../public/blocka/castillo_dracula.png"
-              alt="Castillo Dracula Nivel"
-              class="game-level-image"
-            />
-          </div>
         </div>
         <div class="game-stats">
           <h1 id="level-stage">Nivel 1</h1>
@@ -200,7 +160,7 @@
           <div class="game-stats-boxes">
             <div class="game-stats-box">
               <h5>Temporizador</h5>
-              <p>00:00</p>
+              <p id="timer-display" class="timer-display">00:00</p>
             </div>
 
             <div class="game-stats-box">
@@ -245,14 +205,14 @@
         />
         <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
         <img src="../public/blocka/arco_triunfo.png" alt="Imagen turistica" />
+        <img src="../public/blocka/palacio_carrouges.png" alt="Imagen turistica" />
+        <img src="../public/blocka/tandil_quijote.png" alt="Imagen turistica" />
+        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
         <img src="../public/blocka/puerto_madero.png" alt="Imagen turistica" />
         <img
           src="../public/blocka/castillo_dracula.png"
           alt="Imagen turistica"
         />
-        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
-        <img src="../public/blocka/arco_triunfo.png" alt="Imagen turistica" />
-        <img src="../public/blocka/puerto_madero.png" alt="Imagen turistica" />
         <img
           src="../public/blocka/castillo_dracula.png"
           alt="Imagen turistica"
@@ -288,6 +248,21 @@
             
           <a href="index.html" class="game-play-button secondary">Volver al inicio</a>
           <button class="game-play-button next-level-button purple">Siguiente nivel</button>
+          </div>
+        </div>
+      </div>
+
+      
+      <div
+        class="blocka-lost-message-container"
+        id="blocka-lost-message-container"
+      >
+        <div class="game-info">
+          <h1 class="game-title">Perdiste</h1>
+          <div class="game-info-buttons">
+            
+          <a href="index.html" class="game-play-button secondary">Volver al inicio</a>
+          <button class="game-play-button next-level-button primary">Volver a jugar</button>
           </div>
         </div>
       </div>
@@ -744,7 +719,7 @@
       </div>
     </footer>
     <script type="module" src="../js/blocka.js"></script>
-    <script type="module" src="../js/menu.js"></script>
+    <script src="../js/menu.js"></script>
     <script type="module" src="../js/cart.js"></script>
   </body>
 </html>

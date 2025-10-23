@@ -144,6 +144,10 @@ const enableCartListing = (catalog) => {
   ); // Es importante que los botones sean diferentes para cada catalogo para evitar que al escuchar los clicks escuche los de otros catalogos.
   buy_action_button.forEach((btn, index) => {
     btn.addEventListener("click", () => {
+      if(btn.classList.contains('play-button')){
+        return;
+      }
+
       let product = null;
       if (selectedCategory == "") {
         product = catalog.items[catalog.currentPage][index];

@@ -12,6 +12,12 @@ const gameTitleElement = document.querySelector("#breadcrumb-game-title");
 const categoryTitleElement = document.querySelector("#breadcrumb-category-title");
 const gameHeaderTitleElement = document.querySelector("#game-title-text");
 const ratingStarSelector = document.querySelectorAll(".rating-star");
+const ratingFormButton =  document.querySelector(".game-rating-form-button");
+
+
+gameTitleElement.textContent = game;
+gameHeaderTitleElement.textContent = game;
+categoryTitleElement.textContent = category;
 
 ratingStarSelector.forEach((btn, index) => {
     btn.addEventListener('click', () => {
@@ -27,6 +33,7 @@ ratingStarSelector.forEach((btn, index) => {
     })
 })
 
-gameTitleElement.textContent = game;
-gameHeaderTitleElement.textContent = game;
-categoryTitleElement.textContent = category;
+
+ratingFormButton.addEventListener('click', (e) => {
+    e.preventDefault();
+})

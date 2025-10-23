@@ -6,8 +6,8 @@ import { mapOwnedCard } from "./card/owned_card.js";
 import { mapProductCartCard } from "./card/product_cart_card.js";
 import { mapProductDiscountCartCard } from "./card/product_discount_cart_card.js";
 
-let cart = [];
-let categories = [];
+let cart = [];//carrito de compras
+let categories = [];//categorias unicas desde la api
 let selectedCategory = "";
 const category_selector = document.querySelector(".category-options");
 const items_per_page = 4;
@@ -37,14 +37,14 @@ const renderCatalogPage = (catalog, page) => {
       catalog.domElement.innerHTML += mapDiscountCard(game, catalog.name);
     } else if (game.is_free) {
       catalog.domElement.innerHTML += mapFreeCard(game, catalog.name);
-    } else if (game.is_owned) {
+    } else if (game.is_owned) {//no se uso, es para los juegos comprados
       catalog.domElement.innerHTML += mapOwnedCard(game, catalog.name);
     } else {
       catalog.domElement.innerHTML += mapNormalCard(game, catalog.name);
     }
   }
 
-  enableCartListing(catalog);
+  enableCartListing(catalog);//el carrito escucha si se compra o no un juego del catalogo
 };
 
 // Activa la navegación para el catalogo escuchando los eventos en los botones de (Siguiente y anterior)
@@ -143,7 +143,7 @@ const addProductToCart = (product) => {
   if (!cart.find((p) => p.id == product.id)) {
     cart.push(product);
     renderCartProducts();
-    listenCartActionButtons();
+    listenCartActionButtons();//escucha los botones de eliminar
   }
 };
 

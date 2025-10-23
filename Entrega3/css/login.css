@@ -160,18 +160,58 @@ body {
   text-decoration: none;
 }
 
-
 .facebook {
   background: var(--secondary_color);
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
+
+/* Efecto al pasar el mouse */
 .facebook:hover {
   background: var(--secondary_shadow_color);
+  box-shadow: 0 0 10px var(--secondary_color), 0 0 25px var(--secondary_color);
+  transform: translateY(-1px);
+  animation: pulseGlowFacebook 1.5s infinite;
 }
+
+/* Animación de brillo pulsante */
+@keyframes pulseGlowFacebook {
+  0% {
+    box-shadow: 0 0 8px var(--secondary_color), 0 0 16px var(--secondary_color);
+  }
+  50% {
+    box-shadow: 0 0 16px var(--secondary_color), 0 0 32px var(--secondary_color);
+  }
+  100% {
+    box-shadow: 0 0 8px var(--secondary_color), 0 0 16px var(--secondary_color);
+  }
+}
+
+
+
+
 .google {
   background: var(--accent_shadow_color);
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .google:hover {
   background: var(--accent_dark_color);
+  
+  box-shadow: 0 0 10px var(--accent_dark_color), 0 0 25px var(--accent_dark_color);
+  transform: translateY(-1px);
+  animation: pulseGlowGoogle 1.5s infinite;
+
+}
+
+@keyframes pulseGlowGoogle {
+  0% {
+    box-shadow: 0 0 8px var(--accent_dark_color), 0 0 16px var(--accent_dark_color);
+  }
+  50% {
+    box-shadow: 0 0 16px var(--accent_dark_color), 0 0 32px var(--accent_dark_color);
+  }
+  100% {
+    box-shadow: 0 0 8px var(--accent_dark_color), 0 0 16px var(--accent_dark_color);
+  }
 }

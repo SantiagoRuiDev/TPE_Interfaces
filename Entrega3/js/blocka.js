@@ -84,7 +84,7 @@ let timeLimit = 65;
 
 // En este Listener se realiza la funcionalidad del inicio del juego.
 startButton.addEventListener("click", () => {
-  preBlockaDisplay.classList.remove("active");
+  preBlockaDisplay.classList.remove("active"); // Pantalla con las imagenes de ilustrativas de los niveles (Inicial)
 
   levels = shuffleArray(levels); // Mezclo los niveles aleatoriamente
 
@@ -109,6 +109,7 @@ startButton.addEventListener("click", () => {
 
 playAgainButton.forEach((btn) => {
   btn.addEventListener("click", () => {
+    
     level=0; // reinicio el nivel
     resetTimer(); // reinicio el temporizador
     lostLevelBlockaDisplay.classList.remove("active");
@@ -186,10 +187,11 @@ const ctx = canvas.getContext("2d");
 
 const pieces = []; // Guarda info de cada subimagen
 
-function renderImage(img) {
-  img.onload = () => {
+function renderImage(img) {//esta funcion carga la subimagen que se va a jugar, la divide en 4 partes y las rota aleatoriamente y
+  img.onload = () => {//ejecuta la funcion cuando la imagen se carga
     const w = 512;
     const h = 512;
+    //declaramos las medidas del canvas
     canvas.width = w;
     canvas.height = h;
 
@@ -218,7 +220,7 @@ function renderImage(img) {
     }
 
     rotateImagesRandom();
-    drawAll();
+    drawAll();//dibujamos todas las piezas cuando ya tenemos todo listo
     applyFilter();
   };
 }
@@ -321,30 +323,38 @@ canvas.addEventListener("mousedown", (e) => {
   rotateImage(e);
   if (isPuzzleSolved()) {
     setTimeout(() => {
-      if (filter < filters.length - 1) {
-        filter++;
-      } else {
+      if (filter < filters.length - 1) {//pregunta si quedan mas filtros
+        filter++;//pasas al siguiente filtro 
+      } else {//sino, se completo el nivel
+        //se reinician los filtros para el siguiente nivel y activa la imagen del nivel completado  
         filter = 0;
         const levelImages = document.querySelectorAll(".game-level-image");
         levelImages[level].classList.toggle("active");
-        levels[level].time = seconds;
+        levels[level].time = seconds;// seria para un futuro ranking de record personal por nivel
         level++;
 
-        if (level == levels.length) {
+        //pregunta si se completo el ultimo nivel porque puede ser que solo se completo un nivel intermedio
+        if (level == levels.length) {// si ganaste el ultimo nivel muestra l apantalla de ganador 
           blockaDisplay.classList.remove("active");
           winnerLevelBlockaDisplay.classList.add("active");
           timeLimit = originalTimeLimit;
           return;
         }
 
+        
         blockaDisplay.classList.remove("active");
-        // Mostramos la pantalla intermedia entre niveles
+        //muetsra la pantalla del nivel completado con las opciones de volver y siguiente nivel 
         postBlockaDisplay.style.backgroundImage =
           "url(" + levels[level - 1].image + ")";
         postBlockaDisplay.classList.add("active");
         timeLimit -= 10;
         return;
       }
+
+
+
+
+      // Reiniciamos el nivel con la nueva imagen y filtro
       rotateImagesRandom();
       drawAll();
       applyFilter();
@@ -385,7 +395,7 @@ const rotateImage = (e) => {
     }
   }
 };
-
+//mezcla un array de forma aleatoria
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     // Elegir un índice aleatorio entre 0 e i
@@ -400,24 +410,25 @@ function shuffleArray(array) {
 // Funciones relacionadas a temporizador
 
 function updateTimer() {
-  if (seconds >= timeLimit - 10) {
+  if (seconds >= timeLimit - 10) {//cuando quedan 10 segundos para el limite activa la clase warning que cambia el color del texto
     timerDisplay.classList.add("warning");
     if (seconds == timeLimit) {
-      pauseTimer();
+      pauseTimer();//si el tiempo llega al limite, pausa el temporizador
+      //muestra la pantalla de nivel perdido
       setTimeout(() => {
         blockaDisplay.classList.remove("active");
-        lostLevelBlockaDisplay.classList.add("active");
+        lostLevelBlockaDisplay.classList.add("active");//muestra la pantalla de nivel perdido
       }, 500);
     }
   }
+  //
+  const minutes = Math.floor(seconds / 60);//lo que hace es convertir los segundos en minutos y segundos para mostrarlos en formato mm:ss
+  const remainingSeconds = seconds % 60;//obtiene los segundos restantes despues de sacar los minutos
 
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
+  const formattedMinutes = String(minutes).padStart(2, "0");//formatea los minutos para que siempre tenga 2 digitos
+  const formattedSeconds = String(remainingSeconds).padStart(2, "0");//
 
-  const formattedMinutes = String(minutes).padStart(2, "0");
-  const formattedSeconds = String(remainingSeconds).padStart(2, "0");
-
-  timerDisplay.textContent = `${formattedMinutes}:${formattedSeconds}`;
+  timerDisplay.textContent = `${formattedMinutes}:${formattedSeconds}`;//actualiza el texto del temporizador
 }
 
 function startTimer() {

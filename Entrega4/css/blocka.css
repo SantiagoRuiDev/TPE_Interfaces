@@ -1,0 +1,426 @@
+.game-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+
+  .game-stats-boxes {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+
+    .game-stats-box {
+      background-color: var(--background_header_color);
+      border-radius: 12px;
+      padding: 4px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+    }
+  }
+}
+
+.banner {
+  width: 100%;
+  height: 128px;
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 123, 1),
+    rgba(255, 200, 80, 1),
+    rgba(255, 123, 0, 1)
+  );
+  object-fit: scale-down;
+}
+
+.blocka-display-container {
+  background-color: var(--background_shadow_color);
+  padding: 12px;
+  border: 12px solid var(--secondary_dark_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  gap: 16px;
+  justify-items: center;
+}
+
+.blocka-display-container.active {
+  display: flex;
+}
+
+.blocka-pre-display-container.active {
+  display: grid;
+}
+
+.blocka-pre-display-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* opcional si querés centrar también verticalmente */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 1.2s infinite;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 8px;
+    border: 2px solid var(--accent_dark_color);
+    font-size: 18px;
+    background-color: var(--accent_color);
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .game-play-button:hover {
+    background-color: var(--accent_dark_color);
+    transform: translateY(-3px);
+  }
+
+  img {
+    height: 256px;
+    height: 256px;
+    filter: grayscale(80%);
+  }
+}
+
+.blocka-choosed-level-container.active {
+  display: grid;
+}
+
+.blocka-choosed-level-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../public/blocka/torre_eiffel.png");
+  filter: grayscale(40%);
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+
+  .level-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+  }
+}
+
+.blocka-next-level-container.active {
+  display: grid;
+}
+
+.blocka-next-level-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../public/blocka/torre_eiffel.png");
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* opcional si querés centrar también verticalmente */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+  }
+
+  .game-info-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 4px 12px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px var(--background_header_color);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .secondary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary_dark_color);
+  }
+  .purple {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--accent_dark_color);
+  }
+
+  .secondary:hover {
+    background-color: var(--secondary_dark_color);
+    transform: translateY(-3px);
+  }
+  .purple:hover {
+    background-color: var(--accent_dark_color);
+    transform: translateY(-3px);
+  }
+}
+
+
+.blocka-lost-message-container.active {
+  display: grid;
+}
+
+.blocka-lost-message-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../assets/game-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* opcional si querés centrar también verticalmente */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+    color: #ff2626;
+  }
+
+  .game-info-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 4px 12px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px var(--background_header_color);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .secondary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary_dark_color);
+  }
+  .primary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--primary_dark_color);
+  }
+
+  .secondary:hover {
+    background-color: var(--secondary_dark_color);
+    transform: translateY(-3px);
+  }
+  .primary:hover {
+    background-color: var(--primary_dark_color);
+    transform: translateY(-3px);
+  }
+}
+
+
+
+.blocka-winner-message-container.active {
+  display: grid;
+}
+
+.blocka-winner-message-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../assets/winner-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* opcional si querés centrar también verticalmente */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+    color: var(--primary_color);
+  }
+
+  .game-info-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 4px 12px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px var(--background_header_color);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .secondary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary_dark_color);
+  }
+  .primary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--primary_dark_color);
+  }
+
+  .secondary:hover {
+    background-color: var(--secondary_dark_color);
+    transform: translateY(-3px);
+  }
+  .primary:hover {
+    background-color: var(--primary_dark_color);
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes titleAnimation {
+  0% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(2px);
+  }
+}
+
+#canvas {
+  border: 2px solid var(--secondary_color);
+}
+
+.game-levels {
+  display: grid;
+  gap: 12px;
+
+  img {
+    height: 68px;
+    height: 68px;
+    filter: grayscale(100%);
+  }
+
+  .game-image {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border: 2px solid var(--secondary_color);
+  }
+
+  img.active {
+    filter: none;
+  }
+}
+
+#level-stage {
+  font-size: 20px;
+}
+
+#level-description {
+  font-size: 12px;
+}
+
+.timer-display.warning {
+  color: red;
+  animation: colorSwitch 0.5s infinite;
+}
+
+@keyframes colorSwitch {
+  0% {
+    color: red;
+  }
+  50% {
+    color: rgb(236, 84, 84);
+  }
+  100% {
+    color: red;
+  }
+}

@@ -1,0 +1,36 @@
+:root {
+  --primary_color: rgb(46, 216, 117);
+  --primary_shadow_color: rgb(55, 164, 100);
+  --primary_dark_color: rgba(25, 115, 62, 1);
+
+  --secondary_color: rgba(26, 184, 242, 1);
+  --secondary_shadow_color: rgba(19, 131, 172, 1);
+  --secondary_dark_color: rgba(11, 72, 94, 1);
+
+  --accent_color: rgba(240, 18, 185, 1);
+  --accent_shadow_color: rgba(189, 16, 146, 1);
+  --accent_dark_color: rgba(97, 8, 75, 1);
+
+  --background_header_color: rgb(24, 24, 24);
+  --background_color: rgba(16, 16, 16, 1);
+  --background_light_color: rgba(246, 246, 246, 1);
+  --backgrund_light_gray_color: rgba(202, 202, 202, 1);
+  --background_gray_color: rgba(123, 123, 123, 1);
+  --background_shadow_color: rgba(74, 74, 74, 1);
+  --background_dark_color: rgba(46, 46, 46, 1);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--background_color);
+  color: #fff;
+  overflow: hidden;
+}

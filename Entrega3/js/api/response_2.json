@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "gamename": "Elden Ring",
+    "price": 59.99,
+    "image": "https://imgs.search.brave.com/b1PayYDIG3aDG1_3VMJbsSjqty3auL2Vo2sGdQ9O0TM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMueGJveHNlcnZp/Y2VzLmNvbS9hc3Nl/dHMvN2IvNTQvN2I1/NGY1ZTQtMDg1Ny00/Y2UzLThhMTgtMmI4/YzQzMWU4YTllLmpw/Zz9uPUVsZGVuLVJp/bmdfR0xQLVBhZ2Ut/SGVyby0wXzEwODN4/MTIyMl8wMS5qcGc",
+    "discount": true,
+    "discount_percentage": 20,
+    "description": "Un RPG de mundo abierto lleno de desafíos, creado por FromSoftware en colaboración con George R. R. Martin.",
+    "gameicon": "https://imgs.search.brave.com/HbJECZkG0YHoxQNHJNoh8cLueWLCBNP-iDoxJSahcSI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIzLzA5/L0VsZGVuLVJpbmct/TG9nby01MDB4Mjgx/LnBuZw"
+  },
+  {
+    "id": "2",
+    "gamename": "God of War Ragnarök",
+    "price": 69.99,
+    "image": "https://imgs.search.brave.com/0CHSYd51ylrgjg1TC2x5CVklKcJCwiDgyVG67S1Euy4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDExNDg0/ODgzLmpwZw",
+    "discount": false,
+    "discount_percentage": 0,
+    "description": "Kratos y Atreus enfrentan el destino de los dioses en la épica secuela de God of War.",
+    "gameicon": "https://imgs.search.brave.com/uEXZRAcjimQ0m5prd3JARvqKBwzKoxne2210rllTiM4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly92ZWN0/b3JpZmllZC5jb20v/aW1hZ2VzL2dvZC1v/Zi13YXItaWNvbi03/LnBuZw"
+  },
+  {
+    "id": "3",
+    "gamename": "Kingdom Come Deliverance II",
+    "price": 39.99,
+    "image": "https://imgs.search.brave.com/VHczzFEUD-zgSFmIFYj5W83JLFf4PhYdvQEzEP9dm3g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9nYW1p/bmctY2RuLmNvbS9p/bWFnZXMvbmV3cy9h/cnRpY2xlcy8xMjM0/NS9jb3Zlci8xMDAw/eDU2My9lbC1kbGMt/YnJ1c2hlcy13aXRo/LWRlYXRoLWRlLWtp/bmdkb20tY29tZS1k/ZWxpdmVyYW5jZS1p/aS1zYWxlLWVzdGUt/MTUtZGUtbWF5by1j/b3ZlcjY4MWQwM2Uy/NmMwZTEuanBn",
+    "discount": true,
+    "discount_percentage": 15,
+    "description": "Explora el mundo medieval desde el punto de vista de un joven noble en la hungria del siglo XIV",
+    "gameicon": "https://imgs.search.brave.com/L3c53iGRsKQ3Y2xjHAY9ST-eu2ffJKglDTqzvlfslq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aWduLmNvbS9zcGVj/aWFsL2tpbmdkb20t/Y29tZS1kZWxpdmVy/YW5jZS0yL2ltYWdl/cy9LQ0QyX0xvZ29f/UHJpbWFyeS1zaGFk/b3ctMi0xLTEud2Vi/cA"
+  },
+  {
+    "id": "4",
+    "gamename": "Cyberpunk 2077",
+    "price": 49.99,
+    "image": "https://imgs.search.brave.com/Xkj0isuCHo_mGgMgt1Oj87Hr-5ToJlxjylRNTrprIXE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk5ESmhOVFF4/WTJVdE9URXhZaTAw/WlRBMUxXRTFPRGN0/TUdZME5EbGpObUZt/T1RjMlhrRXlYa0Zx/Y0djQC5qcGc",
+    "discount": true,
+    "discount_percentage": 35,
+    "description": "Un futuro distópico lleno de acción, narrativa profunda y libertad de exploración.",
+    "gameicon": "https://imgs.search.brave.com/2D30dwHQs2PQXwCbuGZeVpQj2qLbETPhJzA29S3sKXg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9sb2dv/cy13b3JsZC5uZXQv/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDUvQ3liZXJwdW5r/LTIwNzctTG9nby01/MDB4MjgxLnBuZw"
+  },
+  {
+    "id": "5",
+    "gamename": "Red Dead Redemption 2",
+    "price": 39.99,
+    "image": "https://imgs.search.brave.com/tlFIrDodVXNMIoPY7EA4JiAjoY7Uhe4I7uxFieIjh_4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMueGJveHNlcnZp/Y2VzLmNvbS9hc3Nl/dHMvZjIvMDkvZjIw/OTNhOWYtODFlZi00/ZGRkLTkxMjgtN2U0/MDlhYjNlNmFkLmpw/Zz9uPVJlZC1EZWFk/LVJlZGVtcHRpb24t/SUlfR0xQLVBhZ2Ut/SGVyby0xMDg0XzE5/MjB4MTA4MC5qcGc",
+    "discount": true,
+    "discount_percentage": 50,
+    "description": "Una historia épica del Viejo Oeste, con un vasto mundo abierto y un detalle impresionante.",
+    "gameicon": "https://imgs.search.brave.com/wz1-WVwKnNPd7LACQPtNny4j5gF44f2cmBZ0hAHvP-Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmdp/bWcuY29tL3VwbG9h/ZHMvcmVkX2RlYWRf/cmVkZW1wdGlvbi9y/ZWRfZGVhZF9yZWRl/bXB0aW9uX1BORzIx/LnBuZw"
+  }
+]

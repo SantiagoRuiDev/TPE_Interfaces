@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petroka Games</title>
+    <link
+      rel="shortcut icon"
+      href="../assets/images/Petroka_Icon_128x128.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/game.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/blocka.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
+    <!-- Import la fuente Poppins (TEMPORAL) -->
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="header">
+      <a href="index.html">
+        <img
+          src="../assets/images/Petroka_Row_Logo.svg"
+          alt="Petroka Navbar Logo"
+        />
+      </a>
+
+      <label class="search" for="search_field_input">
+        <input
+          type="text"
+          id="search_field_input"
+          placeholder="Buscar experiencias"
+        />
+        <button>
+          <img src="../assets/images/Search_Field_Icon.svg" alt="Search Icon" />
+        </button>
+      </label>
+
+      <nav>
+        <button id="cart-menu-button">
+          <img src="../assets/images/Cart_Icon.svg" alt="Cart Menu Icon" />
+        </button>
+
+        <div class="cart-menu">
+          <div class="cart-header">
+            <img
+              src="../assets/images/Petroka_Icon_128x128.svg"
+              alt="Petroka Icon"
+            />
+          </div>
+
+          <div class="cart-overview"></div>
+
+          <div class="cart-price-info">
+            <h5 class="cart-price-text">No hay productos en el carrito</h5>
+            <button class="cart-action-button">Comprar</button>
+          </div>
+        </div>
+        <button id="hamburguer-menu-button">
+          <img
+            src="../assets/images/Hamburguer_Menu_Icon.svg"
+            alt="Hamburguer Menu Icon"
+          />
+        </button>
+
+        <div class="hamburguer-menu">
+          <div class="menu-header">
+            <div class="menu-user-info">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <div class="">
+                <p>¿Que deseas hacer?</p>
+                <h5>Vladimir Zaroska</h5>
+              </div>
+            </div>
+            <img
+              src="../assets/images/Petroka_Icon_128x128.svg"
+              alt="Petroka Icon"
+            />
+          </div>
+          <ul class="menu-links">
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Games Icon.svg"
+                  alt="Search Games Icon"
+                />Buscar juegos</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Support Icon.svg"
+                  alt="Support Icon"
+                />Necesito ayuda</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Policy Icon.svg"
+                  alt="Privacy Policy Icon"
+                />Politicas de privacidad</a
+              >
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../assets/images/Configuration icon.svg"
+                  alt="Account Icon"
+                />Mi cuenta</a
+              >
+            </li>
+          </ul>
+
+          <a type="button" class="menu-leave-button" href="login.html">
+            <img
+              src="../assets/images/Icono Logout (1).svg"
+              alt="Logout Icon"
+            />Cerrar Sesión
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="web-content">
+      <div class="web-content-blur"></div>
+      
+      <div id="breadcrumb-container" class="breadcrumb-container">
+        <div class="breadcrumb-display">
+          <a href="index.html">Juegos</a>
+          <img src="../assets/images/Breadcrumb_Arrow.svg" alt="Arrow" />
+          <p id="breadcrumb-category-title">Rompecabezas</p>
+          <img src="../assets/images/Breadcrumb_Arrow.svg" alt="Arrow" />
+          <p id="breadcrumb-game-title">Blocka</p>
+        </div>
+      </div>
+      <div id="game-title-container" class="game-title-container">
+        <h1 id="game-title-text">Blocka</h1>
+        <div class="tools">
+          <button>
+            <img
+              src="../assets/images/Fullscreen_Icon.svg"
+              alt="Full Screen Button"
+            />
+          </button>
+          <button>
+            <img src="../assets/images/Share_Icon.svg" alt="Share Button" />
+          </button>
+        </div>
+      </div>
+
+      <div class="blocka-display-container" id="blocka-display-container">
+        <canvas id="canvas" width="800" height="800"></canvas>
+        <div class="game-levels">
+        </div>
+        <div class="game-stats">
+          <h1 id="level-stage">Nivel 1</h1>
+
+          <div class="game-stats-boxes">
+            <div class="game-stats-box">
+              <h5>Temporizador</h5>
+              <p id="timer-display" class="timer-display">00:00</p>
+            </div>
+
+            <div class="game-stats-box">
+              <h5>Record personal</h5>
+              <p>00:25</p>
+            </div>
+
+            <div class="game-stats-box">
+              <h5>Ranking mundial</h5>
+              <p>1. 00:07</p>
+              <p>2. 00:08</p>
+              <p>3. 00:09</p>
+            </div>
+          </div>
+
+          <div class="">
+            <h3>Descripción</h3>
+            <p id="level-description">
+              Es una torre de hierro de 330 metros de altura, construida por
+              Gustave Eiffel para la Exposición Universal de 1889. Es el símbolo
+              más emblemático de París.
+            </p>
+          </div>
+
+          <img
+            src="../assets/images/banner.jpg"
+            class="banner"
+            alt="Aviso Publicitario"
+          />
+        </div>
+      </div>
+
+      <div
+        class="blocka-pre-display-container active"
+        id="blocka-pre-display-container"
+      >
+        <img src="../public/blocka/arco_triunfo.png" alt="Imagen turistica" />
+        <img src="../public/blocka/puerto_madero.png" alt="Imagen turistica" />
+        <img
+          src="../public/blocka/castillo_dracula.png"
+          alt="Imagen turistica"
+        />
+        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
+        <img src="../public/blocka/arco_triunfo.png" alt="Imagen turistica" />
+        <img src="../public/blocka/palacio_carrouges.png" alt="Imagen turistica" />
+        <img src="../public/blocka/tandil_quijote.png" alt="Imagen turistica" />
+        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
+        <img src="../public/blocka/puerto_madero.png" alt="Imagen turistica" />
+        <img
+          src="../public/blocka/castillo_dracula.png"
+          alt="Imagen turistica"
+        />
+        <img
+          src="../public/blocka/castillo_dracula.png"
+          alt="Imagen turistica"
+        />
+        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
+        <img src="../public/blocka/arco_triunfo.png" alt="Imagen turistica" />
+        <img src="../public/blocka/puerto_madero.png" alt="Imagen turistica" />
+        <img
+          src="../public/blocka/castillo_dracula.png"
+          alt="Imagen turistica"
+        />
+        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
+        <img src="../public/blocka/arco_triunfo.png" alt="Imagen turistica" />
+        <img src="../public/blocka/puerto_madero.png" alt="Imagen turistica" />
+        <img
+          src="../public/blocka/castillo_dracula.png"
+          alt="Imagen turistica"
+        />
+        <img src="../public/blocka/torre_eiffel.png" alt="Imagen turistica" />
+        <div class="game-info">
+          <h1 class="game-title">Blocka</h1>
+          <button class="game-play-button">Comenzar</button>
+        </div>
+      </div>
+
+      <div
+        class="blocka-next-level-container"
+        id="blocka-next-level-container"
+      >
+        <div class="game-info">
+          <h1 class="game-title">Completado</h1>
+          <div class="game-info-buttons">
+            
+          <a href="index.html" class="game-play-button secondary">Volver al inicio</a>
+          <button class="game-play-button next-level-button purple">Siguiente nivel</button>
+          </div>
+        </div>
+      </div>
+
+      
+      <div
+        class="blocka-lost-message-container"
+        id="blocka-lost-message-container"
+      >
+        <div class="game-info">
+          <h1 class="game-title">Perdiste</h1>
+          <div class="game-info-buttons">
+            
+          <a href="index.html" class="game-play-button secondary">Volver al inicio</a>
+          <button class="game-play-button play-again-button primary">Volver a jugar</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="blocka-winner-message-container"
+        id="blocka-winner-message-container"
+      >
+        <div class="game-info">
+          <h1 class="game-title">Ganaste</h1>
+          <div class="game-info-buttons">
+            
+          <a href="index.html" class="game-play-button secondary">Volver al inicio</a>
+          <button class="game-play-button play-again-button primary">Volver a jugar</button>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        class="blocka-choosed-level-container"
+        id="blocka-choosed-level-container"
+      >
+          <h1 class="level-title">{Nombre nivel}</h1>
+      </div>
+
+      <section class="game-mouse-help-container game-help-container">
+        <div class="game-instructions">
+          <div class="game-instructions-title">
+            <img src="../assets/images/Mouse_Icon.svg" alt="Mouse Icon" />
+            <h2>¿Como jugar con Mouse?</h2>
+          </div>
+          <ul>
+            <li>Haga click izquierdo sobre la imagen que desee rotar a la izquierda</li>
+            <li>Haga click derecho sobre la imagen que desee rotar a la derecha</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="game-keyboard-help-container game-help-container">
+        <div class="game-instructions">
+          <div class="game-instructions-title">
+            <img src="../assets/images/Joystick_Icon.svg" alt="Joystick Icon" />
+            <h2>¿Que es la Blocka?</h2>
+          </div>
+          <ul>
+            <li>Es un juego de destreza mental, consiste en armar imagenes en tiempo record.</li>
+            <li>
+              Cada vez que logres armar una imagen, avanzaras al siguiente nivel y se aplicara un filtro diferente.
+            </li>
+            <li>
+              El objetivo es incrementar la dificultad de las imagenes y el tiempo de reacción para armar los recuadros originales.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="game-developer-container">
+        <div class="game-developer-info">
+          <div class="game-developer-title">
+            <img src="../assets/images/Developer_Icon.svg" alt="Mouse Icon" />
+            <h2>Acerca del creador</h2>
+          </div>
+          <p>
+            Nintendo Company, Ltd. (任天堂株式会社 Nintendō
+            Kabushiki-gaisha?) es una empresa de entretenimiento dedicada a
+            la investigación, desarrollo y distribución
+            de software y hardware de videojuegos, y juegos de cartas, con sede
+            en Kioto, Japón.
+          </p>
+        </div>
+        <div class="game-developer-info">
+          <div class="game-developer-title">
+            <img src="../assets/images/Play_Icon.svg" alt="Mouse Icon" />
+            <h2>Otras experiencias del creador</h2>
+          </div>
+          <div class="game-developer-experiences">
+            <div class="game-experience"></div>
+            <div class="game-experience"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="game-rating-container" id="game-rating-container">
+        <form class="game-rating-form">
+          <div class="game-rating-form-title">
+            <img src="../assets/images/Rating_Icon.svg" alt="Rating Icon" />
+            <h1>¿Que opinas de este juego?</h1>
+          </div>
+          <div class="game-rating-form-group">
+            <input
+              class="game-rating-form-input"
+              type="text"
+              placeholder=" "
+              id="rating-input"
+              required
+            />
+            <label for="rating-input"
+              >Describe tu sensación acerca del juego</label
+            >
+          </div>
+          <div class="game-rating-selector">
+            <p>Elige una calificación</p>
+            <div class="game-rating-form-stars-selector">
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              <svg
+                class="rating-star"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_253_903)">
+                  <path
+                    d="M13.6589 1.74445L16.3658 7.22931C16.554 7.61079 16.918 7.87512 17.339 7.93619L23.3921 8.81579C24.4524 8.96998 24.8754 10.2726 24.1084 11.02L19.7285 15.2894C19.4241 15.5863 19.2849 16.0143 19.357 16.4333L20.3908 22.4619C20.572 23.5177 19.4636 24.3227 18.5155 23.8246L13.1017 20.9785C12.7252 20.7807 12.2752 20.7807 11.8987 20.9785L6.48492 23.8246C5.53674 24.3232 4.42835 23.5177 4.60958 22.4619L5.64337 16.4333C5.71546 16.0143 5.57628 15.5863 5.2719 15.2894L0.891929 11.02C0.12497 10.2721 0.547999 8.96948 1.60832 8.81579L7.66139 7.93619C8.08242 7.87512 8.44637 7.61079 8.63461 7.22931L11.3415 1.74445C11.8151 0.783751 13.1848 0.783751 13.6589 1.74445Z"
+                    fill="#0B485E"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_253_903">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </div>
+          <button class="game-rating-form-button">Enviar reseña</button>
+        </form>
+      </section>
+
+      <section class="game-rating-forum" id="game-rating-forum">
+        <h1>Opiniones principales de este juego</h1>
+        <div class="game-forum-ratings">
+          <div class="game-rating-card">
+            <div class="game-rating-card-profile">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <h4>ElGamer0038844</h4>
+            </div>
+            <div class="game-rating-card-message">
+              <p>
+                Creo que este juego, es bueno solo que se hace muy repetitivo lo
+                que me ha llevado a crisis existenciales.
+              </p>
+              <div class="game-rating-card-stars">
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+              </div>
+            </div>
+          </div>
+          <!--CARD-->
+          <div class="game-rating-card">
+            <div class="game-rating-card-profile">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <h4>Juanito</h4>
+            </div>
+            <div class="game-rating-card-message">
+              <p>El juego mas aburrido que jugue.</p>
+              <div class="game-rating-card-stars">
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+              </div>
+            </div>
+          </div>
+          <!--CARD-->
+          <div class="game-rating-card">
+            <div class="game-rating-card-profile">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <h4>ProDeveloper</h4>
+            </div>
+            <div class="game-rating-card-message">
+              <p>
+                Podian ponerle mas esmero a este juego, yo lo mejoraria con unas
+                horitas de trabajo vieron.
+              </p>
+              <div class="game-rating-card-stars">
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+                <img
+                  src="../assets/images/Unfilled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+              </div>
+            </div>
+          </div>
+          <!--CARD-->
+          <div class="game-rating-card">
+            <div class="game-rating-card-profile">
+              <img src="../assets/images/Avatar_Icon.svg" alt="Avatar Icon" />
+              <h4>HappyPlayer</h4>
+            </div>
+            <div class="game-rating-card-message">
+              <p>
+                Gran juego, realmente de admirar el trabajo forzado de estos
+                desarrolladores, les envio saludos.
+              </p>
+              <div class="game-rating-card-stars">
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Filled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+                <img
+                  src="../assets/images/Filled_Star_Icon.svg"
+                  alt="Unfilled Star"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-overview">
+        <div class="footer-info">
+          <img
+            src="../assets/images/Petroka_Full_Logo_Small.svg"
+            alt="Petroka Footer Logo Small"
+          />
+          <p>
+            Empresa Argentina dedicada al desarrollo y venta de Videojuegos para
+            Adolescentes y Adultas, con fines educativos, somos oriundos de
+            Guaymallen provincia de Mendoza.
+          </p>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>De Interes</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>Utiles</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links-navigation">
+          <h2>Tendencias</h2>
+          <ul>
+            <li>
+              <a href="">Terminos y condiciones</a>
+            </li>
+            <li>
+              <a href="">Compras en la plataforma</a>
+            </li>
+            <li>
+              <a href="">Preguntas frecuentes</a>
+            </li>
+            <li>
+              <a href="">Acerca de nosotros</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-social-media-links">
+          <ul>
+            <li>
+              <img
+                src="../assets/images/Youtube_Icon.svg"
+                alt="Youtube Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+            <li>
+              <img
+                src="../assets/images/Instagram_Icon.svg"
+                alt="Instagram Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+            <li>
+              <img
+                src="../assets/images/Twitter_Icon.svg"
+                alt="Twitter Social Media Icon"
+              />
+              <a href="">petrokagames</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="../js/blocka.js"></script>
+    <script src="../js/menu.js"></script>
+    <script type="module" src="../js/cart.js"></script>
+  </body>
+</html>

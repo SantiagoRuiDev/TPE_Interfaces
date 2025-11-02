@@ -25,25 +25,24 @@ const TAM = 7;
 const RADIO = 25;
 const ESPACIO = 60;
 
-const fichaImg = new Image();//creamos la ficha con una imagen
+const fichaImg = new Image(); //creamos la ficha con una imagen
 fichaImg.src =
   "https://imgs.search.brave.com/tG2PW5oiWrVaP4iNy6BnGvYvsuZq_1G_eM3Ei32beJE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZmVva3Rpc3Rv/dmFzL2Zlb2t0aXN0/b3ZhczIxMTIvZmVv/a3Rpc3RvdmFzMjEx/MjAwMDUyLzE3OTY0/OTM5MC1tdXJjaSVD/MyVBOWxhZ28tdm9s/YWRvci1kZS1oYWxs/b3dlZW4tbXVyY2kl/QzMlQTlsYWdvLXZl/Y3RvcmlhbC12YW1w/aXJvLXNpbHVldGEt/b3NjdXJhLWRlLW11/cmNpJUMzJUE5bGFn/by12b2xhbmRvLmpw/Zz92ZXI9Ng"; // cambia por tu URL de imagen
 
+const fichaImg2 = new Image(); //creamos la ficha con una imagen para la opcion 2
+fichaImg2.src =
+  "https://tse4.mm.bing.net/th/id/OIP.xyrTTwXcoFLxBLRHhFNIvgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
 
-const fichaImg2 = new Image();//creamos la ficha con una imagen para la opcion 2
-fichaImg2.src ="https://tse4.mm.bing.net/th/id/OIP.xyrTTwXcoFLxBLRHhFNIvgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
+const fichaImg3 = new Image(); //creamos la ficha con una imagen para la opcion 3
+fichaImg3.src =
+  "https://tse4.mm.bing.net/th/id/OIP.NJ7cdfQADdx_6fcDv7nL2QHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
 
-
-const fichaImg3 = new Image();//creamos la ficha con una imagen para la opcion 3
-fichaImg3.src ="https://tse4.mm.bing.net/th/id/OIP.NJ7cdfQADdx_6fcDv7nL2QHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
-  
-  
 const tablero = generarTablero(); // Matriz (booleana) con el tablero inicial
 
 // --- estado de interacción ---
 let fichaSeleccionada = null; // se guarda la fila y columna de la ficha seleccionada
 let arrastrando = false;
-let movimientosPosibles = [];// array con los movimientos posibles de la ficha seleccionada
+let movimientosPosibles = []; // array con los movimientos posibles de la ficha seleccionada
 
 // =======================
 // TABLERO Y DIBUJO
@@ -87,55 +86,59 @@ function dibujarTablero() {
     for (let col = 0; col < TAM; col++) {
       const celda = tablero[fila][col];
       if (celda !== null) {
-  const x = offset.x + col * ESPACIO;
-  const y = offset.y + fila * ESPACIO;
+        const x = offset.x + col * ESPACIO;
+        const y = offset.y + fila * ESPACIO;
 
-  // aca lo que hacemos es dibujar el circulo de la celda
-  ctx.beginPath();
-  ctx.arc(x, y, RADIO, 0, Math.PI * 2);
-  ctx.fillStyle = "#111";
-  ctx.fill();
-  ctx.strokeStyle = "#00bfff";
-  ctx.lineWidth = 2;
-  ctx.stroke();
+        // aca lo que hacemos es dibujar el circulo de la celda
+        ctx.beginPath();
+        ctx.arc(x, y, RADIO, 0, Math.PI * 2);
+        ctx.fillStyle = "#111";
+        ctx.fill();
+        ctx.strokeStyle = "#00bfff";
+        ctx.lineWidth = 2;
+        ctx.stroke();
 
-  /* Si hay ficha, dibujar imagen
+        /* Si hay ficha, dibujar imagen
    Dibujar la ficha solo si no es la que se está arrastrando*/
-if (
-  celda === true &&
-  !(arrastrando && dragFicha && dragFicha.fila === fila && dragFicha.col === col)
-) {
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(x, y, RADIO, 0, Math.PI * 2);
-  ctx.clip();
-  ctx.drawImage(fichaImg3, x - RADIO, y - RADIO, RADIO * 2, RADIO * 2);
-  ctx.restore();
-}
+        if (
+          celda === true &&
+          !(
+            arrastrando &&
+            dragFicha &&
+            dragFicha.fila === fila &&
+            dragFicha.col === col
+          )
+        ) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(x, y, RADIO, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(fichaImg3, x - RADIO, y - RADIO, RADIO * 2, RADIO * 2);
+          ctx.restore();
+        }
 
+        // Marcar la ficha seleccionada con un borde amarillo
+        if (
+          fichaSeleccionada &&
+          fichaSeleccionada.fila === fila &&
+          fichaSeleccionada.col === col
+        ) {
+          ctx.strokeStyle = "yellow";
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.arc(x, y, RADIO, 0, Math.PI * 2);
+          ctx.stroke();
+        }
 
-  // Marcar la ficha seleccionada con un borde amarillo
-  if (
-    fichaSeleccionada &&
-    fichaSeleccionada.fila === fila &&
-    fichaSeleccionada.col === col
-  ) {
-    ctx.strokeStyle = "yellow";
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(x, y, RADIO, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-
-  //  Marcar las celdas destino posibles tambien con un corte amarillo
-  for (const mov of movimientosPosibles) {
-    if (mov.fila === fila && mov.col === col) {
-      ctx.strokeStyle = "yellow";
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(x, y, RADIO, 0, Math.PI * 2);
-      ctx.stroke();
-    }
+        //  Marcar las celdas destino posibles tambien con un corte amarillo
+        for (const mov of movimientosPosibles) {
+          if (mov.fila === fila && mov.col === col) {
+            ctx.strokeStyle = "yellow";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(x, y, RADIO, 0, Math.PI * 2);
+            ctx.stroke();
+          }
         }
       }
     }
@@ -145,7 +148,6 @@ if (
 // =======================
 // INTERACCIÓN
 // =======================
-
 
 /*en esta funcion calculamos los movimientos posibles de una ficha en base a su posicion actual
 lo que hace es buscar un false(casilla vacia) a dos posiciones de distancia en linea recta(para arriba y para abajo) 
@@ -158,8 +160,29 @@ function calcularMovimientosPosibles(fila, col) {
     { df: 0, dc: -2 }, // izquierda
     { df: 0, dc: 2 }, // derecha
   ];
+  /*lo que hacemos en esta funcion es verificar si el jugador gano o no
+para ganar debe quedar una sola ficha en el centro del tablero
+calculamos la celda del medio y contamos las fichas restantes en el tablero recorriendo la matriz*/
 
-  for (const { df, dc } of direcciones) {//lo que hace este for es recorrer las direcciones posibles para moverse
+  function verificarVictoria() {
+    let contadorFichas = 0;
+    let fichaCentral = tablero[3][3] === true; //verificamos si en la posicion central hay una ficha
+
+    for (let fila = 0; fila < TAM; fila++) {
+      for (let col = 0; col < TAM; col++) {
+        if (tablero[fila][col] === true) {
+          //aca verificamos si hay una ficha en la posicion actual
+          contadorFichas++;
+        }
+      }
+    }
+
+    // Gana si solo hay una ficha y está en el centro
+    return contadorFichas === 1 && fichaCentral;
+  }
+
+  for (const { df, dc } of direcciones) {
+    //lo que hace este for es recorrer las direcciones posibles para moverse
     const f2 = fila + df;
     const c2 = col + dc;
     const midF = fila + df / 2;
@@ -266,6 +289,20 @@ canvas.addEventListener("mouseup", (e) => {
   dibujarTablero();
 });
 
+canvas.addEventListener("dblclick", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const celda = getCeldaDesdePos(x, y);
+  if (!celda) return;
+
+  if (tablero[celda.fila][celda.col] === true) {
+    fichaSeleccionada = celda;
+    movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
+    dibujarTablero();
+  }
+});
+
 // =======================
 // LÓGICA DEL JUEGO
 // =======================
@@ -290,7 +327,9 @@ function moverFicha(origen, destino) {
       // Si la casilla del medio tiene ficha y la destino esta vacia.
       tablero[f1][c1] = false; // Vacia la casilla origen
       tablero[midF][midC] = false; // Vacia la casilla del medio
-      tablero[f2][c2] = true; // Ocupa la ficha destino
+      tablero[f2][c2] = true;
+      // Ocupa la ficha destino
+      
     }
   }
 }

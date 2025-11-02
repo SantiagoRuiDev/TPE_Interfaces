@@ -289,7 +289,7 @@ canvas.addEventListener("mouseup", (e) => {
   dibujarTablero();
 });
 
-canvas.addEventListener("dblclick", (e) => {
+canvas.addEventListener("click", (e) => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -329,7 +329,6 @@ function moverFicha(origen, destino) {
       tablero[midF][midC] = false; // Vacia la casilla del medio
       tablero[f2][c2] = true;
       // Ocupa la ficha destino
-      
     }
   } else {
     tablero[f1][c1] = true;

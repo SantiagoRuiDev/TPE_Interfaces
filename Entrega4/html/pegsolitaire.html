@@ -124,7 +124,7 @@
 
     <main class="web-content">
       <div class="web-content-blur"></div>
-      
+
       <div id="breadcrumb-container" class="breadcrumb-container">
         <div class="breadcrumb-display">
           <a href="index.html">Juegos</a>
@@ -151,10 +151,56 @@
 
       <div class="game-display-container" id="game-display-container">
         <div class="timer-display">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1" d="M12 6v5.844a.2.2 0 0 0 .152.194L16 13m6-1c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/></svg>
-          <p>02:00</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="none"
+              stroke="#fff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              stroke-width="1"
+              d="M12 6v5.844a.2.2 0 0 0 .152.194L16 13m6-1c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"
+            />
+          </svg>
+          <p class="timer-time-text">02:00</p>
         </div>
-        <canvas id="canvas" width="800" height="500"></canvas>
+        <canvas id="canvas" class="active" width="800" height="500"></canvas>
+
+        <div class="lost-display-container" id="lost-display-container">
+          <div class="game-info">
+            <h1 class="game-title">Perdiste</h1>
+            <div class="game-info-buttons">
+              <a href="index.html" class="game-play-button secondary"
+                >Volver al inicio</a
+              >
+              <button class="game-play-button play-again-button primary">
+                Volver a jugar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="winner-display-container"
+          id="winner-display-container"
+        >
+          <div class="game-info">
+            <h1 class="game-title">Ganaste</h1>
+            <div class="game-info-buttons">
+              <a href="index.html" class="game-play-button secondary"
+                >Volver al inicio</a
+              >
+              <button class="game-play-button play-again-button primary">
+                Volver a jugar
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <section class="game-mouse-help-container game-help-container">

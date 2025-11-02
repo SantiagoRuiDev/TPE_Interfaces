@@ -1,4 +1,27 @@
 const ratingStarSelector = document.querySelectorAll(".rating-star");
+const timerDisplay = document.querySelector(".timer-display");
+const timerTimeText = document.querySelector(".timer-time-text");
+const winnerDisplayContainer = document.querySelector(
+  ".winner-display-container"
+);
+const looserDisplayContainer = document.querySelector(
+  ".lost-display-container"
+);
+const playAgainButtons = document.querySelectorAll(".play-again-button");
+
+playAgainButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    resetTimer();
+    looserDisplayContainer.classList.remove("active");
+    winnerDisplayContainer.classList.remove("active");
+    canvas.classList.add("active");
+    fichaSeleccionada = null;
+    arrastrando = false;
+    tablero = generarTablero();
+    dibujarTablero();
+    startTimer();
+  });
+});
 
 ratingStarSelector.forEach((btn, index) => {
   btn.addEventListener("click", () => {
@@ -25,6 +48,10 @@ const TAM = 7;
 const RADIO = 25;
 const ESPACIO = 60;
 
+const tiempoMaximoOriginal = 360;
+let temporizador = tiempoMaximoOriginal;
+let timerInterval = null;
+
 const fichaImg = new Image(); //creamos la ficha con una imagen
 fichaImg.src =
   "https://imgs.search.brave.com/tG2PW5oiWrVaP4iNy6BnGvYvsuZq_1G_eM3Ei32beJE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZmVva3Rpc3Rv/dmFzL2Zlb2t0aXN0/b3ZhczIxMTIvZmVv/a3Rpc3RvdmFzMjEx/MjAwMDUyLzE3OTY0/OTM5MC1tdXJjaSVD/MyVBOWxhZ28tdm9s/YWRvci1kZS1oYWxs/b3dlZW4tbXVyY2kl/QzMlQTlsYWdvLXZl/Y3RvcmlhbC12YW1w/aXJvLXNpbHVldGEt/b3NjdXJhLWRlLW11/cmNpJUMzJUE5bGFn/by12b2xhbmRvLmpw/Zz92ZXI9Ng"; // cambia por tu URL de imagen
@@ -37,7 +64,7 @@ const fichaImg3 = new Image(); //creamos la ficha con una imagen para la opcion 
 fichaImg3.src =
   "https://tse4.mm.bing.net/th/id/OIP.NJ7cdfQADdx_6fcDv7nL2QHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
 
-const tablero = generarTablero(); // Matriz (booleana) con el tablero inicial
+let tablero = generarTablero(); // Matriz (booleana) con el tablero inicial
 
 // --- estado de interacción ---
 let fichaSeleccionada = null; // se guarda la fila y columna de la ficha seleccionada
@@ -95,7 +122,7 @@ function dibujarTablero() {
         ctx.fillStyle = "#111";
         ctx.fill();
         ctx.strokeStyle = "#00bfff";
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 3;
         ctx.stroke();
 
         /* Si hay ficha, dibujar imagen
@@ -164,23 +191,6 @@ function calcularMovimientosPosibles(fila, col) {
 para ganar debe quedar una sola ficha en el centro del tablero
 calculamos la celda del medio y contamos las fichas restantes en el tablero recorriendo la matriz*/
 
-  function verificarVictoria() {
-    let contadorFichas = 0;
-    let fichaCentral = tablero[3][3] === true; //verificamos si en la posicion central hay una ficha
-
-    for (let fila = 0; fila < TAM; fila++) {
-      for (let col = 0; col < TAM; col++) {
-        if (tablero[fila][col] === true) {
-          //aca verificamos si hay una ficha en la posicion actual
-          contadorFichas++;
-        }
-      }
-    }
-
-    // Gana si solo hay una ficha y está en el centro
-    return contadorFichas === 1 && fichaCentral;
-  }
-
   for (const { df, dc } of direcciones) {
     //lo que hace este for es recorrer las direcciones posibles para moverse
     const f2 = fila + df;
@@ -204,6 +214,39 @@ calculamos la celda del medio y contamos las fichas restantes en el tablero reco
   return posibles;
 }
 
+function verificarPerdio() {
+  for (let fila = 0; fila < TAM; fila++) {
+    for (let col = 0; col < TAM; col++) {
+      if (tablero[fila][col] === true) {
+        const movs = calcularMovimientosPosibles(fila, col);
+        if (movs.length > 0) {
+          // Si al menos una ficha tiene movimientos, el juego continúa
+          return true;
+        }
+      }
+    }
+  }
+  // Si ninguna ficha puede moverse, se perdió
+  return false;
+}
+
+function verificarVictoria() {
+  let contadorFichas = 0;
+  let fichaCentral = tablero[3][3] === true; //verificamos si en la posicion central hay una ficha
+
+  for (let fila = 0; fila < TAM; fila++) {
+    for (let col = 0; col < TAM; col++) {
+      if (tablero[fila][col] === true) {
+        //aca verificamos si hay una ficha en la posicion actual
+        contadorFichas++;
+      }
+    }
+  }
+
+  // Gana si solo hay una ficha y está en el centro
+  return contadorFichas === 1 && fichaCentral;
+}
+
 function getCeldaDesdePos(x, y) {
   const offset = obtenerOffset(); // Obtenemos la posicion del tablero en canvas.
   const col = Math.round((x - offset.x) / ESPACIO);
@@ -212,31 +255,13 @@ function getCeldaDesdePos(x, y) {
   return { fila, col };
 }
 
-// --- CLICK SELECCIÓN ---
-canvas.addEventListener("click", (e) => {
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const celda = getCeldaDesdePos(x, y);
-  if (!celda) return;
-
-  if (fichaSeleccionada) {
-    moverFicha(fichaSeleccionada, celda);
-    fichaSeleccionada = null;
-    movimientosPosibles = [];
-  } else if (tablero[celda.fila][celda.col] === true) {
-    fichaSeleccionada = celda;
-    movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
-  }
-  dibujarTablero();
-});
-
 // --- DRAG & DROP ---
 let dragFicha = null;
 let dragPos = null;
 
 // Cuando presionas click dentro del canvas
 canvas.addEventListener("mousedown", (e) => {
+  if (temporizador == 0) return;
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -254,6 +279,7 @@ canvas.addEventListener("mousedown", (e) => {
 // Este event listener escucha cuando estamos moviendo una ficha en el tablero y la va renderizando para poder guiar el movimiento.
 canvas.addEventListener("mousemove", (e) => {
   // Este evento captura el movimiento del cursor sobre el canvas
+  if (temporizador == 0) return;
   if (!arrastrando) return;
   const rect = canvas.getBoundingClientRect();
   dragPos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -276,6 +302,7 @@ canvas.addEventListener("mousemove", (e) => {
 
 // Cuando soltas el click dentro del canvas
 canvas.addEventListener("mouseup", (e) => {
+  if (temporizador == 0) return;
   if (!arrastrando) return;
   arrastrando = false;
 
@@ -285,11 +312,43 @@ canvas.addEventListener("mouseup", (e) => {
   const destino = getCeldaDesdePos(x, y);
 
   if (destino) moverFicha(dragFicha, destino);
+  // Cuando mueve una ficha de manera correcta.
   dragFicha = null;
   dibujarTablero();
+
+  // Despues de dibujar la ultima ficha, si gano se mostraria una pantalla
+  if (verificarVictoria()) {
+    pauseTimer();
+    setTimeout(() => {
+      canvas.classList.remove("active");
+      winnerDisplayContainer.classList.add("active");
+      timerDisplay.classList.add("success");
+    }, 200);
+  }
+});
+
+// --- CLICK SELECCIÓN ---
+canvas.addEventListener("click", (e) => {
+  if (temporizador == 0) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const celda = getCeldaDesdePos(x, y);
+  if (!celda) return;
+
+  if (fichaSeleccionada) {
+    moverFicha(fichaSeleccionada, celda);
+    fichaSeleccionada = null;
+    movimientosPosibles = [];
+  } else if (tablero[celda.fila][celda.col] === true) {
+    fichaSeleccionada = celda;
+    movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
+    dibujarTablero();
+  }
 });
 
 canvas.addEventListener("click", (e) => {
+  if (temporizador == 0) return;
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -336,3 +395,46 @@ function moverFicha(origen, destino) {
 }
 
 fichaImg3.onload = dibujarTablero;
+startTimer();
+
+function updateTimer() {
+  if (temporizador <= tiempoMaximoOriginal / 2) {
+    timerDisplay.classList.add("warning");
+    if (temporizador == 0) {
+      pauseTimer();
+      setTimeout(() => {
+        canvas.classList.remove("active");
+        looserDisplayContainer.classList.add("active");
+      }, 500);
+    }
+  }
+
+  const minutes = Math.floor(temporizador / 60);
+  const remainingSeconds = temporizador % 60;
+
+  const formattedMinutes = String(minutes).padStart(2, "0");
+  const formattedSeconds = String(remainingSeconds).padStart(2, "0");
+
+  timerTimeText.textContent = `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function startTimer() {
+  if (timerInterval) return; // evita múltiples intervalos
+
+  timerInterval = setInterval(() => {
+    temporizador--;
+    updateTimer();
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function resetTimer() {
+  timerDisplay.classList.remove("warning");
+  pauseTimer();
+  temporizador = tiempoMaximoOriginal;
+  updateTimer();
+}

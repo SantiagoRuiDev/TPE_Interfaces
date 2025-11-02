@@ -81,7 +81,8 @@ body {
 }
 
 canvas {
-  background-color: #f4f4f4;
+  background: url('../assets/frame.png');
+  background-repeat: repeat;
   display: block;
   margin: 20px auto;
   border: 2px solid #333;
@@ -415,6 +416,41 @@ canvas {
   }
 }
 
+.timer-display.success {
+  color: var(--primary_color);
+  animation: colorSuccessSwitch 0.5s infinite;
+
+  svg path {
+    stroke: var(--primary_color);
+    animation: vectorSuccessColorSwitch 0.5s infinite;
+  }
+}
+
+
+@keyframes colorSuccessSwitch {
+  0% {
+    color: var(--primary_color);
+  }
+  50% {
+    color: var(--primary_dark_color);
+  }
+  100% {
+    color: var(--primary_color);
+  }
+}
+
+@keyframes vectorSuccessColorSwitch {
+  0% {
+    stroke: var(--primary_color);
+  }
+  50% {
+    stroke: var(--primary_dark_color);
+  }
+  100% {
+    stroke: var(--primary_color);
+  }
+}
+
 @keyframes colorSwitch {
   0% {
     color: red;
@@ -436,5 +472,179 @@ canvas {
   }
   100% {
     stroke: red;
+  }
+}
+
+canvas {
+  display: none;
+}
+
+canvas.active {
+  display: block;
+}
+
+.lost-display-container.active {
+  display: grid;
+}
+
+.lost-display-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../assets/game-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* opcional si querés centrar también verticalmente */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+    color: #ff2626;
+  }
+
+  .game-info-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 4px 12px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px var(--background_header_color);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .secondary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary_dark_color);
+  }
+  .primary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--primary_dark_color);
+  }
+
+  .secondary:hover {
+    background-color: var(--secondary_dark_color);
+    transform: translateY(-3px);
+  }
+  .primary:hover {
+    background-color: var(--primary_dark_color);
+    transform: translateY(-3px);
+  }
+}
+
+
+
+.winner-display-container.active {
+  display: grid;
+}
+
+.winner-display-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+  background: url("../assets/winner-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* opcional si querés centrar también verticalmente */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 0.8s infinite ease-in-out;
+    color: var(--primary_color);
+  }
+
+  .game-info-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 4px 12px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px var(--background_header_color);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .secondary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary_dark_color);
+  }
+  .primary {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--primary_dark_color);
+  }
+
+  .secondary:hover {
+    background-color: var(--secondary_dark_color);
+    transform: translateY(-3px);
+  }
+  .primary:hover {
+    background-color: var(--primary_dark_color);
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes titleAnimation {
+  0% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(2px);
   }
 }

@@ -395,3 +395,46 @@ canvas {
     transform: rotate(360deg);
   }
 }
+
+.timer-display {
+  display: flex;
+  padding: 10px 16px;
+  border-radius: 32px;
+  justify-content: center;
+  gap: 12px;
+  background-color: var(--background_dark_color);
+}
+
+.timer-display.warning {
+  color: red;
+  animation: colorSwitch 0.5s infinite;
+
+  svg path {
+    stroke: red;
+    animation: vectorColorSwitch 0.5s infinite;
+  }
+}
+
+@keyframes colorSwitch {
+  0% {
+    color: red;
+  }
+  50% {
+    color: rgb(236, 84, 84);
+  }
+  100% {
+    color: red;
+  }
+}
+
+@keyframes vectorColorSwitch {
+  0% {
+    stroke: red;
+  }
+  50% {
+    stroke: rgb(236, 84, 84);
+  }
+  100% {
+    stroke: red;
+  }
+}

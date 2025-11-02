@@ -150,6 +150,7 @@ canvas.addEventListener("mousedown", (e) => {
     arrastrando = true;
     dragFicha = celda;
     dragPos = { x, y };
+    tablero[celda.fila][celda.col] = false;
   }
 });
 
@@ -209,6 +210,8 @@ function moverFicha(origen, destino) {
       tablero[midF][midC] = false; // Vacia la casilla del medio
       tablero[f2][c2] = true; // Ocupa la ficha destino
     }
+  } else {
+    tablero[f1][c1] = true;
   }
 }
 

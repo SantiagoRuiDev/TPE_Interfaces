@@ -169,7 +169,7 @@
           </svg>
           <p class="timer-time-text">02:00</p>
         </div>
-        <canvas id="canvas" class="active" width="800" height="500"></canvas>
+        <canvas id="canvas"  width="800" height="500"></canvas>
 
         <div class="lost-display-container" id="lost-display-container">
           <div class="game-info">
@@ -183,6 +183,16 @@
               </button>
             </div>
           </div>
+        </div>
+
+        <div class="pegSolitarie-pre-display-container active"   id="pegSolitarie-pre-display-container">
+
+          <div class="game-info">
+            <h1 class="game-title">Peg Solitarie</h1>
+            <button class="game-play-button">Comenzar</button>
+        </div>
+
+      </div>
         </div>
 
         <div
@@ -203,81 +213,27 @@
         </div>
       </div>
 
-      <section class="game-mouse-help-container game-help-container">
+      <section class="game-help-container ">
         <div class="game-instructions">
           <div class="game-instructions-title">
             <img src="../assets/images/Mouse_Icon.svg" alt="Mouse Icon" />
-            <h2>¿Como jugar con Mouse?</h2>
+            <h2>¿Como jugar?</h2>
           </div>
-          <ul>
-            <li>Seleccione con click izquierdo la ficha que desea mover</li>
-            <li>Luego seleccione un espacio vacio para completar la accion</li>
+          <ul class="instructions-list">
+            <li>Seleccione haciendo click sobre la ficha que decea mover</li>
+            <li>Podes arrastrar la ficha hacia el espacio sugerido en amarillo</li>
+            <li>O bien simplemente clickear el/los espacio/s sugerido/s en amarillo con la ficha ya seleccionada</li>
+            <li>El objetivo del juego es ir pasando fichas por encima de otras para hacerlas desaparecer hasta conseguir vaciar el tablero</li>
+            <li>Pero <span class="span-petroka">¡OJO!</span> si te quedan fichas que no podes saltar o te quedas sin tiempo <span class="span-petroka">¡PERDISTE!</span></li>
           </ul>
         </div>
+        
+        <section class="game-guide-images">
+          <div class="game-guide-image1"></div>
+        </section>
       </section>
 
-      <section class="game-keyboard-help-container game-help-container">
-        <div class="game-instructions">
-          <div class="game-instructions-title">
-            <img src="../assets/images/Joystick_Icon.svg" alt="Joystick Icon" />
-            <h2>¿Como jugar con Teclado?</h2>
-          </div>
-          <ul>
-            <li>Muevasé con las flechas hasta llegar a la ficha deseada.</li>
-            <li>
-              Precione “Enter” o “Entrar” y mueva la ficha al espacio deseado.
-            </li>
-            <li>
-              Luego precione “Enter” o “Entrar” nuevamente para completar la
-              acción
-            </li>
-          </ul>
-        </div>
-        <div class="game-controllers">
-          <div class="game-controller up-controller">
-            <p>Up</p>
-            <button class="game-controller-button">
-              <img
-                class="game-controller-arrow"
-                src="../assets/images/Controller_Arrow.svg"
-                alt="Arrow"
-              />
-            </button>
-          </div>
-          <div class="controllers-grid">
-            <div class="game-controller left-controller">
-              <p>Left</p>
-              <button class="game-controller-button">
-                <img
-                  class="game-controller-arrow"
-                  src="../assets/images/Controller_Arrow.svg"
-                  alt="Arrow"
-                />
-              </button>
-            </div>
-            <div class="game-controller down-controller">
-              <button class="game-controller-button">
-                <img
-                  class="game-controller-arrow"
-                  src="../assets/images/Controller_Arrow.svg"
-                  alt="Arrow"
-                />
-              </button>
-              <p>Down</p>
-            </div>
-            <div class="game-controller right-controller">
-              <button class="game-controller-button">
-                <img
-                  class="game-controller-arrow"
-                  src="../assets/images/Controller_Arrow.svg"
-                  alt="Arrow"
-                />
-              </button>
-              <p>Right</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    
 
       <section class="game-developer-container">
         <div class="game-developer-info">
@@ -286,11 +242,11 @@
             <h2>Acerca del creador</h2>
           </div>
           <p>
-            Nintendo Company, Ltd. (任天堂株式会社 Nintendō
-            Kabushiki-gaisha?) es una empresa de entretenimiento dedicada a
-            la investigación, desarrollo y distribución
-            de software y hardware de videojuegos, y juegos de cartas, con sede
-            en Kioto, Japón.
+           Los orígenes del juego de peg solitaire (also known as Senku) son inciertos,
+            pero las primeras referencias datan de la corte de Luis XIV en Francia en 1687,
+             con una publicación en la revista Mercure Galant en 1697.
+              Aunque se cree que su origen es francés, también se le atribuyen raíces europeas,
+               posiblemente alemanas o escandinavas. En este caso el creador de este tablero es <span class="span-petroka">PetrokaGames</span>
           </p>
         </div>
         <div class="game-developer-info">
@@ -299,8 +255,8 @@
             <h2>Otras experiencias del creador</h2>
           </div>
           <div class="game-developer-experiences">
-            <div class="game-experience"></div>
-            <div class="game-experience"></div>
+            <div class="game-experience1"></div>
+            <div class="game-experience2"></div>
           </div>
         </div>
       </section>

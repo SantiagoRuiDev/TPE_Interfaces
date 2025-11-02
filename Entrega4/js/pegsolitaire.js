@@ -8,6 +8,20 @@ const looserDisplayContainer = document.querySelector(
   ".lost-display-container"
 );
 const playAgainButtons = document.querySelectorAll(".play-again-button");
+const prePegSolitarieDisplay = document.querySelector(".pegSolitarie-pre-display-container");
+const gamePlayButton = document.querySelector(".game-play-button");
+
+gamePlayButton.addEventListener("click", () => {
+   canvas.classList.add("active"); 
+  prePegSolitarieDisplay.classList.remove("active");
+
+  resetTimer();
+  fichaSeleccionada = null;
+  arrastrando = false;
+  tablero = generarTablero();
+  dibujarTablero();
+  startTimer();
+});
 
 playAgainButtons.forEach((btn) => {
   btn.addEventListener("click", () => {

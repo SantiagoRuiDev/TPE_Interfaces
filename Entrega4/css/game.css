@@ -5,6 +5,64 @@ body {
   overflow-y: scroll;
 }
 
+canvas.active {
+  display: block; 
+}
+
+.pegSolitarie-pre-display-container {
+  background-color: var(--background_header_color);
+  width: 80%;
+  margin: 0px auto;
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+  height: 512px;
+
+  .game-info {
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-title {
+    font-size: 64px;
+    text-shadow: 4px 2px 2px var(--background_header_color);
+    animation: titleAnimation 1.2s infinite;
+  }
+
+  .game-play-button {
+    border-radius: 24px;
+    padding: 8px;
+    border: 2px solid var(--accent_dark_color);
+    font-size: 18px;
+    background-color: var(--accent_color);
+    text-align: center;
+    color: var(--background_light_gray);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .game-play-button:hover {
+    background-color: var(--accent_dark_color);
+    transform: translateY(-3px);
+  }
+
+  img {
+    height: 256px;
+    height: 256px;
+    filter: grayscale(80%);
+  }
+}
+.pegSolitarie-pre-display-container.active {
+  display: grid; 
+}
+
+
+
 .web-content {
   display: grid;
   gap: 2px;
@@ -107,6 +165,11 @@ canvas {
   align-items: start;
 }
 
+  .span-petroka {
+    font-weight: bold;
+    color: var(--secondary_color);
+  }
+
 .game-developer-info {
   display: grid;
   gap: 12px;
@@ -126,8 +189,16 @@ canvas {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
 
-    .game-experience {
-      background: url("../assets/images/SuperMario.webp");
+    .game-experience1 {
+      background: url("../assets/images/blocka.webp");
+      background-position: center;
+      min-height: 256px;
+      width: 100%;
+      border-radius: 12px;
+      background-size: cover;
+    }
+     .game-experience2 {
+      background: url("../assets/images/ajedrez-game.webp");
       min-height: 256px;
       width: 100%;
       border-radius: 12px;
@@ -137,6 +208,8 @@ canvas {
 }
 
 .game-help-container {
+  border-style: solid;
+  border-color: var(--secondary_dark_color);
   padding: 24px 0px;
   display: grid;
   gap: 24px;
@@ -144,90 +217,9 @@ canvas {
   margin: 0px auto;
 }
 
-.game-keyboard-help-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .game-controllers {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    .game-controller {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      text-align: center;
-      font-size: 14px;
-      justify-content: center;
-
-      .game-controller-button {
-        background-color: var(--secondary_color);
-        padding: 12px;
-        display: grid;
-        margin: 0px auto;
-        border: none;
-        border-radius: 12px;
-        box-shadow: 0px 2px 0px var(--secondary_shadow_color);
-        transition: all 0.3s ease-in-out;
-      }
-
-      .game-controller-button:hover {
-        background-color: var(--secondary_shadow_color);
-        box-shadow: none;
-        transform: translateY(2px);
-      }
-    }
-
-    .up-controller {
-      margin-right: 10px;
-    }
-
-    .left-controller {
-      display: inline-flex;
-      flex-direction: row;
-      align-items: start;
-
-      p {
-        transform: rotate(-90deg);
-        margin-top: 12px;
-      }
-
-      .game-controller-arrow {
-        transform: rotate(-90deg);
-      }
-    }
-    .right-controller {
-      display: inline-flex;
-      flex-direction: row;
-      align-items: start;
-
-      p {
-        transform: rotate(90deg);
-        margin-top: 12px;
-      }
-
-      .game-controller-arrow {
-        transform: rotate(90deg);
-      }
-    }
-    .down-controller {
-      .game-controller-arrow {
-        transform: rotate(180deg);
-      }
-    }
-
-    .controllers-grid {
-      display: flex;
-      gap: 12px;
-      margin: 0px auto;
-    }
-  }
-}
 
 .game-instructions {
-  display: grid;
+  display: flex;
   gap: 12px;
 
   .game-instructions-title {
@@ -240,6 +232,39 @@ canvas {
     font-size: 14px;
   }
 }
+
+.game-help-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr; 
+  align-items: start;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.game-instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.instructions-list {
+  list-style-type: disc;
+  padding-left: 40px;
+}
+
+.game-guide-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-guide-image1 {
+  background: url("../assets/images/peg-arrastra.webp") center/cover no-repeat;
+  height: 230px;
+  width: 230px;
+  border-radius: 12px;
+ 
+}
+
 
 .game-rating-container {
   display: grid;

@@ -6,30 +6,66 @@ body {
 }
 
 canvas.active {
-  display: block; 
+  display: block;
+}
+
+.canvas-image-selector {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-image {
+  height: 72px;
+  width: 72px;
+  border: solid 3px var(--secondary_dark_color);
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.canvas-image.selected {
+  height: 72px;
+  width: 72px;
+  border: solid 3px var(--primary_color);
 }
 
 .pegSolitarie-pre-display-container {
-  background-color: var(--background_header_color);
-  width: 80%;
-  margin: 0px auto;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 800px;
+  position: absolute;
   display: none;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   overflow: hidden;
-  position: relative;
-  height: 512px;
+  height: 550px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .game-info {
     position: absolute;
     left: 50%;
-    top: 50%; 
+    top: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .game-info-text {
+    text-align: center;
+
+    p {
+      font-size: 14px;
+      text-shadow: 0px 2px 2px var(--background_header_color);
+    }
   }
 
   .game-title {
-    font-size: 64px;
+    font-size: 48px;
     text-shadow: 4px 2px 2px var(--background_header_color);
     animation: titleAnimation 1.2s infinite;
   }
@@ -50,18 +86,12 @@ canvas.active {
     background-color: var(--accent_dark_color);
     transform: translateY(-3px);
   }
-
-  img {
-    height: 256px;
-    height: 256px;
-    filter: grayscale(80%);
-  }
 }
+
 .pegSolitarie-pre-display-container.active {
-  display: grid; 
+  display: grid;
+  gap: 12px;
 }
-
-
 
 .web-content {
   display: grid;
@@ -123,6 +153,7 @@ canvas.active {
   display: grid;
   gap: 8px;
   justify-items: center;
+  position: relative;
 }
 
 .peg-solitaire-rows {
@@ -139,7 +170,7 @@ canvas.active {
 }
 
 canvas {
-  background: url('../assets/frame.png');
+  background: url("../assets/frame.png");
   background-repeat: repeat;
   display: block;
   margin: 20px auto;
@@ -165,10 +196,10 @@ canvas {
   align-items: start;
 }
 
-  .span-petroka {
-    font-weight: bold;
-    color: var(--secondary_color);
-  }
+.span-petroka {
+  font-weight: bold;
+  color: var(--secondary_color);
+}
 
 .game-developer-info {
   display: grid;
@@ -197,7 +228,7 @@ canvas {
       border-radius: 12px;
       background-size: cover;
     }
-     .game-experience2 {
+    .game-experience2 {
       background: url("../assets/images/ajedrez-game.webp");
       min-height: 256px;
       width: 100%;
@@ -208,15 +239,12 @@ canvas {
 }
 
 .game-help-container {
-  border-style: solid;
-  border-color: var(--secondary_dark_color);
   padding: 24px 0px;
   display: grid;
   gap: 24px;
   width: 80%;
   margin: 0px auto;
 }
-
 
 .game-instructions {
   display: flex;
@@ -235,7 +263,7 @@ canvas {
 
 .game-help-container {
   display: grid;
-  grid-template-columns: 2fr 1fr; 
+  grid-template-columns: 2fr 1fr;
   align-items: start;
   gap: 24px;
   margin-top: 24px;
@@ -262,9 +290,7 @@ canvas {
   height: 230px;
   width: 230px;
   border-radius: 12px;
- 
 }
-
 
 .game-rating-container {
   display: grid;
@@ -451,7 +477,6 @@ canvas {
   }
 }
 
-
 @keyframes colorSuccessSwitch {
   0% {
     color: var(--primary_color);
@@ -583,8 +608,6 @@ canvas.active {
     transform: translateY(-3px);
   }
 }
-
-
 
 .winner-display-container.active {
   display: grid;

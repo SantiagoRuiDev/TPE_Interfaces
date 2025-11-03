@@ -167,9 +167,22 @@
               d="M12 6v5.844a.2.2 0 0 0 .152.194L16 13m6-1c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"
             />
           </svg>
-          <p class="timer-time-text">02:00</p>
+          <p class="timer-time-text">05:00</p>
         </div>
-        <canvas id="canvas"  width="800" height="500"></canvas>
+        <canvas id="canvas" class="active" width="800" height="500"></canvas>
+        <div
+          class="pegSolitarie-pre-display-container active"
+          id="pegSolitarie-pre-display-container"
+        >
+          <div class="game-info">
+            <div class="game-info-text">
+              <h1 class="game-title">Peg Solitarie</h1>
+              <p class="game-instruction">Porfavor, selecciona una ficha para cargar su tablero</p>
+            </div>
+            <div class="canvas-image-selector"></div>
+            <button class="game-play-button">Comenzar</button>
+          </div>
+        </div>
 
         <div class="lost-display-container" id="lost-display-container">
           <div class="game-info">
@@ -185,20 +198,7 @@
           </div>
         </div>
 
-        <div class="pegSolitarie-pre-display-container active"   id="pegSolitarie-pre-display-container">
-
-          <div class="game-info">
-            <h1 class="game-title">Peg Solitarie</h1>
-            <button class="game-play-button">Comenzar</button>
-        </div>
-
-      </div>
-        </div>
-
-        <div
-          class="winner-display-container"
-          id="winner-display-container"
-        >
+        <div class="winner-display-container" id="winner-display-container">
           <div class="game-info">
             <h1 class="game-title">Ganaste</h1>
             <div class="game-info-buttons">
@@ -213,7 +213,7 @@
         </div>
       </div>
 
-      <section class="game-help-container ">
+      <section class="game-help-container">
         <div class="game-instructions">
           <div class="game-instructions-title">
             <img src="../assets/images/Mouse_Icon.svg" alt="Mouse Icon" />
@@ -221,19 +221,29 @@
           </div>
           <ul class="instructions-list">
             <li>Seleccione haciendo click sobre la ficha que decea mover</li>
-            <li>Podes arrastrar la ficha hacia el espacio sugerido en amarillo</li>
-            <li>O bien simplemente clickear el/los espacio/s sugerido/s en amarillo con la ficha ya seleccionada</li>
-            <li>El objetivo del juego es ir pasando fichas por encima de otras para hacerlas desaparecer hasta conseguir vaciar el tablero</li>
-            <li>Pero <span class="span-petroka">¡OJO!</span> si te quedan fichas que no podes saltar o te quedas sin tiempo <span class="span-petroka">¡PERDISTE!</span></li>
+            <li>
+              Podes arrastrar la ficha hacia el espacio sugerido en amarillo
+            </li>
+            <li>
+              O bien simplemente clickear el/los espacio/s sugerido/s en
+              amarillo con la ficha ya seleccionada
+            </li>
+            <li>
+              El objetivo del juego es ir pasando fichas por encima de otras
+              para hacerlas desaparecer hasta conseguir vaciar el tablero
+            </li>
+            <li>
+              Pero <span class="span-petroka">¡OJO!</span> si te quedan fichas
+              que no podes saltar o te quedas sin tiempo
+              <span class="span-petroka">¡PERDISTE!</span>
+            </li>
           </ul>
         </div>
-        
+
         <section class="game-guide-images">
           <div class="game-guide-image1"></div>
         </section>
       </section>
-
-    
 
       <section class="game-developer-container">
         <div class="game-developer-info">
@@ -242,11 +252,13 @@
             <h2>Acerca del creador</h2>
           </div>
           <p>
-           Los orígenes del juego de peg solitaire (also known as Senku) son inciertos,
-            pero las primeras referencias datan de la corte de Luis XIV en Francia en 1687,
-             con una publicación en la revista Mercure Galant en 1697.
-              Aunque se cree que su origen es francés, también se le atribuyen raíces europeas,
-               posiblemente alemanas o escandinavas. En este caso el creador de este tablero es <span class="span-petroka">PetrokaGames</span>
+            Los orígenes del juego de peg solitaire (also known as Senku) son
+            inciertos, pero las primeras referencias datan de la corte de Luis
+            XIV en Francia en 1687, con una publicación en la revista Mercure
+            Galant en 1697. Aunque se cree que su origen es francés, también se
+            le atribuyen raíces europeas, posiblemente alemanas o escandinavas.
+            En este caso el creador de este tablero es
+            <span class="span-petroka">PetrokaGames</span>
           </p>
         </div>
         <div class="game-developer-info">

@@ -1,3 +1,4 @@
+import { mapImageSelectorCard } from "./card/image_card.js";
 const ratingStarSelector = document.querySelectorAll(".rating-star");
 const timerDisplay = document.querySelector(".timer-display");
 const timerTimeText = document.querySelector(".timer-time-text");
@@ -8,19 +9,76 @@ const looserDisplayContainer = document.querySelector(
   ".lost-display-container"
 );
 const playAgainButtons = document.querySelectorAll(".play-again-button");
-const prePegSolitarieDisplay = document.querySelector(".pegSolitarie-pre-display-container");
+const prePegSolitarieDisplay = document.querySelector(
+  ".pegSolitarie-pre-display-container"
+);
 const gamePlayButton = document.querySelector(".game-play-button");
+const imageSelectorDisplay = document.querySelector(".canvas-image-selector");
+
+// =======================
+// CONFIGURACIÓN
+// =======================
+const canvas = document.querySelector("#canvas");
+const ctx = canvas.getContext("2d");
+
+const TAM = 7;
+const RADIO = 25;
+const ESPACIO = 60;
+
+const tiempoMaximoOriginal = 300;
+let temporizador = tiempoMaximoOriginal;
+let timerInterval = null;
+
+const fichaImg = new Image(); //creamos la ficha con una imagen
+
+const imagesSrc = [
+  "https://imgs.search.brave.com/tG2PW5oiWrVaP4iNy6BnGvYvsuZq_1G_eM3Ei32beJE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZmVva3Rpc3Rv/dmFzL2Zlb2t0aXN0/b3ZhczIxMTIvZmVv/a3Rpc3RvdmFzMjEx/MjAwMDUyLzE3OTY0/OTM5MC1tdXJjaSVD/MyVBOWxhZ28tdm9s/YWRvci1kZS1oYWxs/b3dlZW4tbXVyY2kl/QzMlQTlsYWdvLXZl/Y3RvcmlhbC12YW1w/aXJvLXNpbHVldGEt/b3NjdXJhLWRlLW11/cmNpJUMzJUE5bGFn/by12b2xhbmRvLmpw/Zz92ZXI9Ng",
+  "https://tse4.mm.bing.net/th/id/OIP.xyrTTwXcoFLxBLRHhFNIvgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3",
+  "https://tse4.mm.bing.net/th/id/OIP.NJ7cdfQADdx_6fcDv7nL2QHaEo?rs=1&pid=ImgDetMain&o=7&rm=3",
+];
+
+let selectedImage = null;
+
+let tablero = generarTablero(); // Matriz (booleana) con el tablero inicial
+
+// --- estado de interacción ---
+let fichaSeleccionada = null; // se guarda la fila y columna de la ficha seleccionada
+let arrastrando = false;
+let movimientosPosibles = []; // array con los movimientos posibles de la ficha seleccionada
+
+window.addEventListener("load", () => {
+  for (const image of imagesSrc) {
+    imageSelectorDisplay.innerHTML += mapImageSelectorCard(image);
+  }
+
+  const imageSelectorButtons = document.querySelectorAll(".canvas-image");
+  imageSelectorButtons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      imageSelectorButtons.forEach((btn) => btn.classList.remove('selected'));
+      btn.classList.add("selected");
+      selectedImage = imagesSrc[index];
+    });
+  });
+});
 
 gamePlayButton.addEventListener("click", () => {
-   canvas.classList.add("active"); 
+  if(selectedImage == null){ // Si no ha seleccionado una ficha no permite seguir jugando
+    return;
+  }
   prePegSolitarieDisplay.classList.remove("active");
+  canvas.classList.add("active");
 
   resetTimer();
   fichaSeleccionada = null;
   arrastrando = false;
-  tablero = generarTablero();
-  dibujarTablero();
-  startTimer();
+
+  fichaImg.onload = () => {
+    tablero = generarTablero();
+    dibujarTablero();
+    startTimer();
+  };
+
+  fichaImg.src = selectedImage;
 });
 
 playAgainButtons.forEach((btn) => {
@@ -28,6 +86,8 @@ playAgainButtons.forEach((btn) => {
     resetTimer();
     looserDisplayContainer.classList.remove("active");
     winnerDisplayContainer.classList.remove("active");
+    timerDisplay.classList.remove("success");
+    timerDisplay.classList.remove("warning");
     canvas.classList.add("active");
     fichaSeleccionada = null;
     arrastrando = false;
@@ -52,42 +112,6 @@ ratingStarSelector.forEach((btn, index) => {
     }
   });
 });
-// =======================
-// CONFIGURACIÓN
-// =======================
-const canvas = document.querySelector("#canvas");
-const ctx = canvas.getContext("2d");
-
-const TAM = 7;
-const RADIO = 25;
-const ESPACIO = 60;
-
-const tiempoMaximoOriginal = 360;
-let temporizador = tiempoMaximoOriginal;
-let timerInterval = null;
-
-const fichaImg = new Image(); //creamos la ficha con una imagen
-fichaImg.src =
-  "https://imgs.search.brave.com/tG2PW5oiWrVaP4iNy6BnGvYvsuZq_1G_eM3Ei32beJE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZmVva3Rpc3Rv/dmFzL2Zlb2t0aXN0/b3ZhczIxMTIvZmVv/a3Rpc3RvdmFzMjEx/MjAwMDUyLzE3OTY0/OTM5MC1tdXJjaSVD/MyVBOWxhZ28tdm9s/YWRvci1kZS1oYWxs/b3dlZW4tbXVyY2kl/QzMlQTlsYWdvLXZl/Y3RvcmlhbC12YW1w/aXJvLXNpbHVldGEt/b3NjdXJhLWRlLW11/cmNpJUMzJUE5bGFn/by12b2xhbmRvLmpw/Zz92ZXI9Ng"; // cambia por tu URL de imagen
-
-const fichaImg2 = new Image(); //creamos la ficha con una imagen para la opcion 2
-fichaImg2.src =
-  "https://tse4.mm.bing.net/th/id/OIP.xyrTTwXcoFLxBLRHhFNIvgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
-
-const fichaImg3 = new Image(); //creamos la ficha con una imagen para la opcion 3
-fichaImg3.src =
-  "https://tse4.mm.bing.net/th/id/OIP.NJ7cdfQADdx_6fcDv7nL2QHaEo?rs=1&pid=ImgDetMain&o=7&rm=3";
-
-let tablero = generarTablero(); // Matriz (booleana) con el tablero inicial
-
-// --- estado de interacción ---
-let fichaSeleccionada = null; // se guarda la fila y columna de la ficha seleccionada
-let arrastrando = false;
-let movimientosPosibles = []; // array con los movimientos posibles de la ficha seleccionada
-
-// =======================
-// TABLERO Y DIBUJO
-// =======================
 
 //lo que hace esta funcion es generar el tablero inicial del juego con las fichas en su posicion inicial
 function generarTablero() {
@@ -97,7 +121,11 @@ function generarTablero() {
     for (let col = 0; col < TAM; col++) {
       if ((fila >= 2 && fila <= 4) || (col >= 2 && col <= 4)) {
         // todas las posiciones con ficha menos el centro
-        t[fila][col] = !(fila === 3 && col === 3);
+        if (selectedImage != null) {
+          t[fila][col] = !(fila === 3 && col === 3);
+        } else {
+          t[fila][col] = false; // El tablero empieza vacio en el Pre-Game (Se carga con la ficha seleccionada)
+        }
       } else {
         t[fila][col] = null;
       }
@@ -140,7 +168,7 @@ function dibujarTablero() {
         ctx.stroke();
 
         /* Si hay ficha, dibujar imagen
-   Dibujar la ficha solo si no es la que se está arrastrando*/
+        Dibujar la ficha solo si no es la que se está arrastrando*/
         if (
           celda === true &&
           !(
@@ -154,7 +182,7 @@ function dibujarTablero() {
           ctx.beginPath();
           ctx.arc(x, y, RADIO, 0, Math.PI * 2);
           ctx.clip();
-          ctx.drawImage(fichaImg3, x - RADIO, y - RADIO, RADIO * 2, RADIO * 2);
+          ctx.drawImage(fichaImg, x - RADIO, y - RADIO, RADIO * 2, RADIO * 2);
           ctx.restore();
         }
 
@@ -305,7 +333,7 @@ canvas.addEventListener("mousemove", (e) => {
   ctx.arc(dragPos.x, dragPos.y, RADIO, 0, Math.PI * 2);
   ctx.clip();
   ctx.drawImage(
-    fichaImg3,
+    fichaImg,
     dragPos.x - RADIO,
     dragPos.y - RADIO,
     RADIO * 2,
@@ -408,8 +436,7 @@ function moverFicha(origen, destino) {
   }
 }
 
-fichaImg3.onload = dibujarTablero;
-startTimer();
+dibujarTablero();
 
 function updateTimer() {
   if (temporizador <= tiempoMaximoOriginal / 2) {

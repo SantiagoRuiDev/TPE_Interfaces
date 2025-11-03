@@ -5,12 +5,12 @@
     "price": 0,
     "description": "Juego de estrategia para una persona, completa las casillas.",
     "category": "Juegos de mesa",
-    "image": "https://imgs.search.brave.com/1xijUgSL6Fwiw4GuslUbEHreKoRT4NMUkcsKv5pkscU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZWYyLnByb21lYWku/cHJvL3Byb2Nlc3Mv/ZG8vNTM1OTcyYTU1/MzI1OGExMzQxNzc1/YTQ2OGJmMzNjNDcu/d2VicD9zb3VyY2VV/cmw9L2cvcC9nYWxs/ZXJ5L3B1Ymxpc2gv/MjAyNS8wMy8xNy84/Y2E4OTU3ZTU0NjM0/M2NhYjU0ODVlMmZk/ZTY3M2ExNi5qcGcm/eC1vc3MtcHJvY2Vz/cz1pbWFnZS9yZXNp/emUsd181MDAsaF81/MDAvZm9ybWF0LHdl/YnAmc2lnbj1jYjAz/ZjE0ZTNlN2I5MjFl/ZDc2NzMyYWNjNDIz/NWMxZA",
+    "image": "../assets/images/PegSolitaire.png",
     "discount": false,
     "discount_percentage": 0,
     "is_free": true,
     "is_owned": false,
-    "url": "/Entrega4/html/pegsolitaire.html"
+    "url": "/TPE_Interfaces/Entrega4/html/pegsolitaire.html"
   },
   {
     "id": "1023",
@@ -18,12 +18,12 @@
     "price": 0,
     "description": "Juego de estrategia para una persona, completa las casillas.",
     "category": "Juegos de mesa",
-    "image": "https://imgs.search.brave.com/1xijUgSL6Fwiw4GuslUbEHreKoRT4NMUkcsKv5pkscU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZWYyLnByb21lYWku/cHJvL3Byb2Nlc3Mv/ZG8vNTM1OTcyYTU1/MzI1OGExMzQxNzc1/YTQ2OGJmMzNjNDcu/d2VicD9zb3VyY2VV/cmw9L2cvcC9nYWxs/ZXJ5L3B1Ymxpc2gv/MjAyNS8wMy8xNy84/Y2E4OTU3ZTU0NjM0/M2NhYjU0ODVlMmZk/ZTY3M2ExNi5qcGcm/eC1vc3MtcHJvY2Vz/cz1pbWFnZS9yZXNp/emUsd181MDAsaF81/MDAvZm9ybWF0LHdl/YnAmc2lnbj1jYjAz/ZjE0ZTNlN2I5MjFl/ZDc2NzMyYWNjNDIz/NWMxZA",
+    "image": "../assets/images/blocka.webp",
     "discount": false,
     "discount_percentage": 0,
     "is_free": true,
     "is_owned": false,
-    "url": "/Entrega4/html/blocka.html"
+    "url": "/TPE_Interfaces/Entrega4/html/blocka.html"
   },
   {
     "id": "98",

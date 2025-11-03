@@ -150,7 +150,8 @@
       </div>
 
       <div class="game-display-container" id="game-display-container">
-        <div class="timer-display">
+        <div class="game-display-header">
+          <div class="timer-display">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -168,6 +169,10 @@
             />
           </svg>
           <p class="timer-time-text">05:00</p>
+        </div>
+        <button class="reset-button">
+          <img src="../assets/images/Reset.svg" alt="boton de reiniciar">
+        </button>
         </div>
         <canvas id="canvas" class="active" width="800" height="500"></canvas>
         <div
@@ -188,8 +193,8 @@
           <div class="game-info">
             <h1 class="game-title">Perdiste</h1>
             <div class="game-info-buttons">
-              <a href="index.html" class="game-play-button secondary"
-                >Volver al inicio</a
+              <button class="game-play-button back-to-menu-button secondary"
+                >Volver al inicio</button
               >
               <button class="game-play-button play-again-button primary">
                 Volver a jugar
@@ -202,8 +207,8 @@
           <div class="game-info">
             <h1 class="game-title">Ganaste</h1>
             <div class="game-info-buttons">
-              <a href="index.html" class="game-play-button secondary"
-                >Volver al inicio</a
+              <button class="game-play-button back-to-menu-button secondary"
+                >Volver al inicio</button
               >
               <button class="game-play-button play-again-button primary">
                 Volver a jugar

@@ -9,10 +9,12 @@ const looserDisplayContainer = document.querySelector(
   ".lost-display-container"
 );
 const playAgainButtons = document.querySelectorAll(".play-again-button");
+const backToMenuButtons = document.querySelectorAll(".back-to-menu-button");
 const prePegSolitarieDisplay = document.querySelector(
   ".pegSolitarie-pre-display-container"
 );
 const gamePlayButton = document.querySelector(".game-play-button");
+const resetButton = document.querySelector(".reset-button");
 const imageSelectorDisplay = document.querySelector(".canvas-image-selector");
 
 // =======================
@@ -54,7 +56,7 @@ window.addEventListener("load", () => {
   const imageSelectorButtons = document.querySelectorAll(".canvas-image");
   imageSelectorButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      imageSelectorButtons.forEach((btn) => btn.classList.remove('selected'));
+      imageSelectorButtons.forEach((btn) => btn.classList.remove("selected"));
       btn.classList.add("selected");
       selectedImage = imagesSrc[index];
     });
@@ -62,7 +64,8 @@ window.addEventListener("load", () => {
 });
 
 gamePlayButton.addEventListener("click", () => {
-  if(selectedImage == null){ // Si no ha seleccionado una ficha no permite seguir jugando
+  if (selectedImage == null) {
+    // Si no ha seleccionado una ficha no permite seguir jugando
     return;
   }
   prePegSolitarieDisplay.classList.remove("active");
@@ -81,21 +84,48 @@ gamePlayButton.addEventListener("click", () => {
   fichaImg.src = selectedImage;
 });
 
+resetButton.addEventListener("click", () => {
+  if(prePegSolitarieDisplay.classList.contains('active')){
+    return;
+  }
+  reloadGame();
+});
+
+backToMenuButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    resetDisplay();
+  })
+})
+
 playAgainButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    resetTimer();
-    looserDisplayContainer.classList.remove("active");
-    winnerDisplayContainer.classList.remove("active");
-    timerDisplay.classList.remove("success");
-    timerDisplay.classList.remove("warning");
-    canvas.classList.add("active");
-    fichaSeleccionada = null;
-    arrastrando = false;
-    tablero = generarTablero();
-    dibujarTablero();
-    startTimer();
+    reloadGame();
   });
 });
+
+const resetDisplay = () => {
+  selectedImage = null;
+  reloadGame();
+  pauseTimer();
+  prePegSolitarieDisplay.classList.add('active');
+  const imageSelectorButtons = document.querySelectorAll(".canvas-image");
+  imageSelectorButtons.forEach((btn) => btn.classList.remove("selected"));
+}
+
+const reloadGame = () => {
+  resetTimer();
+  movimientosPosibles = [];
+  looserDisplayContainer.classList.remove("active");
+  winnerDisplayContainer.classList.remove("active");
+  timerDisplay.classList.remove("success");
+  timerDisplay.classList.remove("warning");
+  canvas.classList.add("active");
+  fichaSeleccionada = null;
+  arrastrando = false;
+  tablero = generarTablero();
+  dibujarTablero();
+  startTimer();
+};
 
 ratingStarSelector.forEach((btn, index) => {
   btn.addEventListener("click", () => {
@@ -192,7 +222,7 @@ function dibujarTablero() {
           fichaSeleccionada.fila === fila &&
           fichaSeleccionada.col === col
         ) {
-          ctx.strokeStyle = "yellow";
+          ctx.strokeStyle = "red";
           ctx.lineWidth = 4;
           ctx.beginPath();
           ctx.arc(x, y, RADIO, 0, Math.PI * 2);
@@ -340,6 +370,15 @@ canvas.addEventListener("mousemove", (e) => {
     RADIO * 2
   );
   ctx.restore();
+
+  
+  if(!verificarPerdio()){
+    pauseTimer();
+    setTimeout(() => {
+      canvas.classList.remove("active");
+      looserDisplayContainer.classList.add("active");
+    }, 200);
+  }
 });
 
 // Cuando soltas el click dentro del canvas
@@ -357,6 +396,14 @@ canvas.addEventListener("mouseup", (e) => {
   // Cuando mueve una ficha de manera correcta.
   dragFicha = null;
   dibujarTablero();
+
+  if(!verificarPerdio()){
+    pauseTimer();
+    setTimeout(() => {
+      canvas.classList.remove("active");
+      looserDisplayContainer.classList.add("active");
+    }, 200);
+  }
 
   // Despues de dibujar la ultima ficha, si gano se mostraria una pantalla
   if (verificarVictoria()) {
@@ -386,6 +433,15 @@ canvas.addEventListener("click", (e) => {
     fichaSeleccionada = celda;
     movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
     dibujarTablero();
+  }
+
+  
+  if(!verificarPerdio()){
+    pauseTimer();
+    setTimeout(() => {
+      canvas.classList.remove("active");
+      looserDisplayContainer.classList.add("active");
+    }, 500);
   }
 });
 
@@ -436,8 +492,6 @@ function moverFicha(origen, destino) {
   }
 }
 
-dibujarTablero();
-
 function updateTimer() {
   if (temporizador <= tiempoMaximoOriginal / 2) {
     timerDisplay.classList.add("warning");
@@ -479,3 +533,7 @@ function resetTimer() {
   temporizador = tiempoMaximoOriginal;
   updateTimer();
 }
+
+// Cargamos el tablero por defecto
+
+dibujarTablero();

@@ -33,14 +33,41 @@ canvas.active {
   border: solid 3px var(--primary_color);
 }
 
+.reset-button {
+  display: flex;
+  padding: 10px 16px;
+  border-radius: 32px;
+  border: none;
+  justify-content: center;
+  gap: 12px;
+  background-color: var(--background_dark_color);
+  transition: all 0.3s;
+  cursor: pointer;
+  
+  img {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.reset-button:hover {
+  background-color: var(--background_gray_color);
+}
+
+.game-display-header {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+
 .pegSolitarie-pre-display-container {
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.3);
-  width: 800px;
+  width: 820px;
   position: absolute;
   display: none;
   overflow: hidden;
-  height: 550px;
+  height: 520px;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -84,6 +84,7 @@ let timeLimit = 65;
 
 // En este Listener se realiza la funcionalidad del inicio del juego.
 startButton.addEventListener("click", () => {
+  canvas.classList.add('active');
   preBlockaDisplay.classList.remove("active");
 
   levels = shuffleArray(levels); // Mezclo los niveles aleatoriamente

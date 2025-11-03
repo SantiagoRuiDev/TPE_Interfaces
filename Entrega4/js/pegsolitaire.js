@@ -41,9 +41,11 @@ const imagesSrc = [
 
 let selectedImage = null;
 
+let dragFicha = null;
+let dragPos = null;
+
 let tablero = generarTablero(); // Matriz (booleana) con el tablero inicial
 
-// --- estado de interacción ---
 let fichaSeleccionada = null; // se guarda la fila y columna de la ficha seleccionada
 let arrastrando = false;
 let movimientosPosibles = []; // array con los movimientos posibles de la ficha seleccionada
@@ -244,10 +246,6 @@ function dibujarTablero() {
   }
 }
 
-// =======================
-// INTERACCIÓN
-// =======================
-
 /*en esta funcion calculamos los movimientos posibles de una ficha en base a su posicion actual
 lo que hace es buscar un false(casilla vacia) a dos posiciones de distancia en linea recta(para arriba y para abajo) 
  y un true(casilla con ficha) en la posicion intermedia*/
@@ -259,9 +257,10 @@ function calcularMovimientosPosibles(fila, col) {
     { df: 0, dc: -2 }, // izquierda
     { df: 0, dc: 2 }, // derecha
   ];
+
   /*lo que hacemos en esta funcion es verificar si el jugador gano o no
-para ganar debe quedar una sola ficha en el centro del tablero
-calculamos la celda del medio y contamos las fichas restantes en el tablero recorriendo la matriz*/
+  para ganar debe quedar una sola ficha en el centro del tablero
+  calculamos la celda del medio y contamos las fichas restantes en el tablero recorriendo la matriz*/
 
   for (const { df, dc } of direcciones) {
     //lo que hace este for es recorrer las direcciones posibles para moverse
@@ -326,10 +325,6 @@ function getCeldaDesdePos(x, y) {
   if (fila < 0 || fila >= TAM || col < 0 || col >= TAM) return null;
   return { fila, col };
 }
-
-// --- DRAG & DROP ---
-let dragFicha = null;
-let dragPos = null;
 
 // Cuando presionas click dentro del canvas
 canvas.addEventListener("mousedown", (e) => {

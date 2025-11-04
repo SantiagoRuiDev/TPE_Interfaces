@@ -54,6 +54,7 @@ let levels = [
 const ratingStarSelector = document.querySelectorAll(".rating-star");
 const startButton = document.querySelector(".game-play-button");
 const nextButton = document.querySelector(".next-level-button");
+const backToMenuButtons = document.querySelectorAll(".back-menu-button");
 const playAgainButton = document.querySelectorAll(".play-again-button");
 const preBlockaDisplay = document.querySelector(
   ".blocka-pre-display-container"
@@ -84,7 +85,7 @@ let timeLimit = 65;
 
 // En este Listener se realiza la funcionalidad del inicio del juego.
 startButton.addEventListener("click", () => {
-  canvas.classList.add('active');
+  canvas.classList.add("active");
   preBlockaDisplay.classList.remove("active");
 
   levels = shuffleArray(levels); // Mezclo los niveles aleatoriamente
@@ -110,7 +111,7 @@ startButton.addEventListener("click", () => {
 
 playAgainButton.forEach((btn) => {
   btn.addEventListener("click", () => {
-    level=0; // reinicio el nivel
+    level = 0; // reinicio el nivel
     resetTimer(); // reinicio el temporizador
     lostLevelBlockaDisplay.classList.remove("active");
     winnerLevelBlockaDisplay.classList.remove("active");
@@ -143,6 +144,15 @@ nextButton.addEventListener("click", () => {
   setImage();
   resetTimer();
   startTimer();
+});
+
+backToMenuButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    preBlockaDisplay.classList.add("active");
+    blockaDisplay.classList.remove("active");
+    postBlockaDisplay.classList.remove("active");
+    resetTimer();
+  });
 });
 
 const filters = [
@@ -334,6 +344,7 @@ canvas.addEventListener("mousedown", (e) => {
         if (level == levels.length) {
           blockaDisplay.classList.remove("active");
           winnerLevelBlockaDisplay.classList.add("active");
+          pauseTimer();
           timeLimit = originalTimeLimit;
           return;
         }
@@ -343,6 +354,7 @@ canvas.addEventListener("mousedown", (e) => {
         postBlockaDisplay.style.backgroundImage =
           "url(" + levels[level - 1].image + ")";
         postBlockaDisplay.classList.add("active");
+        pauseTimer();
         timeLimit -= 10;
         return;
       }

@@ -1,3 +1,395 @@
+@import "footer.css";
+@import "base.css";
+
+body {
+  overflow-y: scroll;
+}
+
+.web-content {
+  display: grid;
+  gap: 2px;
+}
+
+.breadcrumb-container {
+  background-color: var(--background_shadow_color);
+  padding: 4px 0px;
+  color: var(--background_light_color);
+  font-size: 14px;
+}
+
+.breadcrumb-container .breadcrumb-display a {
+  color: var(--background_light_color);
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.breadcrumb-display {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin: 0px auto;
+  width: 80%;
+}
+
+.game-title-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px auto;
+  padding: 8px 0px;
+
+  h1 {
+    font-size: 26px;
+  }
+}
+
+.tools {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+}
+
+.game-display-container {
+  background-color: var(--background_shadow_color);
+  padding: 12px;
+  border: 12px solid var(--secondary_dark_color);
+  width: 80%;
+  margin: 0px auto;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.peg-solitaire-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.seven {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.peg-solitaire-piece {
+  height: 64px;
+  width: 64px;
+  border-radius: 100%;
+  background-color: var(--background_color);
+  border: 2px solid var(--secondary_color);
+  box-shadow: 0px 1px 4px var(--background_color);
+}
+
+.game-developer-container {
+  padding: 96px 0px;
+  display: grid;
+  gap: 24px;
+  width: 80%;
+  margin: 0px auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.game-developer-info {
+  display: grid;
+  gap: 12px;
+
+  .game-developer-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .game-developer-experiences {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    .game-experience {
+      background: url("../assets/images/SuperMario.webp");
+      min-height: 256px;
+      width: 100%;
+      border-radius: 12px;
+      background-size: cover;
+    }
+  }
+}
+
+.game-help-container {
+  padding: 24px 0px;
+  display: grid;
+  gap: 24px;
+  width: 80%;
+  margin: 0px auto;
+}
+
+.game-keyboard-help-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .game-controllers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .game-controller {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: center;
+      font-size: 14px;
+      justify-content: center;
+
+      .game-controller-button {
+        background-color: var(--secondary_color);
+        padding: 12px;
+        display: grid;
+        margin: 0px auto;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0px 2px 0px var(--secondary_shadow_color);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .game-controller-button:hover {
+        background-color: var(--secondary_shadow_color);
+        box-shadow: none;
+        transform: translateY(2px);
+      }
+    }
+
+    .up-controller {
+      margin-right: 10px;
+    }
+
+    .left-controller {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: start;
+
+      p {
+        transform: rotate(-90deg);
+        margin-top: 12px;
+      }
+
+      .game-controller-arrow {
+        transform: rotate(-90deg);
+      }
+    }
+    .right-controller {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: start;
+
+      p {
+        transform: rotate(90deg);
+        margin-top: 12px;
+      }
+
+      .game-controller-arrow {
+        transform: rotate(90deg);
+      }
+    }
+    .down-controller {
+      .game-controller-arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    .controllers-grid {
+      display: flex;
+      gap: 12px;
+      margin: 0px auto;
+    }
+  }
+}
+
+.game-instructions {
+  display: grid;
+  gap: 12px;
+
+  .game-instructions-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  ul li {
+    font-size: 14px;
+  }
+}
+
+.game-rating-container {
+  display: grid;
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 64px;
+}
+
+.game-rating-form {
+  display: grid;
+  gap: 24px;
+}
+
+.game-rating-form-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-rating-form-group {
+  position: relative;
+  width: 100%;
+}
+
+.game-rating-form-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--secondary_color);
+  padding: 12px 0px;
+  outline: none;
+  font-size: 14px;
+  color: var(--backgrund_light_gray_color);
+  width: 100%;
+}
+
+.game-rating-form-input::placeholder {
+  color: transparent;
+}
+
+/* Posiciona el label donde iria el placeholder */
+.game-rating-form-group label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-size: 14px;
+  color: var(--backgrund_light_gray_color);
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+.game-rating-form-stars-selector svg path {
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+.game-rating-form-stars-selector svg path:hover,
+.game-rating-form-stars-selector svg path.active {
+  fill: var(--secondary_color);
+}
+
+/* Cuando hay foco o el input no está vacío */
+.game-rating-form-input:focus + label,
+.game-rating-form-input:not(:placeholder-shown) + label {
+  top: -12px;
+  font-size: 12px;
+  color: var(--secondary_color);
+}
+
+.game-rating-selector {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--backgrund_light_gray_color);
+}
+
+.game-rating-form-button {
+  margin-top: 15px;
+  padding: 8px 32px;
+  background: var(--secondary_color);
+  box-shadow: 0px 4px 0px var(--secondary_dark_color);
+  border: none;
+  border-radius: 8px;
+  color: var(--background_light_color);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
+  transition: 0.3s;
+  text-transform: uppercase;
+  margin: 0px auto;
+  cursor: pointer;
+}
+
+.game-rating-form-button:hover {
+  background: var(--secondary_dark_color);
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.game-rating-forum {
+  display: grid;
+  gap: 24px;
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+  margin-top: 64px;
+}
+
+.game-forum-ratings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.game-rating-card {
+  background-color: var(--background_dark_color);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  gap: 46px;
+}
+
+.game-rating-card-profile h4 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.game-rating-card-message {
+  text-align: left;
+  display: grid;
+  gap: 12px;
+  width: 80%;
+
+  .game-rating-card-stars img {
+    width: 18px;
+    height: 18px;
+  }
+}
+/* por ahora no funca */
+.spinner {
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  border-top: 8px solid var(--background_gray_color);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 .game-stats {
   display: flex;
   flex-direction: column;

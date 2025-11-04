@@ -17,15 +17,13 @@ const gamePlayButton = document.querySelector(".game-play-button");
 const resetButton = document.querySelector(".reset-button");
 const imageSelectorDisplay = document.querySelector(".canvas-image-selector");
 
-// =======================
-// CONFIGURACIÓN
-// =======================
+// Variables
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
 const TAM = 7;
 const RADIO = 25;
-const ESPACIO = 60;
+const ESPACIO = 60; // Margen entre las fichas
 
 const tiempoMaximoOriginal = 300;
 let temporizador = tiempoMaximoOriginal;
@@ -33,6 +31,7 @@ let timerInterval = null;
 
 const fichaImg = new Image(); //creamos la ficha con una imagen
 
+// Las distintas fichas jugables
 const imagesSrc = [
   "https://imgs.search.brave.com/tG2PW5oiWrVaP4iNy6BnGvYvsuZq_1G_eM3Ei32beJE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZmVva3Rpc3Rv/dmFzL2Zlb2t0aXN0/b3ZhczIxMTIvZmVv/a3Rpc3RvdmFzMjEx/MjAwMDUyLzE3OTY0/OTM5MC1tdXJjaSVD/MyVBOWxhZ28tdm9s/YWRvci1kZS1oYWxs/b3dlZW4tbXVyY2kl/QzMlQTlsYWdvLXZl/Y3RvcmlhbC12YW1w/aXJvLXNpbHVldGEt/b3NjdXJhLWRlLW11/cmNpJUMzJUE5bGFn/by12b2xhbmRvLmpw/Zz92ZXI9Ng",
   "https://tse4.mm.bing.net/th/id/OIP.xyrTTwXcoFLxBLRHhFNIvgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -50,6 +49,9 @@ let fichaSeleccionada = null; // se guarda la fila y columna de la ficha selecci
 let arrastrando = false;
 let movimientosPosibles = []; // array con los movimientos posibles de la ficha seleccionada
 
+/**
+ * Este listener escucha cuando carga la pagina y renderiza las fichas seleccionables en el pre-game
+ */
 window.addEventListener("load", () => {
   for (const image of imagesSrc) {
     imageSelectorDisplay.innerHTML += mapImageSelectorCard(image);
@@ -65,6 +67,9 @@ window.addEventListener("load", () => {
   });
 });
 
+/**
+ * Este listener escucha cuando se clickea el boton de "Comenzar" en el pre-game
+ */
 gamePlayButton.addEventListener("click", () => {
   if (selectedImage == null) {
     // Si no ha seleccionado una ficha no permite seguir jugando
@@ -86,6 +91,9 @@ gamePlayButton.addEventListener("click", () => {
   fichaImg.src = selectedImage;
 });
 
+/**
+ * Este listener escucha cuando se clickea el boton de reset en la izquina derecha del display
+ */
 resetButton.addEventListener("click", () => {
   if(prePegSolitarieDisplay.classList.contains('active')){
     return;
@@ -93,18 +101,27 @@ resetButton.addEventListener("click", () => {
   reloadGame();
 });
 
+/**
+ * Este listener escucha cuando se clickea el boton de volver al inicio en los display post-victoria o post-derrota
+ */
 backToMenuButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     resetDisplay();
   })
 })
 
+/**
+ * Este listener escucha cuando se clickea el boton de jugar de nuevo en los display post-victoria o post-derrota
+ */
 playAgainButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     reloadGame();
   });
 });
 
+/**
+ * Funcion modular para reiniciar el display pre-game. (redibuja el tablero y resetea el timer)
+ */
 const resetDisplay = () => {
   selectedImage = null;
   reloadGame();
@@ -114,6 +131,9 @@ const resetDisplay = () => {
   imageSelectorButtons.forEach((btn) => btn.classList.remove("selected"));
 }
 
+/**
+ * Funcion modular para reiniciar la pantalla del juego. (redibuja el tablero y resetea el timer)
+ */
 const reloadGame = () => {
   resetTimer();
   movimientosPosibles = [];
@@ -285,6 +305,8 @@ function calcularMovimientosPosibles(fila, col) {
   return posibles;
 }
 
+// Esta función recorre la Matriz en busqueda de fichas no-vacias y pregunta por cada ficha si tiene movimientos disponibles
+// Si termina de recorrer sin haber devuelto true, significa que perdio el juego.
 function verificarPerdio() {
   for (let fila = 0; fila < TAM; fila++) {
     for (let col = 0; col < TAM; col++) {
@@ -301,6 +323,7 @@ function verificarPerdio() {
   return false;
 }
 
+// Esta función recorre la Matriz contando las fichas ocupadas, si encuentra 1 ficha y esta en el medio gano el juego
 function verificarVictoria() {
   let contadorFichas = 0;
   let fichaCentral = tablero[3][3] === true; //verificamos si en la posicion central hay una ficha
@@ -318,6 +341,7 @@ function verificarVictoria() {
   return contadorFichas === 1 && fichaCentral;
 }
 
+// Esta función nos devuelve la fila y columna de la matriz en base a un X e un Y contemplando los limites de tamaños.
 function getCeldaDesdePos(x, y) {
   const offset = obtenerOffset(); // Obtenemos la posicion del tablero en canvas.
   const col = Math.round((x - offset.x) / ESPACIO);
@@ -326,7 +350,10 @@ function getCeldaDesdePos(x, y) {
   return { fila, col };
 }
 
-// Cuando presionas click dentro del canvas
+/**
+ * Este evento se desata cuando se da click dentro de una celda y se mantiene, esto permite cambiar el estado de la variable del drag
+ * Y que el evento mousemove desate la función que permite mostrar la ficha en movimiento y sus ayudas.
+ */
 canvas.addEventListener("mousedown", (e) => {
   if (temporizador == 0) return;
   const rect = canvas.getBoundingClientRect();
@@ -343,7 +370,10 @@ canvas.addEventListener("mousedown", (e) => {
   }
 });
 
-// Este event listener escucha cuando estamos moviendo una ficha en el tablero y la va renderizando para poder guiar el movimiento.
+/**
+ * Este listener escucha el evento de movimiento del mouse dentro del canvas
+ * Permitiendo asi saber cuando esta arrastrando y dibujar la ficha que se esta movimiendo.
+ */
 canvas.addEventListener("mousemove", (e) => {
   // Este evento captura el movimiento del cursor sobre el canvas
   if (temporizador == 0) return;
@@ -376,7 +406,10 @@ canvas.addEventListener("mousemove", (e) => {
   }
 });
 
-// Cuando soltas el click dentro del canvas
+/**
+ * Este listener escucha cuando se suelta el click dentro del canvas lo que permite saber si el usuario arrojo una ficha.
+ * Permitiendo obtener el destino y si este existe mover la ficha en caso de cumplir con la logica.
+ */
 canvas.addEventListener("mouseup", (e) => {
   if (temporizador == 0) return;
   if (!arrastrando) return;
@@ -411,7 +444,10 @@ canvas.addEventListener("mouseup", (e) => {
   }
 });
 
-// --- CLICK SELECCIÓN ---
+/**
+ * Este listener escucha los clicks en el canvas, obtiene la ficha/celda seleccionada y en caso de haber clickeado una ficha antes
+ * La mueve si es posible, tambien calcula los movimientos posibles para dibujar en el tablero.
+ */
 canvas.addEventListener("click", (e) => {
   if (temporizador == 0) return;
   const rect = canvas.getBoundingClientRect();
@@ -424,12 +460,28 @@ canvas.addEventListener("click", (e) => {
     moverFicha(fichaSeleccionada, celda);
     fichaSeleccionada = null;
     movimientosPosibles = [];
+    dibujarTablero();
   } else if (tablero[celda.fila][celda.col] === true) {
     fichaSeleccionada = celda;
     movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
     dibujarTablero();
   }
+  
+  if (tablero[celda.fila][celda.col] === true) {
+    fichaSeleccionada = celda;
+    movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
+    dibujarTablero();
+  }
 
+  // Despues de dibujar la ultima ficha, si gano se mostraria una pantalla
+  if (verificarVictoria()) {
+    pauseTimer();
+    setTimeout(() => {
+      canvas.classList.remove("active");
+      winnerDisplayContainer.classList.add("active");
+      timerDisplay.classList.add("success");
+    }, 200);
+  }
   
   if(!verificarPerdio()){
     pauseTimer();
@@ -440,26 +492,12 @@ canvas.addEventListener("click", (e) => {
   }
 });
 
-canvas.addEventListener("click", (e) => {
-  if (temporizador == 0) return;
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const celda = getCeldaDesdePos(x, y);
-  if (!celda) return;
-
-  if (tablero[celda.fila][celda.col] === true) {
-    fichaSeleccionada = celda;
-    movimientosPosibles = calcularMovimientosPosibles(celda.fila, celda.col);
-    dibujarTablero();
-  }
-});
-
-// =======================
-// LÓGICA DEL JUEGO
-// =======================
+/**
+ * Esta función permite mover una ficha desde una origen (Fila, Col) a un destino.
+ * Teniendo en cuenta criterios como que solo puede moverse en linea recta y a una casilla vacia
+ */
 function moverFicha(origen, destino) {
-  const { fila: f1, col: c1 } = origen;
+  const { fila: f1, col: c1 } = origen; // Destructuramos el objeto recibido y lo convertimos en dos variables
   const { fila: f2, col: c2 } = destino;
 
   // Hacemos calculos para saber cuanto (Distancia) se moveria la ficha

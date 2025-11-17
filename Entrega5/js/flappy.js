@@ -128,7 +128,7 @@ function update(timestamp) {
         if (!pipe.scored && pipe.x + pipeWidth < birdX) {
             pipe.scored = true;
             console.log("¡Pasaste un tubo!");
-           // playSound("../assets/sounds/point.wav");
+            playSound("../assets/sounds/Backflip.wav");
             triggerFlip(); // activa animación de voltereta
         }
     });

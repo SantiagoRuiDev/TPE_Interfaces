@@ -1,0 +1,120 @@
+.loader {
+  background-color: var(--background_color);
+  height: 100vh;
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-grid {
+  margin: 0px auto;
+  width: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  height: auto;
+}
+
+.loader-box {
+  background-color: var(--accent_color);
+  height: 64px;
+  width: 64px;
+}
+
+.loader-line {
+  height: 4px;
+  width: 136px;
+
+  .loader-percentage {
+    text-align: center;
+  }
+
+  .line {
+    background-color: var(--primary_color);
+    border-radius: 2px;
+    animation: fill-loading-bar 5s forwards;
+    height: 4px;
+    width: 0px;
+  }
+}
+
+.loader-box:first-child {
+  animation: move-box-right 1.667s infinite;
+}
+.loader-box:nth-child(2) {
+  animation: move-box-down 1.667s infinite;
+}
+.loader-box:nth-child(3) {
+  animation: move-box-up 1.667s infinite;
+}
+.loader-box:last-child {
+  animation: move-box-left 1.667s infinite;
+}
+
+@keyframes move-box-right {
+  20% {
+    background-color: var(--accent_color);
+    transform: translateX(72px);
+  }
+  50% {
+    background-color: var(--primary_color);
+    transform: translateX(72px);
+  }
+  100% {
+    background-color: var(--secondary_color);
+    transform: translateX(72px);
+  }
+}
+@keyframes move-box-left {
+  20% {
+    background-color: var(--accent_color);
+    transform: translateX(-72px);
+  }
+  50% {
+    background-color: var(--primary_color);
+    transform: translateX(-72px);
+  }
+  100% {
+    background-color: var(--secondary_color);
+    transform: translateX(-72px);
+  }
+}
+@keyframes move-box-up {
+  20% {
+    background-color: var(--accent_color);
+    transform: translateY(-72px);
+  }
+  50% {
+    background-color: var(--primary_color);
+    transform: translateY(-72px);
+  }
+  100% {
+    background-color: var(--secondary_color);
+    transform: translateY(-72px);
+  }
+}
+@keyframes move-box-down {
+  20% {
+    background-color: var(--accent_color);
+    transform: translateY(72px);
+  }
+  50% {
+    background-color: var(--primary_color);
+    transform: translateY(72px);
+  }
+  100% {
+    background-color: var(--secondary_color);
+    transform: translateY(72px);
+  }
+}
+@keyframes fill-loading-bar {
+  100% {
+    background-color: var(--secondary_color);
+    width: 136px;
+  }
+}

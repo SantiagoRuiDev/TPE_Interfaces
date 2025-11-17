@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión - Petroka Games</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/unp0paz.css" />
+  </head>
+  <body>
+    <div class="background-gradient">
+      <div class="background-shadow"></div>
+    </div>
+    <main class="web-content">
+      <div class="form-container">
+        <!-- Icono usuario -->
+        <div class="form-header">
+          <img src="../assets/images/User_Icon.svg" alt="User Icon" />
+        </div>
+        
+        <div class="social-login">
+          <a href="index.html" class="facebook social-login-button">
+            <img src="../assets/images/Facebook_Icon.svg" alt="Facebook Icon" />
+            ACCEDER CON FACEBOOK
+          </a>
+          <a href="index.html" class="google social-login-button">
+            <img src="../assets/images/Google_Icon.svg" alt="Google Icon" />
+            ACCEDER CON GOOGLE
+          </a>
+        </div>
+
+        <!-- Formulario -->
+        <form action="#" class="login-form" id="login_form">
+          <label
+            >Nombre de usuario
+            <input
+              type="text"
+              name="usuario"
+              id="login_form_field_username"
+              placeholder="Escribe tu nombre de usuario"
+            />
+          </label>
+
+          <label
+            >Contraseña
+            <input
+              type="password"
+              name="password"
+              id="login_form_field_password"
+              placeholder="Escribe tu contraseña"
+            />
+          </label>
+          <a href="register.html" class="register-link">
+            No tengo una cuenta, quiero registrarme.</a
+          >
+
+          <button type="submit" id="login_form_submit_button" class="submit-btn">ACCEDER</button>
+        </form>
+      </div>
+
+      <div class="web-information">
+        <img
+          src="../assets/images/Petroka_Full_Logo.svg"
+          alt="Petroka Games Brand Logo"
+        />
+        <h3>Accede a la mayor biblioteca de juegos online</h3>
+      </div>
+    </main>
+
+    
+    <script src="../js/login_form_validator.js"></script>
+  </body>
+</html>

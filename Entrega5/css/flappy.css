@@ -60,7 +60,7 @@ canvas.active {
   justify-content: space-between;
 }
 
-.pegSolitarie-pre-display-container {
+.flappy-pre-display-container {
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.3);
   width: 820px;
@@ -115,7 +115,7 @@ canvas.active {
   }
 }
 
-.pegSolitarie-pre-display-container.active {
+.flappy-pre-display-container.active {
   display: grid;
   gap: 12px;
 }

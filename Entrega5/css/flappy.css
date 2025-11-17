@@ -9,30 +9,6 @@ canvas.active {
   display: block;
 }
 
-.canvas-image-selector {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-}
-
-.canvas-image {
-  height: 72px;
-  width: 72px;
-  border: solid 3px var(--secondary_dark_color);
-
-  img {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.canvas-image.selected {
-  height: 72px;
-  width: 72px;
-  border: solid 3px var(--primary_color);
-}
-
 .reset-button {
   display: flex;
   padding: 10px 16px;
@@ -183,18 +159,7 @@ canvas.active {
   position: relative;
 }
 
-.peg-solitaire-rows {
-  display: grid;
-  gap: 8px;
-}
 
-.triple {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.seven {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
 
 canvas {
   background: url("../public/fondo.webp");
@@ -204,14 +169,6 @@ canvas {
   border: 2px solid #333;
 }
 
-.peg-solitaire-piece {
-  height: 64px;
-  width: 64px;
-  border-radius: 100%;
-  background-color: var(--background_color);
-  border: 2px solid var(--secondary_color);
-  box-shadow: 0px 1px 4px var(--background_color);
-}
 
 .game-developer-container {
   padding: 96px 0px;
@@ -256,7 +213,7 @@ canvas {
       background-size: cover;
     }
     .game-experience2 {
-      background: url("../assets/images/ajedrez-game.webp");
+      background: url("../assets/images/peg-arrastra.webp");
       min-height: 256px;
       width: 100%;
       border-radius: 12px;

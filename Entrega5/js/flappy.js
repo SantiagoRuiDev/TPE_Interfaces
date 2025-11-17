@@ -136,7 +136,7 @@ function update(timestamp) {
         birdY < pipe.topHeight ||
         birdY + birdSize > canvas.height - pipe.bottomHeight
       ) {
-            flappyGameOver.classList.add("active");
+                playSound("../assets/sounds/monkeyHit.wav");                flappyGameOver.classList.add("active");
             return;
       }
     }

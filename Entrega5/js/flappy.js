@@ -1,6 +1,7 @@
 const canvas = document.getElementById("canvas");
 const playButton = document.querySelector(".game-play-button");
 const flappyPreGame = document.querySelector(".flappy-pre-display-container");
+const flappyGameOver = document.querySelector(".lost-display-container");
 const ctx = canvas.getContext("2d");
 
 const birdImg = new Image();
@@ -123,7 +124,6 @@ function update(timestamp) {
     pipes.forEach(pipe => {
         if (!pipe.scored && pipe.x + pipeWidth < birdX) {
             pipe.scored = true;
-            console.log("¡Pasaste un tubo!");
             playSound("../assets/sounds/Backflip.wav");
             triggerFlip(); // activa animación de voltereta
         }
@@ -136,7 +136,8 @@ function update(timestamp) {
         birdY < pipe.topHeight ||
         birdY + birdSize > canvas.height - pipe.bottomHeight
       ) {
-        resetGame();
+            flappyGameOver.classList.add("active");
+            return;
       }
     }
   }

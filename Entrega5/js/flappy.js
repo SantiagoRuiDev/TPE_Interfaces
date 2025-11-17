@@ -138,7 +138,7 @@ function update(timestamp) {
         if (birdX + birdSize > pipe.x && birdX < pipe.x + pipeWidth) {
             if (birdY < pipe.topHeight ||
                 birdY + birdSize > canvas.height - pipe.bottomHeight) {
-
+                playSound("../assets/sounds/monkeyHit.wav");    
                 resetGame();
             }
         }

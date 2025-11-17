@@ -114,19 +114,20 @@ function update(timestamp) {
     createPipe();
   }
 
-  // Eliminar pipes fuera de pantalla
-  if (pipes[0].x + pipeWidth < 0) {
-    pipes.shift();
-  }
-
-  //Comprobamos si paso correctamente un Pipe
-  pipes.forEach((pipe) => {
-    if (!pipe.scored && pipe.x + pipeWidth < birdX) {
-      pipe.scored = true;
-      // playSound("../assets/sounds/point.wav");
-      triggerFlip(); // activa animación de voltereta
+    // Eliminar pipes fuera de pantalla
+    if (pipes[0].x + pipeWidth < 0) {
+        pipes.shift();
     }
-  });
+    
+    //Comprobamos si paso correctamente un Pipe
+    pipes.forEach(pipe => {
+        if (!pipe.scored && pipe.x + pipeWidth < birdX) {
+            pipe.scored = true;
+            console.log("¡Pasaste un tubo!");
+            playSound("../assets/sounds/Backflip.wav");
+            triggerFlip(); // activa animación de voltereta
+        }
+    });
 
   // Comprobar colisiones
   for (let pipe of pipes) {

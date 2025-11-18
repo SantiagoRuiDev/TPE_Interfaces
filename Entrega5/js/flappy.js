@@ -5,7 +5,10 @@ const flappyGameOver = document.querySelector(".lost-display-container");
 const gameOverScoreActual = document.querySelector("#score-actual-text");
 const gameOverScoreHighest = document.querySelector("#score-highest-text");
 const playAgainBtns = document.querySelectorAll(".play-again-button");
+const backToMenuBtn = document.querySelector(".back-to-menu-button");
+const gameMaxScoreText = document.getElementById(".max-score");
 const ctx = canvas.getContext("2d");
+
 
 const birdImg = new Image();
 birdImg.src = "../assets/images/FlappyMonkey.webp";
@@ -51,6 +54,7 @@ playButton.addEventListener("click", () => {
   update();
 });
 
+
 playAgainBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     flappyPreGame.classList.remove("active");
@@ -59,6 +63,13 @@ playAgainBtns.forEach((btn) => {
     resetGame();
     update();
   });
+});
+
+backToMenuBtn.addEventListener("click", () => {
+  flappyGameOver.classList.remove("active");
+  flappyPreGame.classList.add("active");
+  counter.actual = 0;
+  resetGame();
 });
 
 // Genera un obstáculo nuevo
@@ -80,13 +91,15 @@ createPipe();
 // Cada que vez que le doy a una tecla contemplada entre las que originalmente tiene el flappy bird
 document.addEventListener("keydown", (e) => {
   const allowedKeys = ["w", "arrowup", " "];
+  playLowerSound("../assets/sounds/monkeyJump.mp3");
   if (!allowedKeys.includes(e.key.toLowerCase())) return;
   velocity = jumpStrength;
 });
 
 // Cada vez que doy click dentro del canvas.
 canvas.addEventListener("click", (e) => {
-  velocity = jumpStrength;
+    playLowerSound("../assets/sounds/monkeyJump.mp3");
+    velocity = jumpStrength;
 });
 
 // Loop
@@ -159,6 +172,7 @@ function update(timestamp) {
         gameOverScoreActual.textContent = counter.actual;
         if (counter.actual > counter.highest) {
           counter.highest = counter.actual;
+         // gameMaxScoreText.textContent = "${counter.highest}";
         }
         gameOverScoreHighest.textContent = counter.highest;
         playSound("../assets/sounds/monkeyHit.wav");
@@ -240,12 +254,21 @@ function resetGame() {
 
 function playSound(src) {
   const sound = new Audio(src);
-  sound.volume = 0.5; // volumen
+  sound.volume = 0.6; // volumen
   sound.play().catch((err) => {
     // Esto evita errores si el navegador bloquea reproducción sin interacción
     console.warn("No se pudo reproducir el sonido:", err);
   });
 }
+
+function playLowerSound(src) {
+  const sound = new Audio(src);
+  sound.volume = 0.1; // volumen mas bajo 
+  sound.play().catch((err) => {
+    console.warn("No se pudo reproducir el sonido:", err);
+  });
+}
+
 
 function triggerFlip() {
   player.spinTime = player.spinDuration;

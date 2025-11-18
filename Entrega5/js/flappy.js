@@ -2,6 +2,9 @@ const canvas = document.getElementById("canvas");
 const playButton = document.querySelector(".game-play-button");
 const flappyPreGame = document.querySelector(".flappy-pre-display-container");
 const flappyGameOver = document.querySelector(".lost-display-container");
+const gameOverScoreActual = document.querySelector("#score-actual-text");
+const gameOverScoreHighest = document.querySelector("#score-highest-text");
+const playAgainBtns = document.querySelectorAll(".play-again-button");
 const ctx = canvas.getContext("2d");
 
 const birdImg = new Image();
@@ -12,6 +15,11 @@ pipeTopImg.src = "../assets/images/BambuPipesTop.webp";
 
 const pipeBottomImg = new Image();
 pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
+
+const counter = {
+  actual: 0,
+  highest: 0,
+};
 
 const player = {
   x: 50,
@@ -41,6 +49,16 @@ let pipeSpeed = 2; // Velocidad con la que avanzan los tubos.
 playButton.addEventListener("click", () => {
   flappyPreGame.classList.remove("active");
   update();
+});
+
+playAgainBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    flappyPreGame.classList.remove("active");
+    flappyGameOver.classList.remove("active");
+    counter.actual = 0;
+    resetGame();
+    update();
+  });
 });
 
 // Genera un obstáculo nuevo
@@ -115,19 +133,20 @@ function update(timestamp) {
     createPipe();
   }
 
-    // Eliminar pipes fuera de pantalla
-    if (pipes[0].x + pipeWidth < 0) {
-        pipes.shift();
+  // Eliminar pipes fuera de pantalla
+  if (pipes[0].x + pipeWidth < 0) {
+    pipes.shift();
+  }
+
+  //Comprobamos si paso correctamente un Pipe
+  pipes.forEach((pipe) => {
+    if (!pipe.scored && pipe.x + pipeWidth < birdX) {
+      pipe.scored = true;
+      counter.actual++;
+      playSound("../assets/sounds/Backflip.wav");
+      triggerFlip(); // activa animación de voltereta
     }
-    
-    //Comprobamos si paso correctamente un Pipe
-    pipes.forEach(pipe => {
-        if (!pipe.scored && pipe.x + pipeWidth < birdX) {
-            pipe.scored = true;
-            playSound("../assets/sounds/Backflip.wav");
-            triggerFlip(); // activa animación de voltereta
-        }
-    });
+  });
 
   // Comprobar colisiones
   for (let pipe of pipes) {
@@ -136,8 +155,14 @@ function update(timestamp) {
         birdY < pipe.topHeight ||
         birdY + birdSize > canvas.height - pipe.bottomHeight
       ) {
-                playSound("../assets/sounds/monkeyHit.wav");                flappyGameOver.classList.add("active");
-            return;
+        flappyGameOver.classList.add("active");
+        gameOverScoreActual.textContent = counter.actual;
+        if (counter.actual > counter.highest) {
+          counter.highest = counter.actual;
+        }
+        gameOverScoreHighest.textContent = counter.highest;
+        playSound("../assets/sounds/monkeyHit.wav");
+        return;
       }
     }
   }

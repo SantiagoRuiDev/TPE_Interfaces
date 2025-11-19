@@ -61,6 +61,25 @@ canvas.active {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    .difficulty-selector-box {
+      width: 100%;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    select {
+      background: none;
+      border: solid 2px #333;
+      padding: 8px;
+      border-radius: 4px;
+      color: #333;
+      outline: none;
+      width: 100%;
+    }
   }
 
   .game-info-text {
@@ -81,9 +100,9 @@ canvas.active {
   .game-play-button {
     border-radius: 24px;
     padding: 8px;
-    border: 2px solid var(--accent_dark_color);
+    border: 2px solid #af6d17;
     font-size: 18px;
-    background-color: var(--accent_color);
+    background-color: #ffa126;
     text-align: center;
     color: var(--background_light_gray);
     transition: all 0.3s;
@@ -91,7 +110,7 @@ canvas.active {
   }
 
   .game-play-button:hover {
-    background-color: var(--accent_dark_color);
+    background-color: #af6d17;
     transform: translateY(-3px);
   }
 }

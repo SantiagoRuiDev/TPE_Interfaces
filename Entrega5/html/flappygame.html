@@ -152,17 +152,37 @@
       <div class="game-display-container" id="game-display-container">
         <div class="game-display-header">
           <div class="timer-display">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg>
-          <p id="max-score">0</p>
-        </div>
-        <div class="game-navigation-buttons">
-          <button class="tool-button ">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M12 3s-6.186 5.34-9.643 8.232A1.04 1.04 0 0 0 2 12a1 1 0 0 0 1 1h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a.98.98 0 0 0-.383-.768C18.184 8.34 12 3 12 3"/></svg>
-          </button>
-          <button class="tool-button">
-            <img src="../assets/images/Reset.svg" alt="boton de reiniciar">
-          </button>
-        </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#fff"
+                d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"
+              />
+            </svg>
+            <p id="max-score">0</p>
+          </div>
+          <div class="game-navigation-buttons">
+            <button class="tool-button back-to-menu-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#fff"
+                  d="M12 3s-6.186 5.34-9.643 8.232A1.04 1.04 0 0 0 2 12a1 1 0 0 0 1 1h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1a.98.98 0 0 0-.383-.768C18.184 8.34 12 3 12 3"
+                />
+              </svg>
+            </button>
+            <button class="tool-button play-again-button">
+              <img src="../assets/images/Reset.svg" alt="boton de reiniciar" />
+            </button>
+          </div>
         </div>
         <canvas id="canvas" class="active" width="800" height="500"></canvas>
         <div
@@ -171,7 +191,14 @@
         >
           <div class="game-info">
             <div class="game-info-text">
-              <h1 class="game-title">Flappy Bird</h1>
+              <h1 class="game-title">Flappy Monkey</h1>
+            </div>
+            <div class="difficulty-selector-box">
+              <h4 class="">Dificultad</h4>
+              <select name="" id="difficulty-selector">
+                <option value="Easy">Fácil</option>
+                <option value="Hard">Difícil</option>
+              </select>
             </div>
             <div class="canvas-image-selector"></div>
             <button class="game-play-button">Comenzar</button>
@@ -183,20 +210,40 @@
             <h1 class="game-title">Game over</h1>
             <div class="score-table">
               <div class="score-card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#fff"
+                    d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"
+                  />
+                </svg>
                 <h2>Racha Actual</h2>
                 <p class="score-text" id="score-actual-text">0</p>
               </div>
               <div class="score-card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M7 21v-2h4v-3.1q-1.225-.275-2.187-1.037T7.4 12.95q-1.875-.225-3.137-1.637T3 8V7q0-.825.588-1.412T5 5h2V3h10v2h2q.825 0 1.413.588T21 7v1q0 1.9-1.263 3.313T16.6 12.95q-.45 1.15-1.412 1.913T13 15.9V19h4v2zm0-10.2V7H5v1q0 .95.55 1.713T7 10.8m10 0q.9-.325 1.45-1.088T19 8V7h-2z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#fff"
+                    d="M7 21v-2h4v-3.1q-1.225-.275-2.187-1.037T7.4 12.95q-1.875-.225-3.137-1.637T3 8V7q0-.825.588-1.412T5 5h2V3h10v2h2q.825 0 1.413.588T21 7v1q0 1.9-1.263 3.313T16.6 12.95q-.45 1.15-1.412 1.913T13 15.9V19h4v2zm0-10.2V7H5v1q0 .95.55 1.713T7 10.8m10 0q.9-.325 1.45-1.088T19 8V7h-2z"
+                  />
+                </svg>
                 <h2>Mejor Racha</h2>
                 <p class="score-text" id="score-highest-text">0</p>
               </div>
             </div>
             <div class="game-info-buttons">
-              <button class="game-play-button back-to-menu-button secondary"
-                >Volver al inicio</button
-              >
+              <button class="game-play-button back-to-menu-button secondary">
+                Volver al inicio
+              </button>
               <button class="game-play-button play-again-button primary">
                 Volver a jugar
               </button>
@@ -212,9 +259,18 @@
             <h2>¿Como jugar?</h2>
           </div>
           <ul class="instructions-list">
-            <li>  <span class="span-petroka">W, ↑,  espacio o click izquierdo </span>, el personaje saltará  </li>
-            <li> Tu objetivo es saltar y pasar las tuberias por los espacios que se precentan  </li>
-            <li>Pero <span class="span-petroka">¡OJO!</span> si chocas contra una tuberia perderas tu  <span class="span-petroka">puntaje</span>, el cual se acumula ronda a ronda </li>
+            <li>
+              <span class="span-petroka">W, ↑, espacio o click izquierdo </span
+              >, el personaje saltará
+            </li>
+            <li>
+              Tu objetivo es saltar y pasar las tuberias por los espacios que se
+              precentan
+            </li>
+            <li>
+              Pero <span class="span-petroka">¡OJO!</span> si chocas contra una
+              tuberia perderas tu <span class="span-petroka">puntaje</span>, el
+              cual se acumula ronda a ronda
             </li>
           </ul>
         </div>
@@ -231,11 +287,13 @@
             <h2>Acerca del creador</h2>
           </div>
           <p>
-              Los orígenes de Flappy Bird se encuentran en el desarrollador vietnamita Dong Nguyen,
-              quien creó el juego en mayo de 2013 y lo lanzó en la App Store. 
-              Originalmente se llamó "Flap Flap" y se construyó rápidamente, 
-              pero tuvo que cambiarle el nombre al descubrir que ya existía otra aplicación con el mismo nombre. Esta es la version de 
-              <span class="span-petroka">PetrokaGames</span>
+            Los orígenes de Flappy Bird se encuentran en el desarrollador
+            vietnamita Dong Nguyen, quien creó el juego en mayo de 2013 y lo
+            lanzó en la App Store. Originalmente se llamó "Flap Flap" y se
+            construyó rápidamente, pero tuvo que cambiarle el nombre al
+            descubrir que ya existía otra aplicación con el mismo nombre. Esta
+            es la version de
+            <span class="span-petroka">PetrokaGames</span>
           </p>
         </div>
         <div class="game-developer-info">

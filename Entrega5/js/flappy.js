@@ -5,10 +5,10 @@ const flappyGameOver = document.querySelector(".lost-display-container");
 const gameOverScoreActual = document.querySelector("#score-actual-text");
 const gameOverScoreHighest = document.querySelector("#score-highest-text");
 const playAgainBtns = document.querySelectorAll(".play-again-button");
-const backToMenuBtn = document.querySelector(".back-to-menu-button");
-const gameMaxScoreText = document.getElementById(".max-score");
+const backToMenuBtns = document.querySelectorAll(".back-to-menu-button");
+const gameMaxScoreText = document.querySelector("#max-score");
+const difficultySelector = document.querySelector("#difficulty-selector");
 const ctx = canvas.getContext("2d");
-
 
 const birdImg = new Image();
 birdImg.src = "../assets/images/FlappyMonkey.webp";
@@ -18,6 +18,8 @@ pipeTopImg.src = "../assets/images/BambuPipesTop.webp";
 
 const pipeBottomImg = new Image();
 pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
+
+let animationFrameNumber = null;
 
 const counter = {
   actual: 0,
@@ -45,31 +47,47 @@ let lastTime = 0; // para la animación
 
 // Atributos de los obstaculos
 let pipes = [];
-let pipeWidth = 150;
+let pipeWidth = 50;
 let pipeGap = 160; // Espaciado entre obstaculo de arriba y obstaculo de abajo.
 let pipeSpeed = 2; // Velocidad con la que avanzan los tubos.
 
 playButton.addEventListener("click", () => {
   flappyPreGame.classList.remove("active");
+  gameMaxScoreText.textContent = "0";
+  resetGame();
   update();
 });
 
-
 playAgainBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
+    if(flappyPreGame.classList.contains("active")) return;
     flappyPreGame.classList.remove("active");
     flappyGameOver.classList.remove("active");
     counter.actual = 0;
+    gameMaxScoreText.textContent = "0";
+    cancelAnimationFrame(animationFrameNumber);
     resetGame();
     update();
   });
 });
 
-backToMenuBtn.addEventListener("click", () => {
-  flappyGameOver.classList.remove("active");
-  flappyPreGame.classList.add("active");
-  counter.actual = 0;
-  resetGame();
+difficultySelector.addEventListener('change', (e) => {
+  if(e.target.value == "Easy"){
+    pipeSpeed = 2;
+  } else {
+    pipeSpeed = 4;
+  }
+})
+
+backToMenuBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    flappyGameOver.classList.remove("active");
+    flappyPreGame.classList.add("active");
+    counter.actual = 0;
+    gameMaxScoreText.textContent = "0";
+    cancelAnimationFrame(animationFrameNumber);
+    return;
+  });
 });
 
 // Genera un obstáculo nuevo
@@ -98,8 +116,8 @@ document.addEventListener("keydown", (e) => {
 
 // Cada vez que doy click dentro del canvas.
 canvas.addEventListener("click", (e) => {
-    playLowerSound("../assets/sounds/monkeyJump.mp3");
-    velocity = jumpStrength;
+  playLowerSound("../assets/sounds/monkeyJump.mp3");
+  velocity = jumpStrength;
 });
 
 // Loop
@@ -156,6 +174,7 @@ function update(timestamp) {
     if (!pipe.scored && pipe.x + pipeWidth < birdX) {
       pipe.scored = true;
       counter.actual++;
+      gameMaxScoreText.textContent = counter.actual;
       playSound("../assets/sounds/Backflip.wav");
       triggerFlip(); // activa animación de voltereta
     }
@@ -172,7 +191,6 @@ function update(timestamp) {
         gameOverScoreActual.textContent = counter.actual;
         if (counter.actual > counter.highest) {
           counter.highest = counter.actual;
-         // gameMaxScoreText.textContent = "${counter.highest}";
         }
         gameOverScoreHighest.textContent = counter.highest;
         playSound("../assets/sounds/monkeyHit.wav");
@@ -182,7 +200,7 @@ function update(timestamp) {
   }
 
   draw();
-  requestAnimationFrame(update);
+  animationFrameNumber = requestAnimationFrame(update);
 }
 
 // Dibujar el mono y las pipes
@@ -263,12 +281,11 @@ function playSound(src) {
 
 function playLowerSound(src) {
   const sound = new Audio(src);
-  sound.volume = 0.1; // volumen mas bajo 
+  sound.volume = 0.1; // volumen mas bajo
   sound.play().catch((err) => {
     console.warn("No se pudo reproducir el sonido:", err);
   });
 }
-
 
 function triggerFlip() {
   player.spinTime = player.spinDuration;

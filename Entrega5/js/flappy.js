@@ -8,6 +8,7 @@ const playAgainBtns = document.querySelectorAll(".play-again-button");
 const backToMenuBtns = document.querySelectorAll(".back-to-menu-button");
 const gameMaxScoreText = document.querySelector("#max-score");
 const difficultySelector = document.querySelector("#difficulty-selector");
+const difficultyOptions = document.querySelectorAll(".difficulty-option"); // ojo aca 
 const ctx = canvas.getContext("2d");
 
 const birdImg = new Image();
@@ -71,13 +72,35 @@ playAgainBtns.forEach((btn) => {
   });
 });
 
+
+difficultyOptions.forEach(opt => {
+  opt.addEventListener("click", () => {
+    // Sacar selección previa
+    difficultyOptions.forEach(o => o.classList.remove("selected"));
+
+    // Marcar la actual
+    opt.classList.add("selected");
+
+    // Actualizar el input hidden (para mantener compatibilidad con tu lógica)
+    difficultySelector.value = opt.dataset.value;
+
+    // Aplicar dificultad igual que antes
+    if (difficultySelector.value === "Easy") {
+      pipeSpeed = 2;
+    } else {
+      pipeSpeed = 4;
+    }
+  });
+});
+
+/*
 difficultySelector.addEventListener('change', (e) => {
   if(e.target.value == "Easy"){
     pipeSpeed = 2;
   } else {
     pipeSpeed = 4;
   }
-})
+})*/
 
 backToMenuBtns.forEach((btn) => {
   btn.addEventListener("click", () => {

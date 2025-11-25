@@ -20,6 +20,24 @@ pipeTopImg.src = "../assets/images/BambuPipesTop.webp";
 const pipeBottomImg = new Image();
 pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
 
+/* Parallax Background Setup */
+const parallax = new ParallaxBackground([
+    new ParallaxLayer("../assets/images/clouds-fare-backgroundi.png", 0.3, canvas.width, canvas.height -100), //lejos
+    new ParallaxLayer("../assets/images/mountains-middle-cap.png", 0.7, canvas.width, canvas.height), //medio
+    new ParallaxLayer("../assets/images/trees-front-cap.png", 1.3, canvas.width, canvas.height) //cerca
+]);
+
+
+/* Imagenes para parallax
+
+const bg1 = new Image();
+const bg2 = new Image();
+const bg3 = new Image();
+bg1.src = "img/bg-fondo-lejos.png";   // capa 1 (más lenta)
+bg2.src = "img/bg-medio.png";         // capa 2
+bg3.src = "img/bg-cerca.png";         // capa 3 (más rápida)
+/*-----------------------*/
+
 let animationFrameNumber = null;
 
 const counter = {
@@ -93,14 +111,7 @@ difficultyOptions.forEach(opt => {
   });
 });
 
-/*
-difficultySelector.addEventListener('change', (e) => {
-  if(e.target.value == "Easy"){
-    pipeSpeed = 2;
-  } else {
-    pipeSpeed = 4;
-  }
-})*/
+
 
 backToMenuBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -230,6 +241,9 @@ function update(timestamp) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  parallax.update(); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  parallax.draw(ctx);
+
   // Guardar estado del canvas
   ctx.save();
 
@@ -277,6 +291,8 @@ function draw() {
       pipe.bottomHeight
     );
   });
+
+  
 }
 
 function resetGame() {

@@ -22,21 +22,12 @@ pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
 
 /* Parallax Background Setup */
 const parallax = new ParallaxBackground([
-    new ParallaxLayer("../assets/images/clouds-fare-backgroundi.png", 0.3, canvas.width, canvas.height -100), //lejos
+    new ParallaxLayer("../assets/images/sky-layer.png", 0, canvas.width, canvas.height), //lejos
+    new ParallaxLayer("../assets/images/sun-background.png", 0.2, canvas.width, canvas.height - 200), //lejos
+    new ParallaxLayer("../assets/images/clouds-layer.png", 0.4, canvas.width, canvas.height -100), //lejos
     new ParallaxLayer("../assets/images/mountains-middle-cap.png", 0.7, canvas.width, canvas.height), //medio
-    new ParallaxLayer("../assets/images/trees-front-cap.png", 1.3, canvas.width, canvas.height) //cerca
+    new ParallaxLayer("../assets/images/trees-front-cap.png", 1.3, canvas.width, canvas.height), //cerca
 ]);
-
-
-/* Imagenes para parallax
-
-const bg1 = new Image();
-const bg2 = new Image();
-const bg3 = new Image();
-bg1.src = "img/bg-fondo-lejos.png";   // capa 1 (más lenta)
-bg2.src = "img/bg-medio.png";         // capa 2
-bg3.src = "img/bg-cerca.png";         // capa 3 (más rápida)
-/*-----------------------*/
 
 let animationFrameNumber = null;
 
@@ -66,7 +57,7 @@ let lastTime = 0; // para la animación
 
 // Atributos de los obstaculos
 let pipes = [];
-let pipeWidth = 50;
+let pipeWidth = 70;
 let pipeGap = 160; // Espaciado entre obstaculo de arriba y obstaculo de abajo.
 let pipeSpeed = 2; // Velocidad con la que avanzan los tubos.
 
@@ -241,7 +232,7 @@ function update(timestamp) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  parallax.update(); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  parallax.update();
   parallax.draw(ctx);
 
   // Guardar estado del canvas
@@ -272,10 +263,6 @@ function draw() {
     birdSize * 3,
     birdSize * 3 // el tamaño final en pantalla
   );
-
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = 3;
-  ctx.strokeRect(-birdSize * 1.5, -birdSize * 1.5, birdSize * 3, birdSize * 3);
 
   ctx.restore();
 

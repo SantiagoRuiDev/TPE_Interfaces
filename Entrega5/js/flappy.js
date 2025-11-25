@@ -302,7 +302,7 @@ function update(timestamp) {
         banana.collected = true;
         counter.bonus++;
         bonusScoreText.textContent = counter.bonus;
-        //playSound("../assets/sounds/banana-collect.mp3");
+        playSound("../assets/sounds/banana-collect.mp3");
         if (counter.bonus == counter.bonusLimit) {
           setTimeout(() => {
             cancelAnimationFrame(animationFrameNumber);

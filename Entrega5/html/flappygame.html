@@ -193,13 +193,17 @@
             <div class="game-info-text">
               <h1 class="game-title">Flappy Monkey</h1>
             </div>
+
             <div class="difficulty-selector-box">
-              <h4 class="">Dificultad</h4>
-              <select name="" id="difficulty-selector">
-                <option value="Easy">Fácil</option>
-                <option value="Hard">Difícil</option>
-              </select>
+             <h4 id="difficulty-title">Dificultad</h4>
+              <div class="difficulty-container">
+                <div class="difficulty-option easy" data-value="Easy">Fácil</div>
+                <div class="difficulty-option hard" data-value="Hard">Difícil</div>
+              </div>
+
+              <input type="hidden" id="difficulty-selector" value="Easy">
             </div>
+
             <div class="canvas-image-selector"></div>
             <button class="game-play-button">Comenzar</button>
           </div>
@@ -264,7 +268,7 @@
               >, el personaje saltará
             </li>
             <li>
-              Tu objetivo es saltar y pasar las tuberias por los espacios que se
+              Tu objetivo es saltar y pasar los bambú por los espacios que se
               precentan
             </li>
             <li>
@@ -694,6 +698,8 @@
         </div>
       </div>
     </footer>
-    <script src="../js/flappy.js"></script>
+     <script src="../js/parallax/parallaxLayer.js"></script>
+     <script src="../js/parallax/parallaxBackground.js"></script>
+     <script src="../js/flappy.js"></script>
   </body>
 </html>

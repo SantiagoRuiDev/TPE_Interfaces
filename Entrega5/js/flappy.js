@@ -8,6 +8,7 @@ const playAgainBtns = document.querySelectorAll(".play-again-button");
 const backToMenuBtns = document.querySelectorAll(".back-to-menu-button");
 const gameMaxScoreText = document.querySelector("#max-score");
 const difficultySelector = document.querySelector("#difficulty-selector");
+const difficultyOptions = document.querySelectorAll(".difficulty-option"); // ojo aca 
 const ctx = canvas.getContext("2d");
 
 const birdImg = new Image();
@@ -18,6 +19,24 @@ pipeTopImg.src = "../assets/images/BambuPipesTop.webp";
 
 const pipeBottomImg = new Image();
 pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
+
+/* Parallax Background Setup */
+const parallax = new ParallaxBackground([
+    new ParallaxLayer("../assets/images/clouds-fare-backgroundi.png", 0.3, canvas.width, canvas.height -100), //lejos
+    new ParallaxLayer("../assets/images/mountains-middle-cap.png", 0.7, canvas.width, canvas.height), //medio
+    new ParallaxLayer("../assets/images/trees-front-cap.png", 1.3, canvas.width, canvas.height) //cerca
+]);
+
+
+/* Imagenes para parallax
+
+const bg1 = new Image();
+const bg2 = new Image();
+const bg3 = new Image();
+bg1.src = "img/bg-fondo-lejos.png";   // capa 1 (más lenta)
+bg2.src = "img/bg-medio.png";         // capa 2
+bg3.src = "img/bg-cerca.png";         // capa 3 (más rápida)
+/*-----------------------*/
 
 let animationFrameNumber = null;
 
@@ -71,13 +90,28 @@ playAgainBtns.forEach((btn) => {
   });
 });
 
-difficultySelector.addEventListener('change', (e) => {
-  if(e.target.value == "Easy"){
-    pipeSpeed = 2;
-  } else {
-    pipeSpeed = 4;
-  }
-})
+
+difficultyOptions.forEach(opt => {
+  opt.addEventListener("click", () => {
+    // Sacar selección previa
+    difficultyOptions.forEach(o => o.classList.remove("selected"));
+
+    // Marcar la actual
+    opt.classList.add("selected");
+
+    // Actualizar el input hidden (para mantener compatibilidad con tu lógica)
+    difficultySelector.value = opt.dataset.value;
+
+    // Aplicar dificultad igual que antes
+    if (difficultySelector.value === "Easy") {
+      pipeSpeed = 2;
+    } else {
+      pipeSpeed = 4;
+    }
+  });
+});
+
+
 
 backToMenuBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -207,6 +241,9 @@ function update(timestamp) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  parallax.update(); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  parallax.draw(ctx);
+
   // Guardar estado del canvas
   ctx.save();
 
@@ -254,6 +291,8 @@ function draw() {
       pipe.bottomHeight
     );
   });
+
+  
 }
 
 function resetGame() {

@@ -24,7 +24,7 @@ canvas.active {
   background-color: var(--background_dark_color);
   transition: all 0.3s;
   cursor: pointer;
-  
+
   img {
     height: 24px;
     width: 24px;
@@ -64,6 +64,22 @@ canvas.active {
 
     .difficulty-selector-box {
       width: 100%;
+    }
+
+    .challenge-box {
+      padding: 15px 25px;
+      border: 2px solid var(--background_shadow_color);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      user-select: none;
+      font-weight: bold;
+      transition: 0.2s;
+
+      img {
+        height: 24px;
+        width: 24px;
+      }
     }
 
     h4 {
@@ -183,8 +199,7 @@ canvas.active {
   position: relative;
 }
 
-
-.difficulty-container  {
+.difficulty-container {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -215,7 +230,7 @@ canvas.active {
   background-color: var(--secondary_color);
 }
 
-.hard:hover{
+.hard:hover {
   background-color: #f44336;
 }
 
@@ -230,7 +245,6 @@ canvas.active {
   border-color: #f44336;
 }
 
-
 canvas {
   background: url("../public/fondo.webp");
   background-repeat: repeat;
@@ -238,7 +252,6 @@ canvas {
   margin: 20px auto;
   border: 2px solid #333;
 }
-
 
 .game-developer-container {
   padding: 96px 0px;
@@ -339,9 +352,10 @@ canvas {
   justify-content: center;
   align-items: center;
 }
-.game-guide-image1 { /*colocar imagen del juego cuando tenga las parallax listo*/
- /* background: url("../assets/images/peg-arrastra.webp") center/cover no-repeat;*/
- background-color: #f44336;
+.game-guide-image1 {
+  /*colocar imagen del juego cuando tenga las parallax listo*/
+  /* background: url("../assets/images/peg-arrastra.webp") center/cover no-repeat;*/
+  background-color: #f44336;
   height: 230px;
   width: 230px;
   border-radius: 12px;
@@ -500,6 +514,26 @@ canvas {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.score-boxes {
+  display: flex;
+  gap: 12px;
+}
+
+.bonus-display {
+  display: flex;
+  padding: 10px 16px;
+  border-radius: 32px;
+  justify-content: center;
+  gap: 12px;
+  background-color: var(--background_dark_color);
+  color: #ffa126;
+
+  img {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -690,17 +724,18 @@ canvas.active {
 }
 
 .winner-display-container {
-  background-color: var(--background_header_color);
-  width: 80%;
-  margin: 0px auto;
-  display: none;
-  overflow: hidden;
-  position: relative;
-  height: 512px;
-  background: url("../assets/winner-background.svg");
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 820px;
+  position: absolute;
   background-size: cover;
+  display: none;
   background-repeat: no-repeat;
   background-position: center;
+  height: 520px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .game-info {
     position: absolute;
@@ -718,6 +753,11 @@ canvas.active {
     text-shadow: 4px 2px 2px var(--background_header_color);
     animation: titleAnimation 0.8s infinite ease-in-out;
     color: var(--primary_color);
+  }
+
+  .game-winner-text {
+    font-weight: 400;
+    padding-top: 12px;
   }
 
   .game-info-buttons {

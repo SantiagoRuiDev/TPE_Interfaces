@@ -2,13 +2,17 @@ const canvas = document.getElementById("canvas");
 const playButton = document.querySelector(".game-play-button");
 const flappyPreGame = document.querySelector(".flappy-pre-display-container");
 const flappyGameOver = document.querySelector(".lost-display-container");
+const flappyWinner = document.querySelector(".winner-display-container");
 const gameOverScoreActual = document.querySelector("#score-actual-text");
 const gameOverScoreHighest = document.querySelector("#score-highest-text");
 const playAgainBtns = document.querySelectorAll(".play-again-button");
 const backToMenuBtns = document.querySelectorAll(".back-to-menu-button");
 const gameMaxScoreText = document.querySelector("#max-score");
+const bonusScoreText = document.querySelector("#bonus-score");
+const gameWinnerText = document.querySelector(".game-winner-text");
+const bonusLimitScoreText = document.querySelector("#challenge-bonus");
 const difficultySelector = document.querySelector("#difficulty-selector");
-const difficultyOptions = document.querySelectorAll(".difficulty-option"); // ojo aca 
+const difficultyOptions = document.querySelectorAll(".difficulty-option"); // ojo aca
 const ctx = canvas.getContext("2d");
 
 const birdImg = new Image();
@@ -22,19 +26,55 @@ pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
 
 /* Parallax Background Setup */
 const parallax = new ParallaxBackground([
-    new ParallaxLayer("../assets/images/sky-layer.png", 0, canvas.width, canvas.height), //lejos
-    new ParallaxLayer("../assets/images/sun-background.png", 0.2, canvas.width, canvas.height - 200), //lejos
-    new ParallaxLayer("../assets/images/clouds-layer.png", 0.4, canvas.width, canvas.height -100), //lejos
-    new ParallaxLayer("../assets/images/mountains-middle-cap.png", 0.7, canvas.width, canvas.height), //medio
-    new ParallaxLayer("../assets/images/trees-front-cap.png", 1.3, canvas.width, canvas.height), //cerca
+  new ParallaxLayer(
+    "../assets/images/sky-layer.png",
+    0,
+    canvas.width,
+    canvas.height
+  ), //lejos
+  new ParallaxLayer(
+    "../assets/images/sun-background.png",
+    0.2,
+    canvas.width,
+    canvas.height - 200
+  ), //lejos
+  new ParallaxLayer(
+    "../assets/images/clouds-layer.png",
+    0.7,
+    canvas.width,
+    canvas.height - 100
+  ), //lejos
+  new ParallaxLayer(
+    "../assets/images/mountains-middle-cap.png",
+    0.5,
+    canvas.width,
+    canvas.height
+  ), //medio
+  new ParallaxLayer(
+    "../assets/images/trees-front-cap.png",
+    1.3,
+    canvas.width,
+    canvas.height
+  ), //cerca
 ]);
+
+const bananaImg = new Image();
+bananaImg.src = "../assets/images/banana.png";
+
+let bananas = [];
+let bananaSize = 35; // tamaño en pantalla
 
 let animationFrameNumber = null;
 
 const counter = {
   actual: 0,
   highest: 0,
+  bonus: 0,
+  bonusLimit: 10,
 };
+
+// Al cargar JS
+bonusLimitScoreText.textContent = "Recolectar " + counter.bonusLimit + " bananas";
 
 const player = {
   x: 50,
@@ -64,28 +104,30 @@ let pipeSpeed = 2; // Velocidad con la que avanzan los tubos.
 playButton.addEventListener("click", () => {
   flappyPreGame.classList.remove("active");
   gameMaxScoreText.textContent = "0";
+  bonusScoreText.textContent = "0";
   resetGame();
   update();
 });
 
 playAgainBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if(flappyPreGame.classList.contains("active")) return;
+    if (flappyPreGame.classList.contains("active")) return;
     flappyPreGame.classList.remove("active");
     flappyGameOver.classList.remove("active");
+    flappyWinner.classList.remove("active");
     counter.actual = 0;
     gameMaxScoreText.textContent = "0";
+    bonusScoreText.textContent = "0";
     cancelAnimationFrame(animationFrameNumber);
     resetGame();
     update();
   });
 });
 
-
-difficultyOptions.forEach(opt => {
+difficultyOptions.forEach((opt) => {
   opt.addEventListener("click", () => {
     // Sacar selección previa
-    difficultyOptions.forEach(o => o.classList.remove("selected"));
+    difficultyOptions.forEach((o) => o.classList.remove("selected"));
 
     // Marcar la actual
     opt.classList.add("selected");
@@ -95,21 +137,25 @@ difficultyOptions.forEach(opt => {
 
     // Aplicar dificultad igual que antes
     if (difficultySelector.value === "Easy") {
-      pipeSpeed = 2;
+      pipeSpeed = 2.5;
+      counter.bonusLimit = 10;
     } else {
       pipeSpeed = 4;
+      counter.bonusLimit = 20;
     }
+    bonusLimitScoreText.textContent =
+      "Recolectar " + counter.bonusLimit + " bananas";
   });
 });
-
-
 
 backToMenuBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     flappyGameOver.classList.remove("active");
     flappyPreGame.classList.add("active");
+    flappyWinner.classList.remove("active");
     counter.actual = 0;
     gameMaxScoreText.textContent = "0";
+    bonusScoreText.textContent = "0";
     cancelAnimationFrame(animationFrameNumber);
     return;
   });
@@ -126,6 +172,20 @@ function createPipe() {
     bottomHeight,
     scored: false,
   });
+
+  // Crear banana en el espacio libre (pipeGap)
+  if (Math.random() < 0.5) {
+    // 50% probabilidad de que aparezca
+    const gapTop = topHeight;
+    const gapBottom = topHeight + pipeGap;
+
+    bananas.push({
+      x: canvas.width + pipeWidth / 2,
+      y: gapTop + pipeGap / 2, // al centro del gap
+      size: bananaSize,
+      collected: false,
+    });
+  }
 }
 
 // Crear primer tubo
@@ -184,6 +244,10 @@ function update(timestamp) {
     pipe.x -= pipeSpeed;
   });
 
+  bananas.forEach((banana) => {
+    banana.x -= pipeSpeed;
+  });
+
   // Generar más pipes
   if (pipes[pipes.length - 1].x < canvas.width - 200) {
     createPipe();
@@ -193,6 +257,9 @@ function update(timestamp) {
   if (pipes[0].x + pipeWidth < 0) {
     pipes.shift();
   }
+
+  // Eliminar bananas fuera de pantalla
+  bananas = bananas.filter((b) => b.x + b.size > 0);
 
   //Comprobamos si paso correctamente un Pipe
   pipes.forEach((pipe) => {
@@ -223,6 +290,30 @@ function update(timestamp) {
       }
     }
   }
+
+  // Colisión con bananas
+  bananas.forEach((banana) => {
+    if (!banana.collected) {
+      const dx = birdX + birdSize - (banana.x + banana.size / 2);
+      const dy = birdY + birdSize - (banana.y + banana.size / 2);
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < birdSize + banana.size / 2) {
+        banana.collected = true;
+        counter.bonus++;
+        bonusScoreText.textContent = counter.bonus;
+        //playSound("../assets/sounds/banana-collect.mp3");
+        if (counter.bonus == counter.bonusLimit) {
+          setTimeout(() => {
+            cancelAnimationFrame(animationFrameNumber);
+            gameWinnerText.textContent = "¡Felicidades, recolectaste las " + counter.bonusLimit + " bananas!";
+            flappyWinner.classList.add("active");
+            return;
+          }, 100);
+        }
+      }
+    }
+  });
 
   draw();
   animationFrameNumber = requestAnimationFrame(update);
@@ -266,8 +357,19 @@ function draw() {
 
   ctx.restore();
 
+  // Dibujar bananas
+  bananas.forEach((banana) => {
+    if (!banana.collected) {
+      ctx.drawImage(
+        bananaImg,
+        banana.x - banana.size / 2,
+        banana.y - banana.size / 2,
+        banana.size,
+        banana.size
+      );
+    }
+  });
   //Dibujar los pipes
-
   pipes.forEach((pipe) => {
     ctx.drawImage(pipeTopImg, pipe.x, 0, pipeWidth, pipe.topHeight);
     ctx.drawImage(
@@ -278,8 +380,6 @@ function draw() {
       pipe.bottomHeight
     );
   });
-
-  
 }
 
 function resetGame() {
@@ -290,7 +390,9 @@ function resetGame() {
 
   // Resetear pipes
   pipes = [];
+  bananas = [];
   createPipe(); // Genera el primer pipe
+  counter.bonus = 0;
 
   // Opcional: evitar un salto automatico despues
   lastKeyPressed = false;

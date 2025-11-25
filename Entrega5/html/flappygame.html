@@ -151,19 +151,25 @@
 
       <div class="game-display-container" id="game-display-container">
         <div class="game-display-header">
-          <div class="timer-display">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="#fff"
-                d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"
-              />
-            </svg>
-            <p id="max-score">0</p>
+          <div class="score-boxes">
+            <div class="timer-display">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#fff"
+                  d="m5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"
+                />
+              </svg>
+              <p id="max-score">0</p>
+            </div>
+            <div class="bonus-display">
+              <img src="../assets/images/banana.png" alt="Banana Image" />
+              <p id="bonus-score">0</p>
+            </div>
           </div>
           <div class="game-navigation-buttons">
             <button class="tool-button back-to-menu-button">
@@ -195,13 +201,24 @@
             </div>
 
             <div class="difficulty-selector-box">
-             <h4 id="difficulty-title">Dificultad</h4>
+              <h4 id="difficulty-title">Dificultad</h4>
               <div class="difficulty-container">
-                <div class="difficulty-option easy" data-value="Easy">Fácil</div>
-                <div class="difficulty-option hard" data-value="Hard">Difícil</div>
+                <div class="difficulty-option easy" data-value="Easy">
+                  Fácil
+                </div>
+                <div class="difficulty-option hard" data-value="Hard">
+                  Difícil
+                </div>
               </div>
 
-              <input type="hidden" id="difficulty-selector" value="Easy">
+              <input type="hidden" id="difficulty-selector" value="Easy" />
+            </div>
+
+            
+            <div class="challenge-box">
+              <img src="../assets/images/banana.png" alt="Banana">
+              <h4 id="challenge-title">Desafio</h4>
+              <h6 id="challenge-bonus"></h6>
             </div>
 
             <div class="canvas-image-selector"></div>
@@ -244,6 +261,21 @@
                 <p class="score-text" id="score-highest-text">0</p>
               </div>
             </div>
+            <div class="game-info-buttons">
+              <button class="game-play-button back-to-menu-button secondary">
+                Volver al inicio
+              </button>
+              <button class="game-play-button play-again-button primary">
+                Volver a jugar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="winner-display-container" id="winner-display-container">
+          <div class="game-info">
+            <h1 class="game-title">Ganaste</h1>
+            <h3 class="game-winner-text">Lograste obtener las 20 bananas</h3>
             <div class="game-info-buttons">
               <button class="game-play-button back-to-menu-button secondary">
                 Volver al inicio
@@ -698,8 +730,8 @@
         </div>
       </div>
     </footer>
-     <script src="../js/parallax/parallaxLayer.js"></script>
-     <script src="../js/parallax/parallaxBackground.js"></script>
-     <script src="../js/flappy.js"></script>
+    <script src="../js/parallax/parallaxLayer.js"></script>
+    <script src="../js/parallax/parallaxBackground.js"></script>
+    <script src="../js/flappy.js"></script>
   </body>
 </html>

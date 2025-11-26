@@ -354,8 +354,7 @@ canvas {
 }
 .game-guide-image1 {
   /*colocar imagen del juego cuando tenga las parallax listo*/
-  /* background: url("../assets/images/peg-arrastra.webp") center/cover no-repeat;*/
-  background-color: #f44336;
+  background: url("../assets/images/flappymonkey.png") center/cover no-repeat;
   height: 230px;
   width: 230px;
   border-radius: 12px;

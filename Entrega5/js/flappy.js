@@ -34,6 +34,7 @@ let flockMaxDelay = 7000; // máximo 7s
 let birdFlockSpawnerActive = false;
 
 /* Parallax Background Setup */
+//aca lo que hacemos es crear las capas del parallax y asignarles una velocidad diferente para dar la sensación de profundidad
 const parallax = new ParallaxBackground([
   new ParallaxLayer(
     "../assets/images/sky-layer.png",
@@ -67,6 +68,7 @@ const parallax = new ParallaxBackground([
   ), //cerca
 ]);
 
+//aca cargamos la imagen de la banana que el mono debe recolectar
 const bananaImg = new Image();
 bananaImg.src = "../assets/images/banana.png";
 
@@ -75,6 +77,7 @@ let bananaSize = 35; // tamaño en pantalla
 
 let animationFrameNumber = null;
 
+// Contador de puntajes
 const counter = {
   actual: 0,
   highest: 0,
@@ -82,10 +85,10 @@ const counter = {
   bonusLimit: 10,
 };
 
-// Al cargar JS
-bonusLimitScoreText.textContent =
-  "Recolectar " + counter.bonusLimit + " bananas";
+// Texto inicial del desafio de bananas que va a  indicar la cantidad a recolectar para ganar el juego 
+bonusLimitScoreText.textContent = "Recolectar " + counter.bonusLimit + " bananas";
 
+// creamos un objeto para manejar la animación de voltereta del mono
 const player = {
   x: 50,
   y: 150,
@@ -96,7 +99,7 @@ const player = {
   spinDuration: 300, // Duración en ms de la voltereta
 };
 
-// Atributos del pajaro.
+// Atributos del mono.
 let birdX = 150;
 let birdY = 200;
 let birdSize = 15;
@@ -105,12 +108,14 @@ let gravity = 0.5;
 let jumpStrength = -8;
 let lastTime = 0; // para la animación
 
-// Atributos de los obstaculos
+// Atributos de los obstaculos (pipes) 
 let pipes = [];
 let pipeWidth = 70;
 let pipeGap = 160; // Espaciado entre obstaculo de arriba y obstaculo de abajo.
 let pipeSpeed = 2; // Velocidad con la que avanzan los tubos.
 
+
+// Evento para iniciar el juego
 playButton.addEventListener("click", () => {
   flappyPreGame.classList.remove("active");
   gameMaxScoreText.textContent = "0";
@@ -120,15 +125,18 @@ playButton.addEventListener("click", () => {
   update();
 });
 
+//evento para reiniciar el juego desde la pantalla de game over o de victoria
 playAgainBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     if (flappyPreGame.classList.contains("active")) return;
     flappyPreGame.classList.remove("active");
     flappyGameOver.classList.remove("active");
     flappyWinner.classList.remove("active");
+    //reiniciar contadores
     counter.actual = 0;
     gameMaxScoreText.textContent = "0";
     bonusScoreText.textContent = "0";
+    //reiniciamos la animación 
     cancelAnimationFrame(animationFrameNumber);
     resetGame();
     spawnBirdFlock();
@@ -136,18 +144,19 @@ playAgainBtns.forEach((btn) => {
   });
 });
 
+// Manejo de la selección de dificultad y ajuste de parámetros como la velocidad de los pipes y el límite de bananas a recolectar
 difficultyOptions.forEach((opt) => {
   opt.addEventListener("click", () => {
     // Sacar selección previa
     difficultyOptions.forEach((o) => o.classList.remove("selected"));
 
-    // Marcar la actual
+    //aplicamos la clase selected al botón clickeado
     opt.classList.add("selected");
 
-    // Actualizar el input hidden (para mantener compatibilidad con tu lógica)
+    //actualizamos el valor del selector de dificultad
     difficultySelector.value = opt.dataset.value;
 
-    // Aplicar dificultad igual que antes
+    // manejamos los parámetros según la dificultad seleccionada
     if (difficultySelector.value === "Easy") {
       pipeSpeed = 2.5;
       counter.bonusLimit = 10;
@@ -159,7 +168,7 @@ difficultyOptions.forEach((opt) => {
       "Recolectar " + counter.bonusLimit + " bananas";
   });
 });
-
+//en este evento manejamos el regreso al menú principal desde las pantallas de game over o victoria
 backToMenuBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     flappyGameOver.classList.remove("active");
@@ -173,11 +182,12 @@ backToMenuBtns.forEach((btn) => {
   });
 });
 
-// Genera un obstáculo nuevo
+// esta funcion es la encargada de crear los tubos y las bananas en el juego
 function createPipe() {
-  const topHeight = Math.random() * (canvas.height - pipeGap - 50);
-  const bottomHeight = canvas.height - topHeight - pipeGap;
+  const topHeight = Math.random() * (canvas.height - pipeGap - 50);//aca se calcula una altura aleatoria para el tubo superior
+  const bottomHeight = canvas.height - topHeight - pipeGap;// y con eso se calcula la altura del tubo inferior
 
+  //creamos el objeto del tubo y se agrega al array de tubos (pipes)
   pipes.push({
     x: canvas.width,
     topHeight,
@@ -187,7 +197,7 @@ function createPipe() {
 
   // Crear banana en el espacio libre (pipeGap)
   if (Math.random() < 0.5) {
-    // 50% probabilidad de que aparezca
+    // 50% probabilidad de que aparezca y si queremos cambiar la frecuencia podemos ajustar el valor que esta en el condicional (0,5)
     const gapTop = topHeight;
     const gapBottom = topHeight + pipeGap;
 
@@ -239,7 +249,7 @@ function spawnBirdFlock() {
 // Crear primer tubo
 createPipe();
 
-// Cada que vez que le doy a una tecla contemplada entre las que originalmente tiene el flappy bird
+// Cada vez que le doy a una tecla contemplada para jugar activamos el salto del mono, el sonido de salto y evitamos que otras teclas interfieran (if)
 document.addEventListener("keydown", (e) => {
   const allowedKeys = ["w", "arrowup", " "];
   if (!allowedKeys.includes(e.key.toLowerCase())) return;
@@ -253,7 +263,7 @@ canvas.addEventListener("click", (e) => {
   velocity = jumpStrength;
 });
 
-// Loop
+// en esta funcion lo que se hace es actualizar la posición del mono, los tubos y las bananas, ademas de manejar las colisiones y el puntaje
 function update(timestamp) {
   const deltaTime = timestamp - lastTime;
   lastTime = timestamp;
@@ -274,7 +284,7 @@ function update(timestamp) {
     velocity = 0;
   }
 
-  // Animacion
+  // en esta parte manejamos la animación de voltereta del mono cuando pasa un tubo correctamente
   if (player.spinTime > 0) {
     player.spinTime -= deltaTime;
 
@@ -287,7 +297,7 @@ function update(timestamp) {
     player.rotation = 0;
   }
 
-  //mover los Pipes
+  //aca actualizamos la posición de los tubos y las bananas para que se muevan hacia la izquierda
   pipes.forEach((pipe) => {
     pipe.x -= pipeSpeed;
   });
@@ -309,7 +319,7 @@ function update(timestamp) {
   // Eliminar bananas fuera de pantalla
   bananas = bananas.filter((b) => b.x + b.size > 0);
 
-  //Comprobamos si paso correctamente un Pipe
+  //Comprobamos si el mono pasó correctamente un tubo para aumentar el puntaje
   pipes.forEach((pipe) => {
     if (!pipe.scored && pipe.x + pipeWidth < birdX) {
       pipe.scored = true;
@@ -320,7 +330,7 @@ function update(timestamp) {
     }
   });
 
-  // Comprobar colisiones
+  // comprobamos si hubo colisión con los tubos y si es así mostramos la pantalla de game over
   for (let pipe of pipes) {
     if (birdX + birdSize > pipe.x && birdX < pipe.x + pipeWidth) {
       if (
@@ -339,19 +349,19 @@ function update(timestamp) {
     }
   }
 
-  // Colisión con bananas
+  // se comprueba si pudimos recolectar alguna banana
   bananas.forEach((banana) => {
-    if (!banana.collected) {
+    if (!banana.collected) {//si la banana no fue recolectada aun, se calcula la distancia entre el mono y la banana para ver si hubo colisión
       const dx = birdX + birdSize - (banana.x + banana.size / 2);
       const dy = birdY + birdSize - (banana.y + banana.size / 2);
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < birdSize + banana.size / 2) {
+      if (distance < birdSize + banana.size / 2) {// si la distancia es menor a la suma de los radios, hubo colisión y la contamos 
         banana.collected = true;
         counter.bonus++;
         bonusScoreText.textContent = counter.bonus;
         playSound("../assets/sounds/banana-collect.mp3");
-        if (counter.bonus == counter.bonusLimit) {
+        if (counter.bonus == counter.bonusLimit) {//si se alcanza al limite dado por la dificultad seleccionada, se muestra la pantalla de victoria
           setTimeout(() => {
             cancelAnimationFrame(animationFrameNumber);
             gameWinnerText.textContent =
@@ -385,7 +395,7 @@ function update(timestamp) {
   animationFrameNumber = requestAnimationFrame(update);
 }
 
-// Dibujar el mono y las pipes
+// se encarga de dibujar todos los elementos del juego en el canvas, incluyendo el fondo parallax, el mono, las bananas y los tubos
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -395,13 +405,13 @@ function draw() {
   // Guardar estado del canvas
   ctx.save();
 
-  // Mover origen al centro del mono
+  // aca movemos el origen de coordenadas al centro del mono para facilitar la rotación
   ctx.translate(birdX + birdSize * 1.5, birdY + birdSize * 1.5);
 
   // aplicar rotacion
   ctx.rotate(player.rotation);
 
-  // ---- RECORTE AUTOMÁTICO DEL MONO ----
+  // Recortar imagen para evitar bordes transparentes, osea recortamos por el  contorno del mono
   const cropMargin = 0.2; // recorta un 20% del borde
   const sx = birdImg.width * cropMargin;
   const sy = birdImg.height * cropMargin;
@@ -436,7 +446,7 @@ function draw() {
     });
   });
 
-  // Dibujar bananas
+  //aca dibujamos las bananas que estan proximas a ser recolectadas
   bananas.forEach((banana) => {
     if (!banana.collected) {
       ctx.drawImage(

@@ -5,7 +5,7 @@
     "price": 0,
     "description": "Juego de estrategia para una persona, completa las casillas.",
     "category": "Arcade",
-    "image": "../assets/images/FlappyBird.webp",
+    "image": "../assets/images/flappymonkey.png",
     "discount": false,
     "discount_percentage": 0,
     "is_free": true,

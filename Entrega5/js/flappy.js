@@ -24,6 +24,15 @@ pipeTopImg.src = "../assets/images/BambuPipesTop.webp";
 const pipeBottomImg = new Image();
 pipeBottomImg.src = "../assets/images/BambuPipesBottom.webp";
 
+// Aca esta la información para generar los pajaros decorativos
+const enemyBirdImg = new Image();
+enemyBirdImg.src = "../assets/images/enemyBird.png";
+
+let birdFlocks = [];
+let flockMinDelay = 3000; // mínimo 3s
+let flockMaxDelay = 7000; // máximo 7s
+let birdFlockSpawnerActive = false;
+
 /* Parallax Background Setup */
 const parallax = new ParallaxBackground([
   new ParallaxLayer(
@@ -74,7 +83,8 @@ const counter = {
 };
 
 // Al cargar JS
-bonusLimitScoreText.textContent = "Recolectar " + counter.bonusLimit + " bananas";
+bonusLimitScoreText.textContent =
+  "Recolectar " + counter.bonusLimit + " bananas";
 
 const player = {
   x: 50,
@@ -106,6 +116,7 @@ playButton.addEventListener("click", () => {
   gameMaxScoreText.textContent = "0";
   bonusScoreText.textContent = "0";
   resetGame();
+  spawnBirdFlock();
   update();
 });
 
@@ -120,6 +131,7 @@ playAgainBtns.forEach((btn) => {
     bonusScoreText.textContent = "0";
     cancelAnimationFrame(animationFrameNumber);
     resetGame();
+    spawnBirdFlock();
     update();
   });
 });
@@ -188,14 +200,50 @@ function createPipe() {
   }
 }
 
+function spawnBirdFlock() {
+  // Evitar múltiples spawners
+  if (birdFlockSpawnerActive) return;
+  birdFlockSpawnerActive = true;
+
+  function generate() {
+    const delay = Math.random() * (flockMaxDelay - flockMinDelay) + flockMinDelay;
+
+    setTimeout(() => {
+
+      // Limitar cantidad máxima de manadas simultáneas
+      if (birdFlocks.length < 2) {  
+        const flockSize = 3 + Math.floor(Math.random() * 3); // 3 a 5 pájaros
+        const baseY = Math.random() * (canvas.height * 0.35);
+
+        const flock = [];
+        for (let i = 0; i < flockSize; i++) {
+          flock.push({
+            x: canvas.width + Math.random() * 60,
+            y: baseY + Math.random() * 40 - 20,
+            size: 35,
+            speed: 2 + Math.random() * 1.2,
+            offset: Math.random() * Math.PI * 2
+          });
+        }
+
+        birdFlocks.push(flock);
+      }
+
+      generate(); // Vuelve a programar
+    }, delay);
+  }
+
+  generate(); // Iiniciar ciclo
+}
+
 // Crear primer tubo
 createPipe();
 
 // Cada que vez que le doy a una tecla contemplada entre las que originalmente tiene el flappy bird
 document.addEventListener("keydown", (e) => {
   const allowedKeys = ["w", "arrowup", " "];
-  playLowerSound("../assets/sounds/monkeyJump.mp3");
   if (!allowedKeys.includes(e.key.toLowerCase())) return;
+  playLowerSound("../assets/sounds/monkeyJump.mp3");
   velocity = jumpStrength;
 });
 
@@ -306,7 +354,10 @@ function update(timestamp) {
         if (counter.bonus == counter.bonusLimit) {
           setTimeout(() => {
             cancelAnimationFrame(animationFrameNumber);
-            gameWinnerText.textContent = "¡Felicidades, recolectaste las " + counter.bonusLimit + " bananas!";
+            gameWinnerText.textContent =
+              "¡Felicidades, recolectaste las " +
+              counter.bonusLimit +
+              " bananas!";
             flappyWinner.classList.add("active");
             return;
           }, 100);
@@ -314,6 +365,21 @@ function update(timestamp) {
       }
     }
   });
+
+  // Mover manadas de pajaritos
+  birdFlocks.forEach((flock) => {
+    flock.forEach((bird) => {
+      bird.x -= bird.speed*1.5;
+
+      // movimiento suave vertical tipo aleteo
+      bird.y += Math.sin(lastTime / 400 + bird.offset) * 0.4;
+    });
+  });
+
+  // Eliminar manadas fuera de pantalla
+  birdFlocks = birdFlocks.filter((flock) =>
+    flock.some((bird) => bird.x + bird.size > 0)
+  );
 
   draw();
   animationFrameNumber = requestAnimationFrame(update);
@@ -357,6 +423,19 @@ function draw() {
 
   ctx.restore();
 
+  // Dibujar manadas de pajaritos
+  birdFlocks.forEach((flock) => {
+    flock.forEach((bird) => {
+      ctx.drawImage(
+        enemyBirdImg,
+        bird.x - bird.size / 2,
+        bird.y - bird.size / 2,
+        bird.size,
+        bird.size
+      );
+    });
+  });
+
   // Dibujar bananas
   bananas.forEach((banana) => {
     if (!banana.collected) {
@@ -391,6 +470,7 @@ function resetGame() {
   // Resetear pipes
   pipes = [];
   bananas = [];
+  birdFlocks = [];
   createPipe(); // Genera el primer pipe
   counter.bonus = 0;
 

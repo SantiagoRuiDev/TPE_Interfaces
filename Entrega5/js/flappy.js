@@ -210,6 +210,7 @@ function createPipe() {
   }
 }
 
+// Esta función genera una horda de pajaritos, son inofensivos normalmente ubicados en la parte superior
 function spawnBirdFlock() {
   // Evitar múltiples spawners
   if (birdFlockSpawnerActive) return;

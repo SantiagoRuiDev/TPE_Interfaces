@@ -408,7 +408,7 @@ function resetGame() {
   // Opcional: evitar un salto automatico despues
   lastKeyPressed = false;
 }
-
+// Función para reproducir sonidos con un volumen específico
 function playSound(src) {
   const sound = new Audio(src);
   sound.volume = 0.6; // volumen
@@ -417,7 +417,7 @@ function playSound(src) {
     console.warn("No se pudo reproducir el sonido:", err);
   });
 }
-
+// Función para reproducir sonidos con un volumen más bajo para ciertos efectos
 function playLowerSound(src) {
   const sound = new Audio(src);
   sound.volume = 0.1; // volumen mas bajo
@@ -425,7 +425,7 @@ function playLowerSound(src) {
     console.warn("No se pudo reproducir el sonido:", err);
   });
 }
-
+//lo que hacemos aca es activar la animación de voltereta del mono
 function triggerFlip() {
   player.spinTime = player.spinDuration;
 }
